@@ -103,7 +103,7 @@ git init
 git add .
 git commit -m "feat: initial commit for Roshan Thore portfolio"
 git branch -M main
-git remote add origin https://github.com/Roshan2805/roshan-portfolio.git
+git remote add origin https://github.com/Roshan2805/roshan-thore-portfolio.git
 git push -u origin main
 ```
 2. Import your GitHub repository to [Vercel](https://vercel.com/new).

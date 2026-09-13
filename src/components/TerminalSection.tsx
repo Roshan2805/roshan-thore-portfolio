@@ -48,7 +48,6 @@ export const TerminalSection: React.FC = () => {
     const trimmed = cmd.trim().toLowerCase();
     if (!trimmed) return;
 
-    // Add to history
     setHistory((prev) => [...prev, trimmed]);
     setHistoryIndex(null);
 
@@ -206,7 +205,6 @@ Send an email to ${PERSONAL_INFO.email} or call ${PERSONAL_INFO.phone} to connec
     <section id="terminal" className="py-20 bg-[#090a0f] relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-3xl bg-[#0b0e17] border border-slate-800 shadow-2xl overflow-hidden font-mono">
-          {/* Terminal Window Top Bar */}
           <div className="px-4 py-3 bg-[#111624] border-b border-slate-800 flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
@@ -223,7 +221,6 @@ Send an email to ${PERSONAL_INFO.email} or call ${PERSONAL_INFO.phone} to connec
             </div>
           </div>
 
-          {/* Quick Command Suggestions */}
           <div className="px-4 py-2 bg-[#0d1220] border-b border-slate-800/80 flex items-center gap-2 overflow-x-auto text-xs">
             <span className="text-slate-400 text-[11px]">Quick commands:</span>
             {quickPills.map((pill) => (
@@ -237,7 +234,6 @@ Send an email to ${PERSONAL_INFO.email} or call ${PERSONAL_INFO.phone} to connec
             ))}
           </div>
 
-          {/* Terminal Body */}
           <div
             ref={terminalBodyRef}
             className="p-5 min-h-[300px] max-h-[420px] overflow-y-auto space-y-3 text-xs leading-relaxed"
@@ -272,7 +268,6 @@ Send an email to ${PERSONAL_INFO.email} or call ${PERSONAL_INFO.phone} to connec
               );
             })}
 
-            {/* Active Input Line */}
             <div className="flex items-center space-x-2 pt-1">
               <span className="text-cyan-400 font-bold flex-shrink-0">roshan@mac:~$</span>
               <input

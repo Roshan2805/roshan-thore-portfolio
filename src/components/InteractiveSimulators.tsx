@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import dynamic from "next/dynamic";
 
-// Pulls in TanStack Virtual, so only load it when the tab is opened.
 const VirtualizationBenchmark = dynamic(
   () => import("@/components/VirtualizationBenchmark").then((mod) => mod.VirtualizationBenchmark),
   { ssr: false, loading: () => <div className="h-[520px]" /> }
@@ -23,12 +22,10 @@ const VirtualizationBenchmark = dynamic(
 export const InteractiveSimulators: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"hls" | "stories" | "virtualization">("hls");
 
-  // --- HLS Simulator State ---
   const [networkSpeed, setNetworkSpeed] = useState<number>(8.5); // Mbps
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [bufferSeconds, setBufferSeconds] = useState<number>(14.2);
 
-  // Compute adaptive quality based on network speed
   const getHlsQuality = (mbps: number) => {
     if (mbps >= 15) return { res: "1080p (60fps)", bitrate: "6,200 kbps", label: "Ultra HD", color: "text-emerald-400", badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" };
     if (mbps >= 6) return { res: "1080p", bitrate: "4,500 kbps", label: "Full HD", color: "text-cyan-400", badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20" };
@@ -50,7 +47,6 @@ export const InteractiveSimulators: React.FC = () => {
     return () => clearInterval(interval);
   }, [isPlaying, networkSpeed]);
 
-  // --- 3D Story Simulator State ---
   const stories = [
     { id: 1, title: "Creator Exclusive Backstage Pass", author: "@elena_creator", time: "2h ago", nsfw: false, color: "from-indigo-600 to-purple-800" },
     { id: 2, title: "VIP Studio Live Stream Preview", author: "@marcus_live", time: "4h ago", nsfw: true, color: "from-cyan-600 to-blue-900" },
@@ -102,15 +98,13 @@ export const InteractiveSimulators: React.FC = () => {
 
   return (
     <section id="simulators" className="py-24 bg-[#0a0d16] border-y border-slate-800/80 relative overflow-hidden">
-      {/* Glow Effects */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-indigo-600/5 rounded-full blur-[180px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
             <Cpu className="w-3.5 h-3.5" />
-            <span>Interactive Architecture Playground</span>
+            <span>Interactive Demos</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
             Engineering Playground
@@ -120,7 +114,6 @@ export const InteractiveSimulators: React.FC = () => {
           </p>
         </div>
 
-        {/* Tab Switcher */}
         <div className="mt-10 flex justify-center">
           <div className="inline-flex p-1.5 rounded-2xl bg-[#0e1322] border border-slate-800 shadow-xl gap-1">
             <button
@@ -161,15 +154,11 @@ export const InteractiveSimulators: React.FC = () => {
           </div>
         </div>
 
-        {/* Simulator Display Card */}
         <div className="mt-8 rounded-3xl bg-[#0e1424] border border-slate-800/90 p-6 sm:p-8 backdrop-blur-2xl shadow-2xl">
-          {/* SIMULATOR 1: HLS ADAPTIVE BITRATE */}
           {activeTab === "hls" && (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              {/* Left: Player Visualizer */}
               <div className="lg:col-span-7 space-y-4">
                 <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-2xl flex flex-col justify-between p-5">
-                  {/* Stream Watermark / Top status */}
                   <div className="flex items-center justify-between z-10">
                     <div className="flex items-center space-x-2">
                       <span className="relative flex h-2.5 w-2.5">
@@ -186,7 +175,6 @@ export const InteractiveSimulators: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* Animated Video Simulation Content */}
                   <div className="my-auto text-center space-y-2">
                     <div className="w-16 h-16 mx-auto rounded-full bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center text-cyan-300 animate-pulse">
                       {isPlaying ? <Activity className="w-8 h-8" /> : <Pause className="w-8 h-8" />}
@@ -199,7 +187,6 @@ export const InteractiveSimulators: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Player Bottom HUD */}
                   <div className="space-y-2 z-10 bg-slate-900/80 p-3 rounded-xl backdrop-blur-md border border-slate-800">
                     <div className="flex items-center justify-between text-xs font-mono text-slate-300">
                       <div className="flex items-center space-x-3">
@@ -215,7 +202,6 @@ export const InteractiveSimulators: React.FC = () => {
                       <span className="text-slate-400">{currentQuality.label}</span>
                     </div>
 
-                    {/* Buffer Bar */}
                     <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-gradient-to-r from-cyan-400 to-indigo-500 transition-all duration-300"
@@ -226,7 +212,6 @@ export const InteractiveSimulators: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right: Interactive Bandwidth Controls */}
               <div className="lg:col-span-5 space-y-6">
                 <div>
                   <h3 className="text-lg font-bold text-white flex items-center space-x-2">
@@ -238,7 +223,6 @@ export const InteractiveSimulators: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Slider */}
                 <div className="space-y-2 p-4 rounded-2xl bg-[#12192c] border border-slate-800">
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-slate-400">Simulated Bandwidth</span>
@@ -262,7 +246,6 @@ export const InteractiveSimulators: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Quick Presets */}
                 <div className="flex flex-wrap gap-2">
                   {[
                     { label: "Slow 3G", speed: 0.8 },
@@ -279,11 +262,10 @@ export const InteractiveSimulators: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Technical Insight Pill */}
                 <div className="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-xs text-indigo-300 space-y-1">
                   <div className="font-bold flex items-center space-x-1.5">
                     <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                    <span>Real-world Production Implementation</span>
+                    <span>In production</span>
                   </div>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
                     Dynamically imported `hls.js` only when video content is in viewport, reducing initial JS payload by 120KB and optimizing playback across mobile devices.
@@ -293,16 +275,12 @@ export const InteractiveSimulators: React.FC = () => {
             </div>
           )}
 
-          {/* SIMULATOR 2: 3D STORIES VIEWER */}
           {activeTab === "stories" && (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              {/* Left: Mobile Story Viewport */}
               <div className="lg:col-span-5 flex justify-center">
                 <div className="relative w-full max-w-[280px] h-[480px] rounded-[36px] bg-slate-950 border-4 border-slate-700 shadow-2xl overflow-hidden flex flex-col justify-between p-4 group select-none">
-                  {/* Background Story Color */}
                   <div className={`absolute inset-0 bg-gradient-to-b ${stories[currentStoryIdx].color} transition-colors duration-500`} />
 
-                  {/* NSFW Blur Overlay if active */}
                   {stories[currentStoryIdx].nsfw && !nsfwRevealed && (
                     <div className="absolute inset-0 backdrop-blur-2xl bg-black/60 z-20 flex flex-col items-center justify-center p-4 text-center">
                       <EyeOff className="w-8 h-8 text-rose-400 mb-2" />
@@ -317,7 +295,6 @@ export const InteractiveSimulators: React.FC = () => {
                     </div>
                   )}
 
-                  {/* Story Progress Indicators */}
                   <div className="relative z-30 flex space-x-1 pt-1">
                     {stories.map((s, i) => (
                       <div key={s.id} className="flex-1 h-1 bg-white/30 rounded-full overflow-hidden">
@@ -336,7 +313,6 @@ export const InteractiveSimulators: React.FC = () => {
                     ))}
                   </div>
 
-                  {/* Story Header */}
                   <div className="relative z-30 flex items-center justify-between pt-2">
                     <div className="flex items-center space-x-2">
                       <div className="w-7 h-7 rounded-full bg-white/20 border border-white/40 flex items-center justify-center text-xs font-bold text-white">
@@ -361,7 +337,6 @@ export const InteractiveSimulators: React.FC = () => {
                     </button>
                   </div>
 
-                  {/* Story Mid Body Content */}
                   <div className="relative z-30 my-auto text-center px-3">
                     <div className="p-3 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 text-white">
                       <p className="text-xs font-bold leading-snug">
@@ -370,7 +345,6 @@ export const InteractiveSimulators: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Interactive Left/Right Tap Zones */}
                   <div
                     aria-hidden="true"
                     onClick={prevStory}
@@ -382,7 +356,6 @@ export const InteractiveSimulators: React.FC = () => {
                     className="absolute right-0 top-16 bottom-16 w-1/3 z-20 cursor-pointer"
                   />
 
-                  {/* Story Bottom Comments */}
                   <div className="relative z-30 space-y-2">
                     <form onSubmit={addComment} className="flex gap-1.5">
                       <input
@@ -398,7 +371,6 @@ export const InteractiveSimulators: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right: Architecture & Features Explanation */}
               <div className="lg:col-span-7 space-y-5">
                 <div>
                   <h3 className="text-xl font-bold text-white flex items-center space-x-2">

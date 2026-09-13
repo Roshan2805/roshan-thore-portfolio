@@ -32,7 +32,6 @@ export const Footer: React.FC = () => {
     <footer className="border-t border-slate-800/80 bg-[#07090f] py-12 text-slate-400 font-mono text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Brand & Tagline */}
           <div className="space-y-1 text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start space-x-2">
               <span className="font-bold text-sm text-white font-sans">
@@ -46,7 +45,6 @@ export const Footer: React.FC = () => {
             </p>
           </div>
 
-          {/* Live Mumbai Clock */}
           <div className="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-[11px]" suppressHydrationWarning>
             <Clock className="w-3.5 h-3.5 text-cyan-400" />
             <span>Mumbai, IN:</span>
@@ -54,7 +52,6 @@ export const Footer: React.FC = () => {
             <span className="text-slate-500">(IST)</span>
           </div>
 
-          {/* Back to top CTA */}
           <button
             onClick={scrollToTop}
             className="flex items-center space-x-2 px-3.5 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition group border border-slate-700/60"
@@ -64,14 +61,13 @@ export const Footer: React.FC = () => {
           </button>
         </div>
 
-        {/* Bottom Credits Strip */}
         <div className="pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400 font-sans">
           <div suppressHydrationWarning>
             © {new Date().getFullYear()} {PERSONAL_INFO.name}. All rights reserved.
           </div>
 
           <div className="flex items-center space-x-1">
-            <span>Engineered with</span>
+            <span>Built with</span>
             <span className="text-indigo-400 font-mono">Next.js 16</span>
             <span>·</span>
             <span className="text-cyan-400 font-mono">TypeScript</span>

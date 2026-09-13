@@ -30,7 +30,6 @@ export const VirtualizationBenchmark: React.FC = () => {
     setItemCount(count);
   };
 
-  // Measured on the next frame so the time includes layout, not just React's render.
   const handleRendered = useCallback(() => {
     requestAnimationFrame(() => {
       setDomRows(scrollRef.current?.querySelectorAll("[data-row]").length ?? 0);

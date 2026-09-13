@@ -8,7 +8,6 @@ import {
   FileDown, 
   Mail, 
   MapPin, 
-  CheckCircle2, 
   Layers, 
   Play
 } from "lucide-react";
@@ -52,9 +51,7 @@ export const Hero: React.FC = () => {
     <section id="hero" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column: Hero Content */}
           <div className="lg:col-span-7 space-y-6">
-            {/* Top Status & Location Badges */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -75,7 +72,6 @@ export const Hero: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Main Headline */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -89,7 +85,6 @@ export const Hero: React.FC = () => {
                 </span>
               </h1>
 
-              {/* Dynamic Typewriter Line */}
               <div className="h-9 sm:h-10 flex items-center">
                 <span className="sr-only">{PERSONAL_INFO.title}</span>
                 <Typewriter roles={PERSONAL_INFO.roles} />
@@ -97,7 +92,6 @@ export const Hero: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Concise Bio */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -107,7 +101,6 @@ export const Hero: React.FC = () => {
               Frontend developer with <strong className="text-white font-semibold">3.5+ years</strong> of experience (including 3 years full-time at INK IN CAPS) building responsive, user-friendly web applications with React.js, Next.js, TypeScript, and modern UI libraries. Experienced in developing consumer web apps, admin dashboards, and B2B portals serving <span className="text-cyan-400 font-mono font-medium">30K+ active users</span>.
             </motion.p>
 
-            {/* Action Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -144,7 +137,6 @@ export const Hero: React.FC = () => {
               </a>
             </motion.div>
 
-            {/* Social Connect Strip */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -180,7 +172,6 @@ export const Hero: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Right Column: Interactive Profile Card with Live Radar */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -188,12 +179,9 @@ export const Hero: React.FC = () => {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="relative w-full max-w-md"
             >
-              {/* Outer Cyber Glow Ring */}
               <div className="absolute -inset-1.5 bg-gradient-to-r from-indigo-500 via-cyan-500 to-emerald-500 rounded-3xl blur-xl opacity-30 group-hover:opacity-60 transition duration-1000 animate-pulse" />
 
-              {/* Main Card Container */}
               <div className="relative rounded-3xl bg-[#0e1322]/90 border border-slate-700/80 p-6 backdrop-blur-2xl shadow-2xl space-y-5">
-                {/* Header with Photo & Verification Badge */}
                 <div className="flex items-center space-x-4">
                   <div className="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-indigo-500/50 shadow-lg shadow-indigo-500/20 flex-shrink-0 bg-slate-800">
                     <Image
@@ -212,7 +200,6 @@ export const Hero: React.FC = () => {
                       <h3 className="text-base font-bold text-white truncate">
                         {PERSONAL_INFO.name}
                       </h3>
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
                     </div>
                     <p className="text-xs text-slate-400 truncate">
                       Software Development Engineer
@@ -226,7 +213,6 @@ export const Hero: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Micro Terminal Live Output */}
                 <div className="rounded-xl bg-[#090b11] border border-slate-800 p-3 font-mono text-xs text-slate-300 space-y-1.5">
                   <div className="flex items-center justify-between text-[10px] text-slate-400 border-b border-slate-800/80 pb-1">
                     <div className="flex items-center space-x-1.5">
@@ -254,7 +240,6 @@ export const Hero: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Verified Metrics Grid */}
                 <div className="grid grid-cols-2 gap-2.5 pt-1">
                   <div className="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800/80">
                     <div className="text-[10px] font-mono uppercase text-slate-400">
@@ -294,7 +279,6 @@ export const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Global Impact Stat Counter Strip */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

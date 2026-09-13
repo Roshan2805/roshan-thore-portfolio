@@ -3,7 +3,6 @@ import { RefObject, useEffect } from "react";
 const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-// Locks page scroll, keeps Tab focus inside the dialog, and restores focus on close.
 export function useDialog(isOpen: boolean, ref: RefObject<HTMLElement | null>) {
   useEffect(() => {
     if (!isOpen) return;

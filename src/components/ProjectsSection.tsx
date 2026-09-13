@@ -28,12 +28,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 
   return (
     <section id="projects" className="py-24 relative overflow-hidden">
-      {/* Background Gradients */}
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-10 left-0 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono">
             <Layers className="w-3.5 h-3.5" />
@@ -47,7 +45,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
           </p>
         </div>
 
-        {/* Projects Grid */}
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
           {PROJECTS.map((project, idx) => (
             <motion.div
@@ -58,10 +55,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               className="group relative rounded-3xl bg-[#0d1222]/80 border border-slate-800/90 hover:border-indigo-500/40 p-7 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between hover:shadow-2xl hover:shadow-indigo-500/10"
             >
-              {/* Glow Accent Background */}
               <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${project.gradient} rounded-full blur-3xl opacity-30 group-hover:opacity-60 transition duration-500 pointer-events-none`} />
 
-              {/* Card Top */}
               <div className="space-y-4 relative z-10">
                 <div className="flex items-center justify-between">
                   <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">
@@ -86,7 +81,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   {project.description}
                 </p>
 
-                {/* Key Architectural Bullets */}
                 <div className="space-y-2 pt-2">
                   {project.architecturalHighlights.slice(0, 2).map((item, hIdx) => (
                     <div key={hIdx} className="flex items-start space-x-2 text-xs text-slate-300">
@@ -96,7 +90,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   ))}
                 </div>
 
-                {/* Tech Stack Pills */}
                 <div className="flex flex-wrap gap-1.5 pt-3">
                   {project.tags.map((tag, tIdx) => (
                     <span
@@ -109,7 +102,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 </div>
               </div>
 
-              {/* Card Footer: Metrics & Details CTA */}
               <div className="mt-6 pt-5 border-t border-slate-800/80 flex items-center justify-between relative z-10">
                 <div className="flex items-center space-x-3">
                   {project.stats.slice(0, 2).map((st, sIdx) => (
@@ -139,7 +131,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
         </div>
       </div>
 
-      {/* Detail Modal */}
       <ProjectModal
         key={selectedProjectId}
         project={selectedProject}

@@ -72,7 +72,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Logo & Status Beacon */}
           <div className="flex items-center space-x-3">
             <a
               href="#hero"
@@ -94,7 +93,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
               </div>
             </a>
 
-            {/* Live Availability Pill */}
             <div className="hidden lg:flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-medium">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -104,7 +102,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
             </div>
           </div>
 
-          {/* Desktop Nav Items */}
           <nav className="hidden md:flex items-center space-x-1 bg-slate-900/60 p-1.5 rounded-full border border-slate-800/80 backdrop-blur-md">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
@@ -132,9 +129,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
             })}
           </nav>
 
-          {/* Action Buttons: Cmd+K & Resume */}
           <div className="flex items-center space-x-2 sm:space-x-3">
-            {/* Command Palette Trigger */}
             <button
               onClick={onOpenCommandPalette}
               className="flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 text-slate-300 text-xs font-medium transition shadow-sm group"
@@ -147,7 +142,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
               </kbd>
             </button>
 
-            {/* Resume Download CTA */}
             <a
               href={PERSONAL_INFO.resumeUrl}
               download="Roshan-Thore-Resume.pdf"
@@ -159,7 +153,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
               <span>Resume</span>
             </a>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -172,7 +165,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
         </div>
       </header>
 
-      {/* Mobile Drawer Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div

@@ -39,16 +39,14 @@ export const SkillsSection: React.FC = () => {
 
   return (
     <section id="skills" className="py-24 relative overflow-hidden">
-      {/* Glow Effects */}
       <div className="absolute top-1/3 left-0 w-96 h-96 bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-10 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-mono">
             <Cpu className="w-3.5 h-3.5" />
-            <span>Technical Ecosystem</span>
+            <span>Skills</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
             Engineering Skills &amp; Stack
@@ -58,7 +56,6 @@ export const SkillsSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Search & Filter Controls */}
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-2xl mx-auto">
           <div className="relative w-full">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -81,7 +78,6 @@ export const SkillsSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Categories Grid */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCategories.map((cat, idx) => {
             const Icon = getCategoryIcon(cat.category);
@@ -95,7 +91,6 @@ export const SkillsSection: React.FC = () => {
                 className="rounded-3xl bg-[#0d1222]/80 border border-slate-800/90 hover:border-indigo-500/30 p-6 backdrop-blur-xl transition duration-300 flex flex-col justify-between space-y-5"
               >
                 <div className="space-y-4">
-                  {/* Category Header */}
                   <div className="flex items-center space-x-3">
                     <div className="p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
                       <Icon className="w-5 h-5" />
@@ -110,7 +105,6 @@ export const SkillsSection: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Skill Items List */}
                   <div className="space-y-3 pt-2">
                     {cat.skills.map((skill) => (
                       <div key={skill.name} className="space-y-1.5 group">
@@ -128,7 +122,6 @@ export const SkillsSection: React.FC = () => {
                           </span>
                         </div>
 
-                        {/* Progress Bar */}
                         <div className="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
                           <div
                             className={`h-full rounded-full transition-all duration-700 ${
@@ -144,10 +137,8 @@ export const SkillsSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Card Footer Indicator */}
                 <div className="pt-2 border-t border-slate-800/60 flex items-center justify-between text-[10px] font-mono text-slate-400">
                   <span>{cat.skills.length} core technologies</span>
-                  <span className="text-emerald-400">Production Tested</span>
                 </div>
               </motion.div>
             );

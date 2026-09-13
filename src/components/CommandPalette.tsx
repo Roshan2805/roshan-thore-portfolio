@@ -110,7 +110,7 @@ const Palette: React.FC<Pick<CommandPaletteProps, "onClose" | "onSelectProject">
   const actions = [
     {
       id: "projects",
-      title: "View Flagship Projects",
+      title: "View Projects",
       subtitle: "Creator Media Platform, Enterprise Admin, Agency Portal, 3D Web",
       icon: Layers,
       action: () => scrollTo("projects"),
@@ -151,7 +151,7 @@ const Palette: React.FC<Pick<CommandPaletteProps, "onClose" | "onSelectProject">
     {
       id: "resume",
       title: "Download Resume (PDF)",
-      subtitle: "Direct download of Roshan Thore's verified resume",
+      subtitle: "PDF, opens in a new tab",
       icon: FileDown,
       action: () => {
         window.open(PERSONAL_INFO.resumeUrl, "_blank");

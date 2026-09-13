@@ -47,7 +47,6 @@ export const ContactSection: React.FC = () => {
     
     setLastMailtoUrl(mailtoUrl);
 
-    // Try opening email client after brief transition
     setTimeout(() => {
       window.open(mailtoUrl, "_blank");
       setIsSubmitting(false);
@@ -59,18 +58,16 @@ export const ContactSection: React.FC = () => {
 
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
-      {/* Background Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-indigo-600/10 rounded-full blur-[180px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
             <Mail className="w-3.5 h-3.5" />
-            <span>Initiate Contact</span>
+            <span>Get in Touch</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Let&apos;s Build Something Extraordinary
+            Let&apos;s Work Together
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
             Interested in discussing web development opportunities, frontend engineering, or collaboration? Reach out directly.
@@ -78,9 +75,7 @@ export const ContactSection: React.FC = () => {
         </div>
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-10">
-          {/* Left Column: Direct Contact Info & Cards */}
           <div className="lg:col-span-5 space-y-5">
-            {/* Status Card */}
             <div className="p-6 rounded-3xl bg-[#0e1424]/90 border border-slate-800 backdrop-blur-xl shadow-xl space-y-4">
               <div className="flex items-center space-x-2">
                 <span className="relative flex h-3 w-3">
@@ -105,9 +100,7 @@ export const ContactSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Direct Copyable Contact Methods */}
             <div className="space-y-3">
-              {/* Email 1 */}
               <div className="p-4 rounded-2xl bg-[#0e1424]/70 border border-slate-800 flex items-center justify-between group hover:border-indigo-500/40 transition">
                 <div className="flex items-center space-x-3 overflow-hidden">
                   <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400">
@@ -138,7 +131,6 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Phone */}
               <div className="p-4 rounded-2xl bg-[#0e1424]/70 border border-slate-800 flex items-center justify-between group hover:border-cyan-500/40 transition">
                 <div className="flex items-center space-x-3">
                   <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400">
@@ -169,7 +161,6 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* LinkedIn & GitHub Buttons */}
               <div className="grid grid-cols-2 gap-3 pt-1">
                 <a
                   href={PERSONAL_INFO.linkedin}
@@ -194,7 +185,6 @@ export const ContactSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Interactive Send Message Form */}
           <div className="lg:col-span-7">
             <div className="p-7 rounded-3xl bg-[#0e1424]/90 border border-slate-800 backdrop-blur-xl shadow-2xl space-y-6">
               <div className="flex items-center justify-between">

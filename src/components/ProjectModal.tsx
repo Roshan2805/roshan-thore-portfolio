@@ -40,7 +40,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -49,7 +48,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             className="fixed inset-0 bg-black/85 backdrop-blur-md"
           />
 
-          {/* Modal Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -61,7 +59,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             aria-labelledby="project-modal-title"
             className="relative w-full max-w-3xl bg-[#0e1322] border border-slate-700/80 rounded-3xl shadow-2xl overflow-hidden z-10 my-8 flex flex-col max-h-[90vh]"
           >
-            {/* Header */}
             <div className="p-6 border-b border-slate-800 bg-[#12182b] flex items-start justify-between">
               <div className="space-y-1">
                 <div className="flex items-center space-x-2">
@@ -89,7 +86,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               </button>
             </div>
 
-            {/* Quick Metrics Bar */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-4 bg-[#090b11] border-b border-slate-800 text-center">
               {project.stats.map((stat, idx) => (
                 <div key={idx} className="p-2 rounded-lg bg-slate-900/50">
@@ -103,7 +99,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               ))}
             </div>
 
-            {/* Navigation Tabs */}
             <div className="flex border-b border-slate-800 bg-[#0d111d] px-6">
               {[
                 { id: "architecture", label: "Architecture" },
@@ -125,7 +120,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               ))}
             </div>
 
-            {/* Content Area */}
             <div className="p-6 overflow-y-auto space-y-6 flex-1 text-sm text-slate-300">
               {activeTab === "architecture" && (
                 <div className="space-y-4">
@@ -220,11 +214,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               )}
             </div>
 
-            {/* Footer */}
-            <div className="p-4 bg-[#0a0d14] border-t border-slate-800 flex items-center justify-between">
-              <span className="text-xs font-mono text-slate-400">
-                Verified Production Architecture
-              </span>
+            <div className="p-4 bg-[#0a0d14] border-t border-slate-800 flex items-center justify-end">
               <button
                 onClick={onClose}
                 className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-medium text-white transition"

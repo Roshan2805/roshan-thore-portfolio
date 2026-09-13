@@ -12,6 +12,13 @@ import {
   CheckCircle2, 
   Sliders
 } from "lucide-react";
+import dynamic from "next/dynamic";
+
+// Pulls in TanStack Virtual, so only load it when the tab is opened.
+const VirtualizationBenchmark = dynamic(
+  () => import("@/components/VirtualizationBenchmark").then((mod) => mod.VirtualizationBenchmark),
+  { ssr: false, loading: () => <div className="h-[520px]" /> }
+);
 
 export const InteractiveSimulators: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"hls" | "stories" | "virtualization">("hls");
@@ -93,14 +100,6 @@ export const InteractiveSimulators: React.FC = () => {
     setInputComment("");
   };
 
-  // --- Virtualization Simulator State ---
-  const [itemCount, setItemCount] = useState(5000);
-  const [isVirtualized, setIsVirtualized] = useState(true);
-
-  const mountedDomNodes = isVirtualized ? 14 : itemCount;
-  const memoryEstMb = isVirtualized ? (mountedDomNodes * 0.05 + 1.2).toFixed(1) : (itemCount * 0.18 + 5).toFixed(1);
-  const renderFps = isVirtualized ? "60 FPS (Silky)" : itemCount > 10000 ? "18 FPS (Lagging)" : "42 FPS";
-
   return (
     <section id="simulators" className="py-24 bg-[#0a0d16] border-y border-slate-800/80 relative overflow-hidden">
       {/* Glow Effects */}
@@ -114,10 +113,10 @@ export const InteractiveSimulators: React.FC = () => {
             <span>Interactive Architecture Playground</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Live Engineering Simulators
+            Engineering Playground
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Test the exact algorithms, video streaming logic, and virtualization systems I built for high-scale production apps.
+            Small interactive versions of features I&apos;ve shipped. The virtualization benchmark runs for real in your browser; the streaming and stories demos are simulated.
           </p>
         </div>
 
@@ -178,7 +177,7 @@ export const InteractiveSimulators: React.FC = () => {
                         <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
                       </span>
                       <span className="text-xs font-mono font-bold text-white uppercase tracking-wider">
-                        HLS Live Stream
+                        HLS Stream · Simulated
                       </span>
                     </div>
 
@@ -193,7 +192,7 @@ export const InteractiveSimulators: React.FC = () => {
                       {isPlaying ? <Activity className="w-8 h-8" /> : <Pause className="w-8 h-8" />}
                     </div>
                     <div className="text-sm font-semibold text-white">
-                      Live ABR Transcoding Active
+                      Adaptive bitrate switching
                     </div>
                     <div className="text-xs text-slate-400 font-mono">
                       Chunk Duration: 2.0s · Dynamic `hls.js` Loader
@@ -213,7 +212,7 @@ export const InteractiveSimulators: React.FC = () => {
                         </button>
                         <span>Buffer: <strong className="text-cyan-300">{bufferSeconds}s</strong></span>
                       </div>
-                      <span className="text-slate-400">FPS: <strong className="text-emerald-400">60.0</strong></span>
+                      <span className="text-slate-400">{currentQuality.label}</span>
                     </div>
 
                     {/* Buffer Bar */}
@@ -235,7 +234,7 @@ export const InteractiveSimulators: React.FC = () => {
                     <span>Network Bandwidth Control</span>
                   </h3>
                   <p className="text-xs text-slate-400 mt-1">
-                    Drag the slider to throttle simulated connection speed and watch the HLS algorithm switch bitrates in real time without video stalls.
+                    Drag the slider to change the simulated connection speed and see which rendition an adaptive player would switch to.
                   </p>
                 </div>
 
@@ -407,7 +406,7 @@ export const InteractiveSimulators: React.FC = () => {
                     <span>3D Cube-Face Stories Subsystem</span>
                   </h3>
                   <p className="text-xs text-slate-400 mt-1">
-                    Tap on the left or right side of the phone to cycle stories. Pause by clicking the pause button, or toggle NSFW privacy gates.
+                    A simplified mock of the stories viewer. Tap the left or right side of the phone to switch stories, pause with the button, or reveal gated content.
                   </p>
                 </div>
 
@@ -422,7 +421,7 @@ export const InteractiveSimulators: React.FC = () => {
                   <div className="p-3.5 rounded-2xl bg-[#12192c] border border-slate-800">
                     <div className="text-xs font-bold text-white">Seen-State Caching</div>
                     <p className="text-[11px] text-slate-400 mt-1">
-                      LocalForage indexed seen-flag merging so viewed stories are instantly synced across user devices.
+                      Seen flags are cached in IndexedDB via LocalForage, so viewed stories stay marked between visits.
                     </p>
                   </div>
 
@@ -459,126 +458,7 @@ export const InteractiveSimulators: React.FC = () => {
             </div>
           )}
 
-          {/* SIMULATOR 3: VIRTUALIZATION BENCHMARK */}
-          {activeTab === "virtualization" && (
-            <div className="space-y-6">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800/80 pb-4">
-                <div>
-                  <h3 className="text-lg font-bold text-white flex items-center space-x-2">
-                    <Layers className="w-4 h-4 text-emerald-400" />
-                    <span>TanStack Virtual vs Standard DOM Benchmark</span>
-                  </h3>
-                  <p className="text-xs text-slate-400 mt-0.5">
-                    Compare performance when rendering thousands of asset cards in a creator media vault.
-                  </p>
-                </div>
-
-                {/* Virtualization Mode Toggle */}
-                <div className="flex items-center space-x-3 bg-[#12192c] p-1.5 rounded-2xl border border-slate-800">
-                  <span className="text-xs font-mono text-slate-400 pl-2">Mode:</span>
-                  <button
-                    onClick={() => setIsVirtualized(false)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
-                      !isVirtualized
-                        ? "bg-rose-600 text-white shadow"
-                        : "text-slate-400 hover:text-slate-200"
-                    }`}
-                  >
-                    Standard DOM
-                  </button>
-                  <button
-                    onClick={() => setIsVirtualized(true)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
-                      isVirtualized
-                        ? "bg-emerald-600 text-white shadow"
-                        : "text-slate-400 hover:text-slate-200"
-                    }`}
-                  >
-                    Virtualized (TanStack)
-                  </button>
-                </div>
-              </div>
-
-              {/* Slider for Total Item Count */}
-              <div className="p-4 rounded-2xl bg-[#12192c] border border-slate-800 space-y-2">
-                <div className="flex justify-between text-xs font-mono">
-                  <span className="text-slate-400">Total Items in Dataset</span>
-                  <span className="text-emerald-400 font-bold text-sm">{itemCount.toLocaleString()} Records</span>
-                </div>
-                <input
-                  type="range"
-                  aria-label="Total items in dataset"
-                  min="500"
-                  max="50000"
-                  step="500"
-                  value={itemCount}
-                  onChange={(e) => setItemCount(parseInt(e.target.value))}
-                  className="w-full accent-emerald-400 cursor-pointer h-2 bg-slate-700 rounded-lg"
-                />
-              </div>
-
-              {/* Performance Comparison Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-4 rounded-2xl bg-[#090b11] border border-slate-800">
-                  <div className="text-[10px] font-mono uppercase text-slate-400">
-                    DOM Elements Rendered
-                  </div>
-                  <div className={`text-2xl font-bold font-mono mt-1 ${isVirtualized ? "text-emerald-400" : "text-rose-400"}`}>
-                    {mountedDomNodes.toLocaleString()} Nodes
-                  </div>
-                  <div className="text-[11px] text-slate-400 mt-0.5">
-                    {isVirtualized ? "Constant 14 viewport nodes" : "All nodes in memory"}
-                  </div>
-                </div>
-
-                <div className="p-4 rounded-2xl bg-[#090b11] border border-slate-800">
-                  <div className="text-[10px] font-mono uppercase text-slate-400">
-                    Estimated Memory Footprint
-                  </div>
-                  <div className={`text-2xl font-bold font-mono mt-1 ${isVirtualized ? "text-emerald-400" : "text-amber-400"}`}>
-                    ~{memoryEstMb} MB
-                  </div>
-                  <div className="text-[11px] text-slate-400 mt-0.5">
-                    {isVirtualized ? "Zero memory leakage" : "Heavy heap consumption"}
-                  </div>
-                </div>
-
-                <div className="p-4 rounded-2xl bg-[#090b11] border border-slate-800">
-                  <div className="text-[10px] font-mono uppercase text-slate-400">
-                    Scroll Rendering Frame Rate
-                  </div>
-                  <div className="text-2xl font-bold font-mono mt-1 text-cyan-400">
-                    {renderFps}
-                  </div>
-                  <div className="text-[11px] text-slate-400 mt-0.5">
-                    Dynamic size estimation
-                  </div>
-                </div>
-              </div>
-
-              {/* Mock Virtualized Grid Preview */}
-              <div className="h-44 rounded-2xl bg-[#090b11] border border-slate-800 p-4 overflow-y-auto space-y-2">
-                <div className="text-[10px] font-mono text-slate-400 uppercase">
-                  Simulated Virtual Window: Displaying items 1 to 14 of {itemCount.toLocaleString()}
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">
-                  {Array.from({ length: 14 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-center space-y-1 hover:border-emerald-500/40 transition"
-                    >
-                      <div className="w-6 h-6 mx-auto rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-[10px] font-mono text-emerald-400">
-                        #{i + 1}
-                      </div>
-                      <div className="text-[10px] font-mono text-slate-300 truncate">
-                        media_asset_{i + 1}.mp4
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
+          {activeTab === "virtualization" && <VirtualizationBenchmark />}
         </div>
       </div>
     </section>

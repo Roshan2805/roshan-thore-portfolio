@@ -16,9 +16,9 @@ Featuring real-world production architectures across creator media streaming pla
   - *B2B Multi-Tenant Talent & Agency Portal* (Vite, Radix UI, Multi-tenant Talent Management, Shop Module)
   - *Real-Time 3D Web & Metaverse Integration Engine* (Angular, Unity 3D runtime bridge, WebRTC live video)
 - **Interactive Live Architecture Simulators**:
-  1. *Adaptive HLS Bitrate Stream Simulator* (Simulated network throttling and real-time ABR resolution switching)
+  1. *Adaptive HLS Bitrate Stream Simulator* (simulated network throttling and ABR rendition switching)
   2. *3D Gesture Stories Subsystem* (Mobile preview with timers, NSFW blur gating, and touch gestures)
-  3. *Virtualized List Performance Benchmark* (TanStack Virtual 60fps DOM benchmark with 50,000 items)
+  3. *Virtualized List Benchmark* (real TanStack Virtual vs plain DOM comparison, up to 25,000 rows, measured in the browser)
 - **Technical Skills Matrix**: Categorized tech stack with progress meters and stack filters.
 - **Interactive Developer CLI Terminal**: Built-in terminal emulator with interactive commands (`skills`, `projects`, `stats`, `contact`, `sudo hire`, `clear`).
 - **Direct Contact & Download**: Direct 1-click copy for email/phone, celebratory confetti, and verified PDF resume download.

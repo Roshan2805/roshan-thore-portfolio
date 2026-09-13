@@ -107,7 +107,7 @@ export const SkillsSection: React.FC = () => {
 
                   <div className="space-y-3 pt-2">
                     {cat.skills.map((skill) => (
-                      <div key={skill.name} className="space-y-1.5 group">
+                      <div key={skill.name} className="group">
                         <div className="flex items-center justify-between text-xs">
                           <div className="flex items-center space-x-1.5">
                             {skill.highlight && (
@@ -120,17 +120,6 @@ export const SkillsSection: React.FC = () => {
                           <span className="text-[10px] font-mono text-slate-400">
                             {skill.experience}
                           </span>
-                        </div>
-
-                        <div className="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
-                          <div
-                            className={`h-full rounded-full transition-all duration-700 ${
-                              skill.highlight
-                                ? "bg-gradient-to-r from-indigo-500 via-cyan-400 to-emerald-400"
-                                : "bg-slate-600 group-hover:bg-indigo-400"
-                            }`}
-                            style={{ width: `${skill.level}%` }}
-                          />
                         </div>
                       </div>
                     ))}

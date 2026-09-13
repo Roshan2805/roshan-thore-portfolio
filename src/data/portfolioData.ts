@@ -27,7 +27,6 @@ export interface SkillCategory {
   description: string;
   skills: {
     name: string;
-    level: number; // 0 to 100
     experience: string;
     highlight?: boolean;
     icon?: string;
@@ -314,72 +313,72 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     category: "Frontend",
     description: "Component architecture, responsive layouts, and modern JavaScript.",
     skills: [
-      { name: "React.js", level: 95, experience: "3 years", highlight: true },
-      { name: "Next.js", level: 92, experience: "2+ years", highlight: true },
-      { name: "TypeScript", level: 90, experience: "2+ years", highlight: true },
-      { name: "JavaScript (ES6+)", level: 94, experience: "3 years", highlight: true },
-      { name: "Vite & React Router", level: 88, experience: "2 years", highlight: true },
-      { name: "Angular & RxJS", level: 82, experience: "1.5 years" },
-      { name: "HTML5 & Semantic Web", level: 96, experience: "3 years" },
-      { name: "CSS3 / SASS / SCSS", level: 92, experience: "3 years" }
+      { name: "React.js", experience: "3 years", highlight: true },
+      { name: "Next.js", experience: "2+ years", highlight: true },
+      { name: "TypeScript", experience: "2+ years", highlight: true },
+      { name: "JavaScript (ES6+)", experience: "3 years", highlight: true },
+      { name: "Vite & React Router", experience: "2 years", highlight: true },
+      { name: "Angular & RxJS", experience: "1.5 years" },
+      { name: "HTML5 & Semantic Web", experience: "3 years" },
+      { name: "CSS3 / SASS / SCSS", experience: "3 years" }
     ]
   },
   {
     category: "State & Data",
     description: "Application state, caching, data tables, and form handling.",
     skills: [
-      { name: "Redux Toolkit", level: 92, experience: "3 years", highlight: true },
-      { name: "TanStack Query", level: 88, experience: "2 years", highlight: true },
-      { name: "TanStack Table", level: 86, experience: "2 years", highlight: true },
-      { name: "TanStack Virtual", level: 90, experience: "2 years", highlight: true },
-      { name: "React Hook Form", level: 90, experience: "3 years" },
-      { name: "Context API", level: 90, experience: "3 years" }
+      { name: "Redux Toolkit", experience: "3 years", highlight: true },
+      { name: "TanStack Query", experience: "2 years", highlight: true },
+      { name: "TanStack Table", experience: "2 years", highlight: true },
+      { name: "TanStack Virtual", experience: "2 years", highlight: true },
+      { name: "React Hook Form", experience: "3 years" },
+      { name: "Context API", experience: "3 years" }
     ]
   },
   {
     category: "Real-Time, Media & APIs",
     description: "Video playback, WebRTC rooms, WebSockets, and file uploads.",
     skills: [
-      { name: "HLS.js (Adaptive Video)", level: 88, experience: "2 years", highlight: true },
-      { name: "LiveKit (WebRTC Rooms)", level: 84, experience: "1.5 years", highlight: true },
-      { name: "Socket.IO Client", level: 88, experience: "2.5 years", highlight: true },
-      { name: "Uppy & tus (S3 Uploads)", level: 86, experience: "2 years", highlight: true },
-      { name: "RESTful APIs & GraphQL", level: 90, experience: "3 years" },
-      { name: "Firebase Push Notifications", level: 84, experience: "2 years" }
+      { name: "HLS.js (Adaptive Video)", experience: "2 years", highlight: true },
+      { name: "LiveKit (WebRTC Rooms)", experience: "1.5 years", highlight: true },
+      { name: "Socket.IO Client", experience: "2.5 years", highlight: true },
+      { name: "Uppy & tus (S3 Uploads)", experience: "2 years", highlight: true },
+      { name: "RESTful APIs & GraphQL", experience: "3 years" },
+      { name: "Firebase Push Notifications", experience: "2 years" }
     ]
   },
   {
     category: "Styling & UI",
     description: "Design system implementation, animations, and accessible UI.",
     skills: [
-      { name: "Tailwind CSS", level: 95, experience: "3 years", highlight: true },
-      { name: "Framer Motion", level: 90, experience: "2 years", highlight: true },
-      { name: "Radix UI Primitives", level: 88, experience: "2 years", highlight: true },
-      { name: "Material UI (MUI)", level: 86, experience: "2 years" },
-      { name: "Bootstrap", level: 90, experience: "3 years" },
-      { name: "Lottie Animations", level: 84, experience: "2 years" }
+      { name: "Tailwind CSS", experience: "3 years", highlight: true },
+      { name: "Framer Motion", experience: "2 years", highlight: true },
+      { name: "Radix UI Primitives", experience: "2 years", highlight: true },
+      { name: "Material UI (MUI)", experience: "2 years" },
+      { name: "Bootstrap", experience: "3 years" },
+      { name: "Lottie Animations", experience: "2 years" }
     ]
   },
   {
     category: "Backend",
     description: "Node.js services, MongoDB database, and authentication.",
     skills: [
-      { name: "Node.js", level: 82, experience: "2 years" },
-      { name: "Express.js", level: 82, experience: "2 years" },
-      { name: "MongoDB & Mongoose", level: 82, experience: "2 years" },
-      { name: "2FA / OTP Authentication", level: 88, experience: "2 years", highlight: true },
-      { name: "Postman & API Testing", level: 90, experience: "3 years" }
+      { name: "Node.js", experience: "2 years" },
+      { name: "Express.js", experience: "2 years" },
+      { name: "MongoDB & Mongoose", experience: "2 years" },
+      { name: "2FA / OTP Authentication", experience: "2 years", highlight: true },
+      { name: "Postman & API Testing", experience: "3 years" }
     ]
   },
   {
     category: "Performance, Testing & Tools",
     description: "Performance optimization, testing, and modern developer workflow.",
     skills: [
-      { name: "Lighthouse Optimization", level: 90, experience: "2+ years", highlight: true },
-      { name: "Code Splitting & Lazy Loading", level: 92, experience: "2+ years", highlight: true },
-      { name: "Vitest & React Testing Library", level: 82, experience: "1.5 years" },
-      { name: "Git & GitHub Workflow", level: 92, experience: "3 years", highlight: true },
-      { name: "Figma to Code", level: 92, experience: "3 years" }
+      { name: "Lighthouse Optimization", experience: "2+ years", highlight: true },
+      { name: "Code Splitting & Lazy Loading", experience: "2+ years", highlight: true },
+      { name: "Vitest & React Testing Library", experience: "1.5 years" },
+      { name: "Git & GitHub Workflow", experience: "3 years", highlight: true },
+      { name: "Figma to Code", experience: "3 years" }
     ]
   }
 ];

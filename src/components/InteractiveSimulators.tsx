@@ -48,14 +48,14 @@ export const InteractiveSimulators: React.FC = () => {
   }, [isPlaying, networkSpeed]);
 
   const stories = [
-    { id: 1, title: "Creator Exclusive Backstage Pass", author: "@elena_creator", time: "2h ago", nsfw: false, color: "from-indigo-600 to-purple-800" },
-    { id: 2, title: "VIP Studio Live Stream Preview", author: "@marcus_live", time: "4h ago", nsfw: true, color: "from-cyan-600 to-blue-900" },
-    { id: 3, title: "World Cup Watch Party Highlights", author: "@sports_official", time: "6h ago", nsfw: false, color: "from-emerald-600 to-teal-900" }
+    { id: 1, title: "Creator Exclusive Backstage Pass", author: "@elena_creator", time: "2h ago", gated: false, color: "from-indigo-600 to-purple-800" },
+    { id: 2, title: "VIP Studio Live Stream Preview", author: "@marcus_live", time: "4h ago", gated: true, color: "from-cyan-600 to-blue-900" },
+    { id: 3, title: "World Cup Watch Party Highlights", author: "@sports_official", time: "6h ago", gated: false, color: "from-emerald-600 to-teal-900" }
   ];
   const [currentStoryIdx, setCurrentStoryIdx] = useState(0);
   const [isStoryPaused, setIsStoryPaused] = useState(false);
   const [storyProgress, setStoryProgress] = useState(0);
-  const [nsfwRevealed, setNsfwRevealed] = useState(false);
+  const [gatedRevealed, setGatedRevealed] = useState(false);
   const [storyComments, setStoryComments] = useState<string[]>([
     "Awesome stream! 🚀",
     "How did you achieve that 3D effect?"
@@ -68,7 +68,7 @@ export const InteractiveSimulators: React.FC = () => {
       setStoryProgress((prev) => {
         if (prev >= 100) {
           setCurrentStoryIdx((curr) => (curr + 1) % stories.length);
-          setNsfwRevealed(false);
+          setGatedRevealed(false);
           return 0;
         }
         return prev + 2;
@@ -80,13 +80,13 @@ export const InteractiveSimulators: React.FC = () => {
   const nextStory = () => {
     setCurrentStoryIdx((prev) => (prev + 1) % stories.length);
     setStoryProgress(0);
-    setNsfwRevealed(false);
+    setGatedRevealed(false);
   };
 
   const prevStory = () => {
     setCurrentStoryIdx((prev) => (prev - 1 + stories.length) % stories.length);
     setStoryProgress(0);
-    setNsfwRevealed(false);
+    setGatedRevealed(false);
   };
 
   const addComment = (e: React.FormEvent) => {
@@ -281,13 +281,13 @@ export const InteractiveSimulators: React.FC = () => {
                 <div className="relative w-full max-w-[280px] h-[480px] rounded-[36px] bg-slate-950 border-4 border-slate-700 shadow-2xl overflow-hidden flex flex-col justify-between p-4 group select-none">
                   <div className={`absolute inset-0 bg-gradient-to-b ${stories[currentStoryIdx].color} transition-colors duration-500`} />
 
-                  {stories[currentStoryIdx].nsfw && !nsfwRevealed && (
+                  {stories[currentStoryIdx].gated && !gatedRevealed && (
                     <div className="absolute inset-0 backdrop-blur-2xl bg-black/60 z-20 flex flex-col items-center justify-center p-4 text-center">
                       <EyeOff className="w-8 h-8 text-rose-400 mb-2" />
-                      <div className="text-xs font-bold text-white">Sensitive / NSFW Content</div>
+                      <div className="text-xs font-bold text-white">Sensitive content</div>
                       <p className="text-[10px] text-slate-400 mt-1">Gated creator content</p>
                       <button
-                        onClick={() => setNsfwRevealed(true)}
+                        onClick={() => setGatedRevealed(true)}
                         className="mt-3 px-3 py-1.5 rounded-full bg-rose-500/80 hover:bg-rose-500 text-white text-[10px] font-bold transition"
                       >
                         Tap to Reveal

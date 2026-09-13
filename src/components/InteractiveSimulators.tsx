@@ -206,6 +206,7 @@ export const InteractiveSimulators: React.FC = () => {
                       <div className="flex items-center space-x-3">
                         <button
                           onClick={() => setIsPlaying(!isPlaying)}
+                          aria-label={isPlaying ? "Pause stream" : "Play stream"}
                           className="hover:text-cyan-400 transition"
                         >
                           {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
@@ -246,6 +247,7 @@ export const InteractiveSimulators: React.FC = () => {
                   </div>
                   <input
                     type="range"
+                    aria-label="Simulated bandwidth"
                     min="0.3"
                     max="25"
                     step="0.1"
@@ -253,7 +255,7 @@ export const InteractiveSimulators: React.FC = () => {
                     onChange={(e) => setNetworkSpeed(parseFloat(e.target.value))}
                     className="w-full accent-cyan-400 cursor-pointer h-2 bg-slate-700 rounded-lg"
                   />
-                  <div className="flex justify-between text-[10px] font-mono text-slate-500 pt-1">
+                  <div className="flex justify-between text-[10px] font-mono text-slate-400 pt-1">
                     <span>2G (300 Kbps)</span>
                     <span>3G (2 Mbps)</span>
                     <span>4G (8 Mbps)</span>
@@ -353,6 +355,7 @@ export const InteractiveSimulators: React.FC = () => {
 
                     <button
                       onClick={() => setIsStoryPaused(!isStoryPaused)}
+                      aria-label={isStoryPaused ? "Resume story" : "Pause story"}
                       className="p-1 rounded-full bg-black/40 text-white/80 hover:text-white"
                     >
                       {isStoryPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
@@ -370,10 +373,12 @@ export const InteractiveSimulators: React.FC = () => {
 
                   {/* Interactive Left/Right Tap Zones */}
                   <div
+                    aria-hidden="true"
                     onClick={prevStory}
                     className="absolute left-0 top-16 bottom-16 w-1/3 z-20 cursor-pointer"
                   />
                   <div
+                    aria-hidden="true"
                     onClick={nextStory}
                     className="absolute right-0 top-16 bottom-16 w-1/3 z-20 cursor-pointer"
                   />
@@ -386,6 +391,7 @@ export const InteractiveSimulators: React.FC = () => {
                         value={inputComment}
                         onChange={(e) => setInputComment(e.target.value)}
                         placeholder="Send message..."
+                        aria-label="Send message"
                         className="w-full bg-black/50 border border-white/20 rounded-full px-3 py-1.5 text-[11px] text-white placeholder-white/50 focus:outline-none focus:border-white/50"
                       />
                     </form>
@@ -501,6 +507,7 @@ export const InteractiveSimulators: React.FC = () => {
                 </div>
                 <input
                   type="range"
+                  aria-label="Total items in dataset"
                   min="500"
                   max="50000"
                   step="500"
@@ -519,7 +526,7 @@ export const InteractiveSimulators: React.FC = () => {
                   <div className={`text-2xl font-bold font-mono mt-1 ${isVirtualized ? "text-emerald-400" : "text-rose-400"}`}>
                     {mountedDomNodes.toLocaleString()} Nodes
                   </div>
-                  <div className="text-[11px] text-slate-500 mt-0.5">
+                  <div className="text-[11px] text-slate-400 mt-0.5">
                     {isVirtualized ? "Constant 14 viewport nodes" : "All nodes in memory"}
                   </div>
                 </div>
@@ -531,7 +538,7 @@ export const InteractiveSimulators: React.FC = () => {
                   <div className={`text-2xl font-bold font-mono mt-1 ${isVirtualized ? "text-emerald-400" : "text-amber-400"}`}>
                     ~{memoryEstMb} MB
                   </div>
-                  <div className="text-[11px] text-slate-500 mt-0.5">
+                  <div className="text-[11px] text-slate-400 mt-0.5">
                     {isVirtualized ? "Zero memory leakage" : "Heavy heap consumption"}
                   </div>
                 </div>
@@ -543,7 +550,7 @@ export const InteractiveSimulators: React.FC = () => {
                   <div className="text-2xl font-bold font-mono mt-1 text-cyan-400">
                     {renderFps}
                   </div>
-                  <div className="text-[11px] text-slate-500 mt-0.5">
+                  <div className="text-[11px] text-slate-400 mt-0.5">
                     Dynamic size estimation
                   </div>
                 </div>
@@ -551,7 +558,7 @@ export const InteractiveSimulators: React.FC = () => {
 
               {/* Mock Virtualized Grid Preview */}
               <div className="h-44 rounded-2xl bg-[#090b11] border border-slate-800 p-4 overflow-y-auto space-y-2">
-                <div className="text-[10px] font-mono text-slate-500 uppercase">
+                <div className="text-[10px] font-mono text-slate-400 uppercase">
                   Simulated Virtual Window: Displaying items 1 to 14 of {itemCount.toLocaleString()}
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">

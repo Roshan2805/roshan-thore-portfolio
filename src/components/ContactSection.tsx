@@ -54,6 +54,7 @@ export const ContactSection: React.FC = () => {
       setIsSubmitted(true);
 
       confetti({
+        disableForReducedMotion: true,
         particleCount: 90,
         spread: 70,
         origin: { y: 0.6 },
@@ -119,7 +120,7 @@ export const ContactSection: React.FC = () => {
                     <Mail className="w-4 h-4" />
                   </div>
                   <div className="truncate">
-                    <div className="text-[10px] uppercase font-mono text-slate-500">Personal Email</div>
+                    <div className="text-[10px] uppercase font-mono text-slate-400">Personal Email</div>
                     <div className="text-xs font-semibold text-slate-200 truncate">{PERSONAL_INFO.email}</div>
                   </div>
                 </div>
@@ -128,6 +129,7 @@ export const ContactSection: React.FC = () => {
                     href={`mailto:${PERSONAL_INFO.email}`}
                     className="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition"
                     title="Open mail client"
+                    aria-label="Open mail client"
                   >
                     <ExternalLink className="w-4 h-4 text-cyan-400" />
                   </a>
@@ -135,6 +137,7 @@ export const ContactSection: React.FC = () => {
                     onClick={() => copyToClipboard(PERSONAL_INFO.email, "email")}
                     className="p-2 rounded-xl bg-slate-800/80 hover:bg-indigo-600 text-slate-300 hover:text-white transition"
                     title="Copy email"
+                    aria-label="Copy email"
                   >
                     {copiedField === "email" ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                   </button>
@@ -148,7 +151,7 @@ export const ContactSection: React.FC = () => {
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] uppercase font-mono text-slate-500">Direct Phone</div>
+                    <div className="text-[10px] uppercase font-mono text-slate-400">Direct Phone</div>
                     <div className="text-xs font-semibold text-slate-200 font-mono">{PERSONAL_INFO.phone}</div>
                   </div>
                 </div>
@@ -157,6 +160,7 @@ export const ContactSection: React.FC = () => {
                     href={`tel:${PERSONAL_INFO.phone}`}
                     className="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition"
                     title="Call directly"
+                    aria-label="Call directly"
                   >
                     <ExternalLink className="w-4 h-4 text-cyan-400" />
                   </a>
@@ -164,6 +168,7 @@ export const ContactSection: React.FC = () => {
                     onClick={() => copyToClipboard(PERSONAL_INFO.phone, "phone")}
                     className="p-2 rounded-xl bg-slate-800/80 hover:bg-cyan-600 text-slate-300 hover:text-white transition"
                     title="Copy phone"
+                    aria-label="Copy phone"
                   >
                     {copiedField === "phone" ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                   </button>
@@ -262,8 +267,9 @@ export const ContactSection: React.FC = () => {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-mono text-slate-300">Your Name *</label>
+                      <label htmlFor="contact-name" className="text-xs font-mono text-slate-300">Your Name *</label>
                       <input
+                        id="contact-name"
                         type="text"
                         required
                         value={formState.name}
@@ -274,8 +280,9 @@ export const ContactSection: React.FC = () => {
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-mono text-slate-300">Your Email *</label>
+                      <label htmlFor="contact-email" className="text-xs font-mono text-slate-300">Your Email *</label>
                       <input
+                        id="contact-email"
                         type="email"
                         required
                         value={formState.email}
@@ -287,8 +294,9 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-slate-300">Subject</label>
+                    <label htmlFor="contact-subject" className="text-xs font-mono text-slate-300">Subject</label>
                     <input
+                      id="contact-subject"
                       type="text"
                       value={formState.subject}
                       onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
@@ -298,8 +306,9 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-slate-300">Message *</label>
+                    <label htmlFor="contact-message" className="text-xs font-mono text-slate-300">Message *</label>
                     <textarea
+                      id="contact-message"
                       rows={4}
                       required
                       value={formState.message}

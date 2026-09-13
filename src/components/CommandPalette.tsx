@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { PERSONAL_INFO, PROJECTS } from "@/data/portfolioData";
+import { useDialog } from "@/hooks/useDialog";
 
 interface CommandPaletteProps {
   isOpen: boolean;
@@ -32,6 +33,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   onClose,
   onSelectProject
 }) => {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useDialog(isOpen, dialogRef);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
@@ -54,7 +58,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4">
+        <div ref={dialogRef} className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -94,6 +98,7 @@ const Palette: React.FC<Pick<CommandPaletteProps, "onClose" | "onSelectProject">
 
   const triggerConfetti = () => {
     confetti({
+      disableForReducedMotion: true,
       particleCount: 80,
       spread: 70,
       origin: { y: 0.6 },
@@ -231,6 +236,9 @@ const Palette: React.FC<Pick<CommandPaletteProps, "onClose" | "onSelectProject">
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, y: -20 }}
       transition={{ duration: 0.2 }}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Command palette"
       className="relative w-full max-w-2xl bg-[#0e121d] border border-slate-700/60 rounded-2xl shadow-2xl overflow-hidden z-10"
     >
       <div className="flex items-center px-4 py-3.5 border-b border-slate-800 bg-[#131826]">
@@ -244,6 +252,7 @@ const Palette: React.FC<Pick<CommandPaletteProps, "onClose" | "onSelectProject">
             setActiveIndex(0);
           }}
           onKeyDown={handleInputKeyDown}
+          aria-label="Search commands"
           placeholder="Type a command, project, or skill..."
           className="w-full bg-transparent text-slate-100 placeholder-slate-500 text-sm focus:outline-none"
         />
@@ -258,7 +267,7 @@ const Palette: React.FC<Pick<CommandPaletteProps, "onClose" | "onSelectProject">
 
       <div ref={listRef} className="max-h-[60vh] overflow-y-auto p-2 space-y-1">
         {filteredItems.length === 0 ? (
-          <div className="py-12 text-center text-slate-500 text-sm">
+          <div className="py-12 text-center text-slate-400 text-sm">
             No commands found for &ldquo;{query}&rdquo;
           </div>
         ) : (
@@ -292,7 +301,7 @@ const Palette: React.FC<Pick<CommandPaletteProps, "onClose" | "onSelectProject">
                   </div>
                 </div>
                 <div className="flex items-center space-x-2 flex-shrink-0 pl-2">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 bg-slate-800/60 px-2 py-0.5 rounded">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 bg-slate-800/60 px-2 py-0.5 rounded">
                     {item.category}
                   </span>
                   <ArrowRight className={`w-3.5 h-3.5 transition ${active ? "text-indigo-400" : "text-slate-600"}`} />

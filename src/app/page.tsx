@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
+import { MotionConfig } from "framer-motion";
 import { AmbientBackground } from "@/components/AmbientBackground";
 import { Navbar } from "@/components/Navbar";
 import { CommandPalette } from "@/components/CommandPalette";
@@ -28,29 +29,31 @@ export default function Home() {
   const closeProject = useCallback(() => setProjectModalOpen(false), []);
 
   return (
-    <main className="min-h-screen bg-[#090a0f] text-slate-100 selection:bg-indigo-500/30 selection:text-white relative">
-      <AmbientBackground />
-      <Navbar onOpenCommandPalette={openPalette} />
-      <CommandPalette
-        isOpen={commandPaletteOpen}
-        onOpen={openPalette}
-        onClose={closePalette}
-        onSelectProject={openProject}
-      />
+    <MotionConfig reducedMotion="user">
+      <main className="min-h-screen bg-[#090a0f] text-slate-100 selection:bg-indigo-500/30 selection:text-white relative">
+        <AmbientBackground />
+        <Navbar onOpenCommandPalette={openPalette} />
+        <CommandPalette
+          isOpen={commandPaletteOpen}
+          onOpen={openPalette}
+          onClose={closePalette}
+          onSelectProject={openProject}
+        />
 
-      <Hero />
-      <ProjectsSection
-        selectedProjectId={selectedProjectId}
-        isModalOpen={projectModalOpen}
-        onOpenProject={openProject}
-        onCloseProject={closeProject}
-      />
-      <InteractiveSimulators />
-      <SkillsSection />
-      <ExperienceSection />
-      <TerminalSection />
-      <ContactSection />
-      <Footer />
-    </main>
+        <Hero />
+        <ProjectsSection
+          selectedProjectId={selectedProjectId}
+          isModalOpen={projectModalOpen}
+          onOpenProject={openProject}
+          onCloseProject={closeProject}
+        />
+        <InteractiveSimulators />
+        <SkillsSection />
+        <ExperienceSection />
+        <TerminalSection />
+        <ContactSection />
+        <Footer />
+      </main>
+    </MotionConfig>
   );
 }

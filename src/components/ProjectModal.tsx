@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   X, 
@@ -8,6 +8,7 @@ import {
   Zap
 } from "lucide-react";
 import { Project } from "@/data/portfolioData";
+import { useDialog } from "@/hooks/useDialog";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -21,6 +22,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   onClose
 }) => {
   const [activeTab, setActiveTab] = useState<"architecture" | "challenges" | "features" | "stack">("architecture");
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useDialog(isOpen, dialogRef);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -52,6 +55,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.25 }}
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="project-modal-title"
             className="relative w-full max-w-3xl bg-[#0e1322] border border-slate-700/80 rounded-3xl shadow-2xl overflow-hidden z-10 my-8 flex flex-col max-h-[90vh]"
           >
             {/* Header */}
@@ -65,7 +72,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                     {project.period}
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                <h3 id="project-modal-title" className="text-xl sm:text-2xl font-bold text-white">
                   {project.title}
                 </h3>
                 <p className="text-xs text-cyan-300 font-medium">
@@ -215,7 +222,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
             {/* Footer */}
             <div className="p-4 bg-[#0a0d14] border-t border-slate-800 flex items-center justify-between">
-              <span className="text-xs font-mono text-slate-500">
+              <span className="text-xs font-mono text-slate-400">
                 Verified Production Architecture
               </span>
               <button

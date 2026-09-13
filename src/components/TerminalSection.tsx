@@ -150,6 +150,7 @@ ${PERSONAL_INFO.bio}`
       case "sudo hire":
       case "hire":
         confetti({
+          disableForReducedMotion: true,
           particleCount: 100,
           spread: 80,
           origin: { y: 0.6 },
@@ -230,7 +231,7 @@ Send an email to ${PERSONAL_INFO.email} or call ${PERSONAL_INFO.phone} to connec
 
           {/* Quick Command Suggestions */}
           <div className="px-4 py-2 bg-[#0d1220] border-b border-slate-800/80 flex items-center gap-2 overflow-x-auto text-xs">
-            <span className="text-slate-500 text-[11px]">Quick commands:</span>
+            <span className="text-slate-400 text-[11px]">Quick commands:</span>
             {quickPills.map((pill) => (
               <button
                 key={pill}
@@ -250,7 +251,7 @@ Send an email to ${PERSONAL_INFO.email} or call ${PERSONAL_INFO.phone} to connec
             {lines.map((line) => {
               if (line.type === "system") {
                 return (
-                  <div key={line.id} className="text-slate-500">
+                  <div key={line.id} className="text-slate-400">
                     {line.text}
                   </div>
                 );
@@ -286,6 +287,7 @@ Send an email to ${PERSONAL_INFO.email} or call ${PERSONAL_INFO.phone} to connec
                 onChange={(e) => setInputVal(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="type a command..."
+                aria-label="Terminal command"
                 className="w-full bg-transparent text-white focus:outline-none placeholder-slate-600 font-mono"
               />
             </div>

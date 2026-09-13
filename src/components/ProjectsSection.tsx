@@ -75,7 +75,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 <div>
                   <h3 className="text-2xl font-bold text-white group-hover:text-cyan-300 transition flex items-center justify-between">
                     <span>{project.title}</span>
-                    <ArrowUpRight className="w-5 h-5 text-slate-500 group-hover:text-cyan-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-cyan-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </h3>
                   <p className="text-xs text-indigo-400 font-mono font-medium mt-1">
                     {project.role} · {project.highlightStat}

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { 
   ArrowRight, 
   FileDown, 
@@ -23,8 +23,10 @@ export const Hero: React.FC = () => {
   const [typingSpeed, setTypingSpeed] = useState(80);
 
   const roles = PERSONAL_INFO.roles;
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (reduceMotion) return;
     const currentRole = roles[roleIndex];
 
     const timer = setTimeout(() => {
@@ -49,10 +51,11 @@ export const Hero: React.FC = () => {
     }, typingSpeed);
 
     return () => clearTimeout(timer);
-  }, [displayedText, isDeleting, roleIndex, roles, typingSpeed]);
+  }, [displayedText, isDeleting, roleIndex, roles, typingSpeed, reduceMotion]);
 
   const handleConfetti = () => {
     confetti({
+      disableForReducedMotion: true,
       particleCount: 70,
       spread: 60,
       origin: { y: 0.7 },
@@ -130,13 +133,15 @@ export const Hero: React.FC = () => {
 
               {/* Dynamic Typewriter Line */}
               <div className="h-9 sm:h-10 flex items-center">
+                <span className="sr-only">{PERSONAL_INFO.title}</span>
                 <span
+                  aria-hidden="true"
                   suppressHydrationWarning
                   className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-400"
                 >
-                  {displayedText}
+                  {reduceMotion ? roles[0] : displayedText}
                 </span>
-                <span className="inline-block w-2.5 h-6 sm:h-8 ml-1 bg-cyan-400 animate-pulse" />
+                <span aria-hidden="true" className="inline-block w-2.5 h-6 sm:h-8 ml-1 bg-cyan-400 animate-pulse" />
               </div>
             </motion.div>
 
@@ -194,7 +199,7 @@ export const Hero: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex items-center space-x-4 pt-2 text-slate-400 text-xs font-mono"
             >
-              <span className="text-slate-500">Connect:</span>
+              <span className="text-slate-400">Connect:</span>
               <a
                 href={PERSONAL_INFO.github}
                 target="_blank"
@@ -271,7 +276,7 @@ export const Hero: React.FC = () => {
 
                 {/* Micro Terminal Live Output */}
                 <div className="rounded-xl bg-[#090b11] border border-slate-800 p-3 font-mono text-xs text-slate-300 space-y-1.5">
-                  <div className="flex items-center justify-between text-[10px] text-slate-500 border-b border-slate-800/80 pb-1">
+                  <div className="flex items-center justify-between text-[10px] text-slate-400 border-b border-slate-800/80 pb-1">
                     <div className="flex items-center space-x-1.5">
                       <span className="w-2 h-2 rounded-full bg-rose-500/80" />
                       <span className="w-2 h-2 rounded-full bg-amber-500/80" />

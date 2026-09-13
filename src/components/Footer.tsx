@@ -41,7 +41,7 @@ export const Footer: React.FC = () => {
               <span className="text-cyan-400">/</span>
               <span className="text-slate-400 text-xs">Frontend Developer</span>
             </div>
-            <p className="text-[11px] text-slate-500 font-sans">
+            <p className="text-[11px] text-slate-400 font-sans">
               Building modern web applications with React.js, Next.js, and TypeScript.
             </p>
           </div>
@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
             <Clock className="w-3.5 h-3.5 text-cyan-400" />
             <span>Mumbai, IN:</span>
             <span className="text-emerald-400 font-bold" suppressHydrationWarning>{time || "Loading..."}</span>
-            <span className="text-slate-600">(IST)</span>
+            <span className="text-slate-500">(IST)</span>
           </div>
 
           {/* Back to top CTA */}
@@ -65,7 +65,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Credits Strip */}
-        <div className="pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500 font-sans">
+        <div className="pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400 font-sans">
           <div suppressHydrationWarning>
             © {new Date().getFullYear()} {PERSONAL_INFO.name}. All rights reserved.
           </div>

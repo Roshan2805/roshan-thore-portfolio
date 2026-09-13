@@ -10,6 +10,15 @@ import {
 } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
+const navLinks = [
+  { label: "Overview", href: "#hero", id: "hero" },
+  { label: "Projects", href: "#projects", id: "projects" },
+  { label: "Simulators", href: "#simulators", id: "simulators" },
+  { label: "Skills", href: "#skills", id: "skills" },
+  { label: "Experience", href: "#experience", id: "experience" },
+  { label: "Contact", href: "#contact", id: "contact" }
+];
+
 interface NavbarProps {
   onOpenCommandPalette: () => void;
 }
@@ -20,39 +29,29 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
   const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-
-      const sections = ["hero", "projects", "simulators", "skills", "experience", "contact"];
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 40);
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("hashchange", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("hashchange", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: "Overview", href: "#hero", id: "hero" },
-    { label: "Projects", href: "#projects", id: "projects" },
-    { label: "Simulators", href: "#simulators", id: "simulators" },
-    { label: "Skills", href: "#skills", id: "skills" },
-    { label: "Experience", href: "#experience", id: "experience" },
-    { label: "Contact", href: "#contact", id: "contact" }
-  ];
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        }
+      },
+      { rootMargin: "-150px 0px -50% 0px" }
+    );
+
+    for (const link of navLinks) {
+      const el = document.getElementById(link.id);
+      if (el) observer.observe(el);
+    }
+    return () => observer.disconnect();
+  }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();

@@ -16,7 +16,7 @@ import {
   ArrowRight,
   ExternalLink
 } from "lucide-react";
-import confetti from "canvas-confetti";
+import { fireConfetti } from "@/lib/confetti";
 import { PERSONAL_INFO, PROJECTS } from "@/data/portfolioData";
 import { useDialog } from "@/hooks/useDialog";
 
@@ -97,13 +97,7 @@ const Palette: React.FC<Pick<CommandPaletteProps, "onClose" | "onSelectProject">
   };
 
   const triggerConfetti = () => {
-    confetti({
-      disableForReducedMotion: true,
-      particleCount: 80,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ["#6366f1", "#06b6d4", "#10b981", "#ec4899"]
-    });
+    fireConfetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
     onClose();
   };
 

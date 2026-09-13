@@ -14,7 +14,7 @@ import {
   RotateCcw
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/Icons";
-import confetti from "canvas-confetti";
+import { fireConfetti } from "@/lib/confetti";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export const ContactSection: React.FC = () => {
@@ -53,13 +53,7 @@ export const ContactSection: React.FC = () => {
       setIsSubmitting(false);
       setIsSubmitted(true);
 
-      confetti({
-        disableForReducedMotion: true,
-        particleCount: 90,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ["#6366f1", "#06b6d4", "#10b981"]
-      });
+      fireConfetti({ particleCount: 90, spread: 70, origin: { y: 0.6 } });
     }, 600);
   };
 

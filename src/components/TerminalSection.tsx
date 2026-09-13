@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { Terminal as TerminalIcon } from "lucide-react";
-import confetti from "canvas-confetti";
+import { fireConfetti } from "@/lib/confetti";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 interface TerminalLine {
@@ -149,13 +149,7 @@ ${PERSONAL_INFO.bio}`
 
       case "sudo hire":
       case "hire":
-        confetti({
-          disableForReducedMotion: true,
-          particleCount: 100,
-          spread: 80,
-          origin: { y: 0.6 },
-          colors: ["#6366f1", "#06b6d4", "#10b981", "#ec4899"]
-        });
+        fireConfetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
         newLines.push({
           id: outputId,
           type: "output",

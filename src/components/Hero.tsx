@@ -14,53 +14,11 @@ import {
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 import { PERSONAL_INFO } from "@/data/portfolioData";
-import confetti from "canvas-confetti";
+import { fireConfetti } from "@/lib/confetti";
 
 export const Hero: React.FC = () => {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(80);
-
-  const roles = PERSONAL_INFO.roles;
-  const reduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    if (reduceMotion) return;
-    const currentRole = roles[roleIndex];
-
-    const timer = setTimeout(() => {
-      if (!isDeleting) {
-        setDisplayedText(currentRole.substring(0, displayedText.length + 1));
-        if (displayedText.length + 1 === currentRole.length) {
-          setTypingSpeed(1800); // Pause at end
-          setIsDeleting(true);
-        } else {
-          setTypingSpeed(60);
-        }
-      } else {
-        setDisplayedText(currentRole.substring(0, displayedText.length - 1));
-        if (displayedText.length - 1 === 0) {
-          setIsDeleting(false);
-          setRoleIndex((prev) => (prev + 1) % roles.length);
-          setTypingSpeed(300);
-        } else {
-          setTypingSpeed(30);
-        }
-      }
-    }, typingSpeed);
-
-    return () => clearTimeout(timer);
-  }, [displayedText, isDeleting, roleIndex, roles, typingSpeed, reduceMotion]);
-
   const handleConfetti = () => {
-    confetti({
-      disableForReducedMotion: true,
-      particleCount: 70,
-      spread: 60,
-      origin: { y: 0.7 },
-      colors: ["#6366f1", "#06b6d4", "#10b981"]
-    });
+    fireConfetti({ particleCount: 70, spread: 60, origin: { y: 0.7 } });
   };
 
   const statItems = [
@@ -134,13 +92,7 @@ export const Hero: React.FC = () => {
               {/* Dynamic Typewriter Line */}
               <div className="h-9 sm:h-10 flex items-center">
                 <span className="sr-only">{PERSONAL_INFO.title}</span>
-                <span
-                  aria-hidden="true"
-                  suppressHydrationWarning
-                  className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-400"
-                >
-                  {reduceMotion ? roles[0] : displayedText}
-                </span>
+                <Typewriter roles={PERSONAL_INFO.roles} />
                 <span aria-hidden="true" className="inline-block w-2.5 h-6 sm:h-8 ml-1 bg-cyan-400 animate-pulse" />
               </div>
             </motion.div>
@@ -368,5 +320,52 @@ export const Hero: React.FC = () => {
         </motion.div>
       </div>
     </section>
+  );
+};
+
+const Typewriter: React.FC<{ roles: string[] }> = ({ roles }) => {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(80);
+
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    const currentRole = roles[roleIndex];
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        setDisplayedText(currentRole.substring(0, displayedText.length + 1));
+        if (displayedText.length + 1 === currentRole.length) {
+          setTypingSpeed(1800); // Pause at end
+          setIsDeleting(true);
+        } else {
+          setTypingSpeed(60);
+        }
+      } else {
+        setDisplayedText(currentRole.substring(0, displayedText.length - 1));
+        if (displayedText.length - 1 === 0) {
+          setIsDeleting(false);
+          setRoleIndex((prev) => (prev + 1) % roles.length);
+          setTypingSpeed(300);
+        } else {
+          setTypingSpeed(30);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, roleIndex, roles, typingSpeed, reduceMotion]);
+
+  return (
+    <span
+      aria-hidden="true"
+      suppressHydrationWarning
+      className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-400"
+    >
+      {reduceMotion ? roles[0] : displayedText}
+    </span>
   );
 };

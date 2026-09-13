@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/profile.jpg",
-        width: 800,
-        height: 800,
+        width: 900,
+        height: 1200,
         alt: "Roshan Thore"
       }
     ]

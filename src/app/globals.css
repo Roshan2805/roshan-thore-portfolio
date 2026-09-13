@@ -13,8 +13,6 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
-  selection-background-color: rgba(99, 102, 241, 0.3);
-  selection-color: #ffffff;
 }
 
 /* Custom modern scrollbar */

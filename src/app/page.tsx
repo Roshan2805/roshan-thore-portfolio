@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { AmbientBackground } from "@/components/AmbientBackground";
 import { Navbar } from "@/components/Navbar";
 import { CommandPalette } from "@/components/CommandPalette";
@@ -15,43 +15,41 @@ import { Footer } from "@/components/Footer";
 
 export default function Home() {
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
+  const [projectModalOpen, setProjectModalOpen] = useState(false);
+
+  const openPalette = useCallback(() => setCommandPaletteOpen(true), []);
+  const closePalette = useCallback(() => setCommandPaletteOpen(false), []);
+
+  const openProject = useCallback((id: string) => {
+    setSelectedProjectId(id);
+    setProjectModalOpen(true);
+  }, []);
+  const closeProject = useCallback(() => setProjectModalOpen(false), []);
 
   return (
     <main className="min-h-screen bg-[#090a0f] text-slate-100 selection:bg-indigo-500/30 selection:text-white relative">
-      {/* Interactive Background with Ambient Glow & Spotlight */}
       <AmbientBackground />
-
-      {/* Navigation Header */}
-      <Navbar onOpenCommandPalette={() => setCommandPaletteOpen(true)} />
-
-      {/* Command Palette (⌘K) Modal */}
+      <Navbar onOpenCommandPalette={openPalette} />
       <CommandPalette
         isOpen={commandPaletteOpen}
-        onClose={() => setCommandPaletteOpen(false)}
+        onOpen={openPalette}
+        onClose={closePalette}
+        onSelectProject={openProject}
       />
 
-      {/* 1. Hero Section */}
       <Hero />
-
-      {/* 2. Flagship Products & Engineering Deep-Dives */}
-      <ProjectsSection />
-
-      {/* 3. Interactive Architecture Playgrounds (HLS, 3D Stories, Virtualization) */}
+      <ProjectsSection
+        selectedProjectId={selectedProjectId}
+        isModalOpen={projectModalOpen}
+        onOpenProject={openProject}
+        onCloseProject={closeProject}
+      />
       <InteractiveSimulators />
-
-      {/* 4. Technical Skills Matrix */}
       <SkillsSection />
-
-      {/* 6. Professional Experience & Education */}
       <ExperienceSection />
-
-      {/* 7. Interactive Developer CLI Terminal */}
       <TerminalSection />
-
-      {/* 8. Contact & Direct Connection */}
       <ContactSection />
-
-      {/* 9. Footer with Live Mumbai Clock */}
       <Footer />
     </main>
   );

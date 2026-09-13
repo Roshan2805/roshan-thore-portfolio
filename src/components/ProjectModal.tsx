@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   X, 
@@ -21,6 +21,15 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   onClose
 }) => {
   const [activeTab, setActiveTab] = useState<"architecture" | "challenges" | "features" | "stack">("architecture");
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!project) return null;
 
@@ -66,6 +75,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
               <button
                 onClick={onClose}
+                aria-label="Close"
                 className="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition"
               >
                 <X className="w-5 h-5" />

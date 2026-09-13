@@ -72,7 +72,7 @@ export const Footer: React.FC = () => {
 
           <div className="flex items-center space-x-1">
             <span>Engineered with</span>
-            <span className="text-indigo-400 font-mono">Next.js 14</span>
+            <span className="text-indigo-400 font-mono">Next.js 16</span>
             <span>·</span>
             <span className="text-cyan-400 font-mono">TypeScript</span>
             <span>·</span>

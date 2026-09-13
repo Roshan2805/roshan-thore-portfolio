@@ -1,6 +1,6 @@
 # Roshan Thore — Senior Frontend Engineer & Web Architect Portfolio
 
-An ultra-modern, high-performance developer portfolio built with **Next.js 14 (App Router), React 19, TypeScript, Tailwind CSS, and Framer Motion**.
+An ultra-modern, high-performance developer portfolio built with **Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS, and Framer Motion**.
 
 Featuring real-world production architectures across creator media streaming platforms, internal financial consoles, and B2B SaaS portals serving 30K+ active users.
 

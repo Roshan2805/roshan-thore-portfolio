@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { 
   Layers, 
@@ -8,17 +8,23 @@ import {
   Zap, 
   ChevronRight
 } from "lucide-react";
-import { PROJECTS, Project } from "@/data/portfolioData";
+import { PROJECTS } from "@/data/portfolioData";
 import { ProjectModal } from "./ProjectModal";
 
-export const ProjectsSection: React.FC = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
+interface ProjectsSectionProps {
+  selectedProjectId: string | null;
+  isModalOpen: boolean;
+  onOpenProject: (projectId: string) => void;
+  onCloseProject: () => void;
+}
 
-  const openProjectDetails = (project: Project) => {
-    setSelectedProject(project);
-    setModalOpen(true);
-  };
+export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
+  selectedProjectId,
+  isModalOpen,
+  onOpenProject,
+  onCloseProject
+}) => {
+  const selectedProject = PROJECTS.find((p) => p.id === selectedProjectId) ?? null;
 
   return (
     <section id="projects" className="py-24 relative overflow-hidden">
@@ -120,7 +126,7 @@ export const ProjectsSection: React.FC = () => {
 
                 <div className="flex items-center space-x-2">
                   <button
-                    onClick={() => openProjectDetails(project)}
+                    onClick={() => onOpenProject(project.id)}
                     className="px-4 py-2 rounded-xl bg-slate-800/90 hover:bg-indigo-600 text-xs font-medium text-white transition flex items-center space-x-1.5 shadow-sm"
                   >
                     <span>View Details</span>
@@ -135,9 +141,10 @@ export const ProjectsSection: React.FC = () => {
 
       {/* Detail Modal */}
       <ProjectModal
+        key={selectedProjectId}
         project={selectedProject}
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
+        isOpen={isModalOpen}
+        onClose={onCloseProject}
       />
     </section>
   );

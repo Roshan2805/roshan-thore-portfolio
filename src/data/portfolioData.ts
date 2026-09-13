@@ -20,7 +20,6 @@ export interface Project {
     impact: string;
   }[];
   features: string[];
-  demoType?: "hls" | "stories" | "virtualization";
 }
 
 export interface SkillCategory {
@@ -60,6 +59,7 @@ export interface EducationItem {
 
 export const PERSONAL_INFO = {
   name: "Roshan Thore",
+  siteUrl: "https://roshanthore.dev",
   preferredName: "Roshan",
   title: "Frontend Developer (React.js / Next.js)",
   roles: [
@@ -150,8 +150,7 @@ export const PROJECTS: Project[] = [
       "Real-time Chat with XMPP & Socket.IO",
       "Typed Notification System with Cloud Push",
       "Offline PWA with Service Worker Caching"
-    ],
-    demoType: "hls"
+    ]
   },
   {
     id: "enterprise-admin-console",
@@ -210,8 +209,7 @@ export const PROJECTS: Project[] = [
       "User Platform Fee & Badge Configuration",
       "Payload Encryption with Crypto-JS",
       "Device Session & Activity Tracking"
-    ],
-    demoType: "virtualization"
+    ]
   },
   {
     id: "agency-b2b-portal",
@@ -263,8 +261,7 @@ export const PROJECTS: Project[] = [
       "Digital & Physical Shop Management Suite",
       "Mass-Message History & Broadcast Retargeting",
       "Instant Creator Switcher & Permission Masks"
-    ],
-    demoType: "stories"
+    ]
   },
   {
     id: "metaverse-3d-bridge",

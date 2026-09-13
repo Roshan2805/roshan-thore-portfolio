@@ -70,7 +70,9 @@ portfolio/
 │   ├── app/
 │   │   ├── globals.css           # Cyber-clean styles & animations
 │   │   ├── layout.tsx            # SEO metadata & fonts
-│   │   └── page.tsx              # Main portfolio single-page application
+│   │   ├── page.tsx              # Main portfolio single-page application
+│   │   ├── robots.ts             # robots.txt
+│   │   └── sitemap.ts            # sitemap.xml
 │   ├── components/
 │   │   ├── AmbientBackground.tsx # Mouse-following spotlight & ambient glow
 │   │   ├── CommandPalette.tsx    # Cmd+K interactive quick launcher
@@ -84,9 +86,14 @@ portfolio/
 │   │   ├── ProjectModal.tsx      # In-depth architectural inspection modal
 │   │   ├── ProjectsSection.tsx   # Flagship product showcases
 │   │   ├── SkillsSection.tsx     # Filterable technical skills matrix
-│   │   └── TerminalSection.tsx   # Interactive CLI terminal
-│   └── data/
-│       └── portfolioData.ts      # Central data store for all portfolio content
+│   │   ├── TerminalSection.tsx   # Interactive CLI terminal
+│   │   └── VirtualizationBenchmark.tsx # TanStack Virtual vs plain DOM benchmark
+│   ├── data/
+│   │   └── portfolioData.ts      # Central data store for all portfolio content
+│   ├── hooks/
+│   │   └── useDialog.ts          # Focus trap and scroll lock for modals
+│   └── lib/
+│       └── confetti.ts           # Lazy-loaded confetti helper
 ├── package.json
 └── tsconfig.json
 ```

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { PERSONAL_INFO } from "@/data/portfolioData";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,7 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://roshanthore.dev"),
+  metadataBase: new URL(PERSONAL_INFO.siteUrl),
+  alternates: {
+    canonical: "/"
+  },
   title: "Roshan Thore — Frontend Developer | React & Next.js",
   description:
     "Frontend Developer with 3.5+ years of experience building web applications using React.js, Next.js, TypeScript, and modern JavaScript. SDE at INK IN CAPS.",
@@ -42,6 +46,30 @@ export const metadata: Metadata = {
         alt: "Roshan Thore"
       }
     ]
+  },
+  twitter: {
+    card: "summary",
+    title: "Roshan Thore — Frontend Developer | React & Next.js",
+    description:
+      "Frontend Developer with 3.5+ years of experience building web applications with React.js, Next.js, and TypeScript.",
+    images: ["/profile.jpg"]
+  }
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: PERSONAL_INFO.name,
+  jobTitle: "Software Development Engineer",
+  url: PERSONAL_INFO.siteUrl,
+  image: `${PERSONAL_INFO.siteUrl}${PERSONAL_INFO.avatar}`,
+  sameAs: [PERSONAL_INFO.github, PERSONAL_INFO.linkedin],
+  worksFor: { "@type": "Organization", name: "INK IN CAPS" },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Mumbai",
+    addressRegion: "Maharashtra",
+    addressCountry: "IN"
   }
 };
 
@@ -56,7 +84,13 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
-      <body suppressHydrationWarning className="min-h-full flex flex-col bg-[#090a0f] text-slate-100">{children}</body>
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-[#090a0f] text-slate-100">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

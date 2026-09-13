@@ -22,27 +22,27 @@ export const Hero: React.FC = () => {
 
   const statItems = [
     {
-      label: "Engineering Experience",
+      label: "Experience",
       value: "3.5+ Years",
-      sub: "Continuous web delivery",
+      sub: "Intern to SDE at INK IN CAPS",
       color: "text-indigo-400"
     },
     {
-      label: "Active Platform Users",
+      label: "Platform Users",
       value: "30K+",
-      sub: "Scaled media & creator platforms",
+      sub: "On KNKY, where I own payments",
       color: "text-cyan-400"
     },
     {
-      label: "Production Systems",
-      value: "3+ Apps",
-      sub: "Consumer, Admin & Agency",
+      label: "Products Shipped",
+      value: "4",
+      sub: "Consumer, admin, B2B & 3D web",
       color: "text-emerald-400"
     },
     {
-      label: "Performance Benchmark",
-      value: "95+ Score",
-      sub: "Sub-second TTFB & 99.9% Uptime",
+      label: "Developers Mentored",
+      value: "2",
+      sub: "Through their first releases",
       color: "text-pink-400"
     }
   ];
@@ -98,7 +98,7 @@ export const Hero: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-light"
             >
-              Frontend developer with <strong className="text-white font-semibold">3.5+ years</strong> of experience (including 3 years full-time at INK IN CAPS) building responsive, user-friendly web applications with React.js, Next.js, TypeScript, and modern UI libraries. Experienced in developing consumer web apps, admin dashboards, and B2B portals serving <span className="text-cyan-400 font-mono font-medium">30K+ active users</span>.
+              Frontend engineer with <strong className="text-white font-semibold">3.5+ years</strong> at INK IN CAPS, from intern to SDE. I work on <span className="text-cyan-400 font-medium">KNKY</span>, a creator monetization platform with <span className="text-cyan-400 font-mono font-medium">30K+ users</span>, where I own payments and subscriptions. I&apos;m also the only frontend engineer on its admin console, and I mentor junior developers on the team.
             </motion.p>
 
             <motion.div
@@ -121,7 +121,7 @@ export const Hero: React.FC = () => {
                 className="inline-flex items-center space-x-2 px-5 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/70 text-slate-200 font-medium text-sm transition hover:border-slate-600"
               >
                 <Play className="w-4 h-4 text-emerald-400" />
-                <span>Live Interactive Simulators</span>
+                <span>Try the Demos</span>
               </a>
 
               <a
@@ -235,7 +235,7 @@ export const Hero: React.FC = () => {
                       $ <span className="text-cyan-300">metrics</span> --live
                     </p>
                     <p className="text-emerald-400">
-                      30K+ active users · 99.9% uptime · 95+ Lighthouse
+                      30K+ users · payments owner · 2 devs mentored
                     </p>
                   </div>
                 </div>
@@ -251,7 +251,7 @@ export const Hero: React.FC = () => {
                   </div>
                   <div className="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800/80">
                     <div className="text-[10px] font-mono uppercase text-slate-400">
-                      Streaming Pipeline
+                      Video &amp; Live
                     </div>
                     <div className="text-xs font-bold text-cyan-300 mt-0.5">
                       HLS.js + LiveKit
@@ -262,12 +262,12 @@ export const Hero: React.FC = () => {
                       Virtualization
                     </div>
                     <div className="text-xs font-bold text-indigo-300 mt-0.5">
-                      TanStack Virtual (60fps)
+                      TanStack Virtual
                     </div>
                   </div>
                   <div className="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800/80">
                     <div className="text-[10px] font-mono uppercase text-slate-400">
-                      Monetization
+                      Payments
                     </div>
                     <div className="text-xs font-bold text-emerald-300 mt-0.5">
                       Multi-Gateway Checkout

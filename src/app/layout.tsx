@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/"
   },
-  title: "Roshan Thore — Frontend Developer | React & Next.js",
+  title: "Roshan Thore — Frontend Engineer | React & Next.js",
   description:
-    "Frontend Developer with 3.5+ years of experience building web applications using React.js, Next.js, TypeScript, and modern JavaScript. SDE at INK IN CAPS.",
+    "Frontend engineer at INK IN CAPS with 3.5+ years of experience. Owns payments on KNKY, a creator platform with 30K+ users, and builds with React, Next.js, and TypeScript.",
   keywords: [
     "Roshan Thore",
     "Frontend Developer",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Roshan Thore" }],
   openGraph: {
-    title: "Roshan Thore — Frontend Developer | React & Next.js",
+    title: "Roshan Thore — Frontend Engineer | React & Next.js",
     description:
-      "Frontend Developer with 3.5+ years of experience building web applications with React.js, Next.js, and TypeScript.",
+      "Frontend engineer at INK IN CAPS with 3.5+ years of experience. Owns payments on KNKY, a creator platform with 30K+ users, and builds with React, Next.js, and TypeScript.",
     type: "website",
     locale: "en_US",
     images: [
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Roshan Thore — Frontend Developer | React & Next.js",
+    title: "Roshan Thore — Frontend Engineer | React & Next.js",
     description:
-      "Frontend Developer with 3.5+ years of experience building web applications with React.js, Next.js, and TypeScript.",
+      "Frontend engineer at INK IN CAPS with 3.5+ years of experience. Owns payments on KNKY, a creator platform with 30K+ users, and builds with React, Next.js, and TypeScript.",
     images: ["/profile.jpg"]
   }
 };

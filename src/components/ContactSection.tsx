@@ -70,7 +70,7 @@ export const ContactSection: React.FC = () => {
             Let&apos;s Work Together
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Interested in discussing web development opportunities, frontend engineering, or collaboration? Reach out directly.
+            Hiring for a frontend role or want to talk about a project? Email is the quickest way to reach me.
           </p>
         </div>
 
@@ -91,7 +91,7 @@ export const ContactSection: React.FC = () => {
                 Open for Frontend &amp; Full-Stack Roles
               </h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Available for full-time Frontend Developer / SDE opportunities, web projects, and team collaborations.
+                Open to full-time Frontend Engineer and SDE roles.
               </p>
 
               <div className="pt-2 border-t border-slate-800 flex items-center space-x-2 text-xs font-mono text-slate-400">
@@ -107,7 +107,7 @@ export const ContactSection: React.FC = () => {
                     <Mail className="w-4 h-4" />
                   </div>
                   <div className="truncate">
-                    <div className="text-[10px] uppercase font-mono text-slate-400">Personal Email</div>
+                    <div className="text-[10px] uppercase font-mono text-slate-400">Email</div>
                     <div className="text-xs font-semibold text-slate-200 truncate">{PERSONAL_INFO.email}</div>
                   </div>
                 </div>
@@ -137,7 +137,7 @@ export const ContactSection: React.FC = () => {
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] uppercase font-mono text-slate-400">Direct Phone</div>
+                    <div className="text-[10px] uppercase font-mono text-slate-400">Phone</div>
                     <div className="text-xs font-semibold text-slate-200 font-mono">{PERSONAL_INFO.phone}</div>
                   </div>
                 </div>
@@ -191,10 +191,10 @@ export const ContactSection: React.FC = () => {
                 <div className="space-y-1">
                   <h3 className="text-xl font-bold text-white flex items-center space-x-2">
                     <MessageSquare className="w-5 h-5 text-indigo-400" />
-                    <span>Send a Direct Message</span>
+                    <span>Send a Message</span>
                   </h3>
                   <p className="text-xs text-slate-400">
-                    Pre-fills your message directly to <strong className="text-slate-200">{PERSONAL_INFO.email}</strong>.
+                    Opens your email app with the message addressed to <strong className="text-slate-200">{PERSONAL_INFO.email}</strong>.
                   </p>
                 </div>
               </div>
@@ -210,9 +210,9 @@ export const ContactSection: React.FC = () => {
                   </div>
                   
                   <div className="space-y-1">
-                    <h4 className="text-lg font-bold text-white">Message Formatted &amp; Ready!</h4>
+                    <h4 className="text-lg font-bold text-white">Your email app should be open</h4>
                     <p className="text-xs text-slate-300 max-w-md mx-auto leading-relaxed">
-                      Your email client has been opened with your message addressed to <strong className="text-cyan-300">{PERSONAL_INFO.email}</strong>.
+                      If it didn&apos;t open, use the button below or copy your message and send it to <strong className="text-cyan-300">{PERSONAL_INFO.email}</strong>.
                     </p>
                   </div>
 
@@ -284,7 +284,7 @@ export const ContactSection: React.FC = () => {
                       type="text"
                       value={formState.subject}
                       onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                      placeholder="Senior Frontend Role / Engineering Collaboration"
+                      placeholder="Frontend Engineer role at your company"
                       className="w-full px-4 py-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition"
                     />
                   </div>
@@ -297,7 +297,7 @@ export const ContactSection: React.FC = () => {
                       required
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                      placeholder="Hi Roshan, I'd like to discuss a Senior Frontend Engineer opportunity..."
+                      placeholder="Hi Roshan, I'd like to talk to you about..."
                       className="w-full px-4 py-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition resize-none"
                     />
                   </div>
@@ -308,11 +308,11 @@ export const ContactSection: React.FC = () => {
                     className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-medium text-xs shadow-lg shadow-indigo-500/25 transition flex items-center justify-center space-x-2 cursor-pointer"
                   >
                     {isSubmitting ? (
-                      <span>Opening email client...</span>
+                      <span>Opening your email app...</span>
                     ) : (
                       <>
                         <Send className="w-3.5 h-3.5" />
-                        <span>Send Direct Email to Roshan</span>
+                        <span>Send Email</span>
                       </>
                     )}
                   </button>

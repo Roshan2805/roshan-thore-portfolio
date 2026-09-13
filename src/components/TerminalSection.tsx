@@ -67,12 +67,12 @@ export const TerminalSection: React.FC = () => {
           type: "output",
           text: `Available commands:
   • skills       - View core frontend, state & media tech stack
-  • projects     - List key applications (Streaming, Admin, Agency, 3D Web)
-  • stats        - View production metrics & experience summary
+  • projects     - List the products I've worked on
+  • stats        - Quick numbers
   • contact      - Get email, phone & social profiles
   • resume       - Download PDF resume
   • about        - Print engineer summary & bio
-  • sudo hire    - Fast-track interview / direct outreach (Easter Egg 🎉)
+  • sudo hire    - Get in touch (easter egg 🎉)
   • clear        - Clear terminal screen`
         });
         break;
@@ -94,11 +94,11 @@ export const TerminalSection: React.FC = () => {
         newLines.push({
           id: outputId,
           type: "output",
-          text: `Key Applications:
-  1. Creator Streaming Platform -> Next.js 14, HLS.js, LiveKit, 30K+ Active Users
-  2. Enterprise Admin Console   -> Vite SPA, Granular RBAC, Unbounded CSV, Material UI
-  3. B2B Agency & Talent Portal -> Vite, Radix UI, Multi-tenant Talent Mgmt, Shop module
-  4. Real-Time 3D Web Engine    -> Angular + Unity 3D runtime bridge, WebRTC live video`
+          text: `Projects:
+  1. KNKY Creator Platform -> Next.js 14, payments, HLS.js, LiveKit, 30K+ users
+  2. KNKY Admin Console    -> sole frontend engineer, Vite, RBAC, CSV export
+  3. KNKY Agency Portal    -> B2B, multi-tenant, Radix UI, virtualized lists
+  4. Heftyverse            -> Angular + Unity 3D bridge, WebRTC live video`
         });
         break;
 
@@ -106,12 +106,12 @@ export const TerminalSection: React.FC = () => {
         newLines.push({
           id: outputId,
           type: "output",
-          text: `Production Metrics:
-  • Experience       : 3.5+ Years of Continuous Web Delivery
-  • Active Users     : 30,000+ Active Users across platform
-  • Systems Shipped  : 3+ Enterprise Web Platforms
-  • Performance      : 95+ Lighthouse Score / Sub-second TTFB
-  • Availability     : 99.9% Production Uptime`
+          text: `Quick stats:
+  • Experience : 3.5+ years at INK IN CAPS (intern to SDE)
+  • Users      : 30K+ on KNKY
+  • Products   : 4 (KNKY, Admin Console, Agency Portal, Heftyverse)
+  • Team       : 10+ contributors, 2 junior developers mentored
+  • Builds     : ~50% faster after moving the admin console to Vite`
         });
         break;
 

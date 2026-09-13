@@ -104,10 +104,10 @@ export const InteractiveSimulators: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
             <Cpu className="w-3.5 h-3.5" />
-            <span>Interactive Demos</span>
+            <span>Playground</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Engineering Playground
+            Interactive Demos
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
             Small interactive versions of features I&apos;ve shipped. The virtualization benchmark runs for real in your browser; the streaming and stories demos are simulated.
@@ -137,7 +137,7 @@ export const InteractiveSimulators: React.FC = () => {
               }`}
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span>3D Story Viewer</span>
+              <span>Stories Viewer</span>
             </button>
 
             <button
@@ -183,7 +183,7 @@ export const InteractiveSimulators: React.FC = () => {
                       Adaptive bitrate switching
                     </div>
                     <div className="text-xs text-slate-400 font-mono">
-                      Chunk Duration: 2.0s · Dynamic `hls.js` Loader
+                      Chunk duration: 2.0s · hls.js loaded on demand
                     </div>
                   </div>
 
@@ -216,7 +216,7 @@ export const InteractiveSimulators: React.FC = () => {
                 <div>
                   <h3 className="text-lg font-bold text-white flex items-center space-x-2">
                     <Sliders className="w-4 h-4 text-cyan-400" />
-                    <span>Network Bandwidth Control</span>
+                    <span>Network Speed</span>
                   </h3>
                   <p className="text-xs text-slate-400 mt-1">
                     Drag the slider to change the simulated connection speed and see which rendition an adaptive player would switch to.
@@ -268,7 +268,7 @@ export const InteractiveSimulators: React.FC = () => {
                     <span>In production</span>
                   </div>
                   <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Dynamically imported `hls.js` only when video content is in viewport, reducing initial JS payload by 120KB and optimizing playback across mobile devices.
+                    In production, hls.js only loads once a video is on screen, so pages without video never download it.
                   </p>
                 </div>
               </div>
@@ -375,7 +375,7 @@ export const InteractiveSimulators: React.FC = () => {
                 <div>
                   <h3 className="text-xl font-bold text-white flex items-center space-x-2">
                     <Sparkles className="w-4 h-4 text-cyan-400" />
-                    <span>3D Cube-Face Stories Subsystem</span>
+                    <span>Stories Viewer</span>
                   </h3>
                   <p className="text-xs text-slate-400 mt-1">
                     A simplified mock of the stories viewer. Tap the left or right side of the phone to switch stories, pause with the button, or reveal gated content.
@@ -386,7 +386,7 @@ export const InteractiveSimulators: React.FC = () => {
                   <div className="p-3.5 rounded-2xl bg-[#12192c] border border-slate-800">
                     <div className="text-xs font-bold text-white">Gesture Navigation</div>
                     <p className="text-[11px] text-slate-400 mt-1">
-                      Smooth touch swipes and drag-to-dismiss physics built with `@use-gesture/react` and Framer Motion.
+                      Swipe between stories and drag down to dismiss, built with @use-gesture/react and Framer Motion.
                     </p>
                   </div>
 
@@ -398,16 +398,16 @@ export const InteractiveSimulators: React.FC = () => {
                   </div>
 
                   <div className="p-3.5 rounded-2xl bg-[#12192c] border border-slate-800">
-                    <div className="text-xs font-bold text-white">NSFW Gating Engine</div>
+                    <div className="text-xs font-bold text-white">Sensitive Content Gating</div>
                     <p className="text-[11px] text-slate-400 mt-1">
-                      Granular creator age-restrictions and blur filters rendered before media buffer initialization.
+                      Gated stories stay blurred until the viewer opts in, and media doesn&apos;t start loading before then.
                     </p>
                   </div>
 
                   <div className="p-3.5 rounded-2xl bg-[#12192c] border border-slate-800">
-                    <div className="text-xs font-bold text-white">Vault-Sourced Creation</div>
+                    <div className="text-xs font-bold text-white">Post from the Vault</div>
                     <p className="text-[11px] text-slate-400 mt-1">
-                      Allows creators to select directly from their media vault with automatic transcoding and cropping.
+                      Creators can post a story straight from their media vault, with cropping built in.
                     </p>
                   </div>
                 </div>

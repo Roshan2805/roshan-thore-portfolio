@@ -38,10 +38,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             <span>Featured Work</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Key Web Applications
+            What I&apos;ve Built
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Production web applications built with Next.js 14, React 18, Vite, TypeScript, and modern UI libraries.
+            Four products I&apos;ve worked on at INK IN CAPS, from a creator platform with 30K+ users to the internal tools behind it.
           </p>
         </div>
 

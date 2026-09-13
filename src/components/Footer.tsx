@@ -38,7 +38,7 @@ export const Footer: React.FC = () => {
                 {PERSONAL_INFO.name}
               </span>
               <span className="text-cyan-400">/</span>
-              <span className="text-slate-400 text-xs">Frontend Developer</span>
+              <span className="text-slate-400 text-xs">Frontend Engineer</span>
             </div>
             <p className="text-[11px] text-slate-400 font-sans">
               Building modern web applications with React.js, Next.js, and TypeScript.

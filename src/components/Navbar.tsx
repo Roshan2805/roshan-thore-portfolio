@@ -13,7 +13,7 @@ import { PERSONAL_INFO } from "@/data/portfolioData";
 const navLinks = [
   { label: "Overview", href: "#hero", id: "hero" },
   { label: "Projects", href: "#projects", id: "projects" },
-  { label: "Simulators", href: "#simulators", id: "simulators" },
+  { label: "Demos", href: "#simulators", id: "simulators" },
   { label: "Skills", href: "#skills", id: "skills" },
   { label: "Experience", href: "#experience", id: "experience" },
   { label: "Contact", href: "#contact", id: "contact" }
@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span>Available for Frontend Roles</span>
+              <span>Open to Frontend Roles</span>
             </div>
           </div>
 

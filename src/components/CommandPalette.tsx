@@ -111,22 +111,22 @@ const Palette: React.FC<Pick<CommandPaletteProps, "onClose" | "onSelectProject">
     {
       id: "projects",
       title: "View Projects",
-      subtitle: "Creator Media Platform, Enterprise Admin, Agency Portal, 3D Web",
+      subtitle: "KNKY, KNKY Admin Console, KNKY Agency Portal, Heftyverse",
       icon: Layers,
       action: () => scrollTo("projects"),
       category: "Navigation"
     },
     {
       id: "simulators",
-      title: "Interactive Architecture Playground",
-      subtitle: "HLS Adaptive Stream, 3D Stories, Virtualization Benchmark",
+      title: "Try the Interactive Demos",
+      subtitle: "Adaptive streaming, stories viewer, virtualization benchmark",
       icon: Cpu,
       action: () => scrollTo("simulators"),
       category: "Interactive"
     },
     {
       id: "skills",
-      title: "Technical Skills Matrix",
+      title: "View Skills",
       subtitle: "React 18, Next.js 14, TypeScript, HLS, WebRTC, Tailwind",
       icon: Cpu,
       action: () => scrollTo("skills"),
@@ -134,16 +134,16 @@ const Palette: React.FC<Pick<CommandPaletteProps, "onClose" | "onSelectProject">
     },
     {
       id: "experience",
-      title: "Work Experience & History",
-      subtitle: "Software Development Engineer @ INK IN CAPS & Education",
+      title: "Work Experience",
+      subtitle: "Software Development Engineer at INK IN CAPS, plus education",
       icon: Briefcase,
       action: () => scrollTo("experience"),
       category: "Navigation"
     },
     {
       id: "terminal",
-      title: "Open Developer CLI Terminal",
-      subtitle: "Execute interactive shell commands and easter eggs",
+      title: "Open the Terminal",
+      subtitle: "Try commands like projects, skills, or sudo hire",
       icon: Terminal,
       action: () => scrollTo("terminal"),
       category: "Interactive"
@@ -177,8 +177,8 @@ const Palette: React.FC<Pick<CommandPaletteProps, "onClose" | "onSelectProject">
     },
     {
       id: "confetti",
-      title: "Celebrate / Launch Confetti 🎉",
-      subtitle: "Trigger a particle burst on your screen",
+      title: "Launch Confetti 🎉",
+      subtitle: "Just for fun",
       icon: Sparkles,
       action: triggerConfetti,
       category: "Actions"

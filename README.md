@@ -9,8 +9,7 @@ Personal site of Roshan Thore, frontend engineer at INK IN CAPS. It covers the p
   - Adaptive bitrate streaming (simulated): change the network speed and see which rendition a player picks
   - Stories viewer (simulated): tap through stories, pause, and reveal gated content
   - Virtualization benchmark (real): TanStack Virtual against a plain list of up to 25,000 rows, timed in your browser
-- **Command palette**: press ⌘K or Ctrl+K to jump anywhere
-- **Terminal**: try `help`, `projects`, or `sudo hire`
+- **Command palette**: press ⌘K or Ctrl+K to jump anywhere (try `sudo hire`)
 - Skills, experience, education, and a contact form that opens your email app
 
 ## Tech stack
@@ -54,7 +53,6 @@ portfolio/
 │   │   ├── ProjectModal.tsx        # Project details
 │   │   ├── ProjectsSection.tsx     # Project cards
 │   │   ├── SkillsSection.tsx       # Searchable skills
-│   │   ├── TerminalSection.tsx     # Interactive terminal
 │   │   └── VirtualizationBenchmark.tsx  # Real virtualization benchmark
 │   ├── data/
 │   │   └── portfolioData.ts        # All site content

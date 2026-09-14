@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
-  Terminal,
   FileDown,
   Mail,
   Phone,
@@ -96,11 +95,6 @@ const Palette: React.FC<Pick<CommandPaletteProps, "onClose" | "onSelectProject">
     }, 150);
   };
 
-  const triggerConfetti = () => {
-    fireConfetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
-    onClose();
-  };
-
   const copyToClipboard = (id: string, text: string) => {
     navigator.clipboard.writeText(text);
     setCopiedId(id);
@@ -141,14 +135,6 @@ const Palette: React.FC<Pick<CommandPaletteProps, "onClose" | "onSelectProject">
       category: "Navigation"
     },
     {
-      id: "terminal",
-      title: "Open the Terminal",
-      subtitle: "Try commands like projects, skills, or sudo hire",
-      icon: Terminal,
-      action: () => scrollTo("terminal"),
-      category: "Interactive"
-    },
-    {
       id: "resume",
       title: "Download Resume (PDF)",
       subtitle: "PDF, opens in a new tab",
@@ -176,11 +162,14 @@ const Palette: React.FC<Pick<CommandPaletteProps, "onClose" | "onSelectProject">
       category: "Actions"
     },
     {
-      id: "confetti",
-      title: "Launch Confetti 🎉",
-      subtitle: "Just for fun",
+      id: "hire",
+      title: "sudo hire 🎉",
+      subtitle: "Get in touch with Roshan",
       icon: Sparkles,
-      action: triggerConfetti,
+      action: () => {
+        fireConfetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+        scrollTo("contact");
+      },
       category: "Actions"
     }
   ];

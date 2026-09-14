@@ -10,7 +10,6 @@ import { ProjectsSection } from "@/components/ProjectsSection";
 import { InteractiveSimulators } from "@/components/InteractiveSimulators";
 import { SkillsSection } from "@/components/SkillsSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
-import { TerminalSection } from "@/components/TerminalSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 
@@ -50,7 +49,6 @@ export default function Home() {
         <InteractiveSimulators />
         <SkillsSection />
         <ExperienceSection />
-        <TerminalSection />
         <ContactSection />
         <Footer />
       </main>

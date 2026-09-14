@@ -95,7 +95,7 @@ export const TerminalSection: React.FC = () => {
           id: outputId,
           type: "output",
           text: `Projects:
-  1. KNKY Creator Platform -> Next.js 14, payments, HLS.js, LiveKit, 30K+ users
+  1. KNKY Creator Platform -> payments & subscriptions, HLS.js, LiveKit, 30K+ users
   2. KNKY Admin Console    -> sole frontend engineer, Vite, RBAC, CSV export
   3. KNKY Agency Portal    -> B2B, multi-tenant, Radix UI, virtualized lists
   4. Heftyverse            -> Angular + Unity 3D bridge, WebRTC live video`
@@ -109,7 +109,8 @@ export const TerminalSection: React.FC = () => {
           text: `Quick stats:
   • Experience : 3.5+ years at INK IN CAPS (intern to SDE)
   • Users      : 30K+ on KNKY
-  • Products   : 4 (KNKY, Admin Console, Agency Portal, Heftyverse)
+  • Payments   : 45K+ transactions a year
+  • Stories    : 20K+ posted a month
   • Team       : 10+ contributors, 2 junior developers mentored
   • Builds     : ~50% faster after moving the admin console to Vite`
         });

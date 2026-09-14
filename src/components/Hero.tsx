@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
   ArrowRight, 
   FileDown, 
@@ -28,16 +28,16 @@ export const Hero: React.FC = () => {
       color: "text-indigo-400"
     },
     {
-      label: "Platform Users",
-      value: "30K+",
-      sub: "On KNKY, where I own payments",
-      color: "text-cyan-400"
+      label: "Transactions a Year",
+      value: "45K+",
+      sub: "Through the checkout I own",
+      color: "text-emerald-400"
     },
     {
-      label: "Products Shipped",
-      value: "4",
-      sub: "Consumer, admin, B2B & 3D web",
-      color: "text-emerald-400"
+      label: "Platform Users",
+      value: "30K+",
+      sub: "On KNKY, a creator platform",
+      color: "text-cyan-400"
     },
     {
       label: "Developers Mentored",
@@ -85,11 +85,9 @@ export const Hero: React.FC = () => {
                 </span>
               </h1>
 
-              <div className="h-9 sm:h-10 flex items-center">
-                <span className="sr-only">{PERSONAL_INFO.title}</span>
-                <Typewriter roles={PERSONAL_INFO.roles} />
-                <span aria-hidden="true" className="inline-block w-2.5 h-6 sm:h-8 ml-1 bg-cyan-400 animate-pulse" />
-              </div>
+              <p className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-400">
+                {PERSONAL_INFO.title}
+              </p>
             </motion.div>
 
             <motion.p
@@ -98,7 +96,7 @@ export const Hero: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-light"
             >
-              Frontend engineer with <strong className="text-white font-semibold">3.5+ years</strong> at INK IN CAPS, from intern to SDE. I work on <span className="text-cyan-400 font-medium">KNKY</span>, a creator monetization platform with <span className="text-cyan-400 font-mono font-medium">30K+ users</span>, where I own payments and subscriptions. I&apos;m also the only frontend engineer on its admin console, and I mentor junior developers on the team.
+              Frontend engineer with <strong className="text-white font-medium">3.5 years</strong> building KNKY, a creator monetization platform serving 30K+ users. I own its <strong className="text-white font-medium">payments and subscription module</strong>, which handles <strong className="text-white font-medium">45K+ transactions a year</strong>, and built its admin console as the only frontend engineer. I also ship HLS video streaming and real-time chat.
             </motion.p>
 
             <motion.div
@@ -235,7 +233,7 @@ export const Hero: React.FC = () => {
                       $ <span className="text-cyan-300">metrics</span> --live
                     </p>
                     <p className="text-emerald-400">
-                      30K+ users · payments owner · 2 devs mentored
+                      30K+ users · 45K+ txns/yr · 20K+ stories/mo
                     </p>
                   </div>
                 </div>
@@ -270,7 +268,7 @@ export const Hero: React.FC = () => {
                       Payments
                     </div>
                     <div className="text-xs font-bold text-emerald-300 mt-0.5">
-                      Multi-Gateway Checkout
+                      Checkout &amp; Subscriptions
                     </div>
                   </div>
                 </div>
@@ -304,52 +302,5 @@ export const Hero: React.FC = () => {
         </motion.div>
       </div>
     </section>
-  );
-};
-
-const Typewriter: React.FC<{ roles: string[] }> = ({ roles }) => {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(80);
-
-  const reduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    if (reduceMotion) return;
-    const currentRole = roles[roleIndex];
-
-    const timer = setTimeout(() => {
-      if (!isDeleting) {
-        setDisplayedText(currentRole.substring(0, displayedText.length + 1));
-        if (displayedText.length + 1 === currentRole.length) {
-          setTypingSpeed(1800); // Pause at end
-          setIsDeleting(true);
-        } else {
-          setTypingSpeed(60);
-        }
-      } else {
-        setDisplayedText(currentRole.substring(0, displayedText.length - 1));
-        if (displayedText.length - 1 === 0) {
-          setIsDeleting(false);
-          setRoleIndex((prev) => (prev + 1) % roles.length);
-          setTypingSpeed(300);
-        } else {
-          setTypingSpeed(30);
-        }
-      }
-    }, typingSpeed);
-
-    return () => clearTimeout(timer);
-  }, [displayedText, isDeleting, roleIndex, roles, typingSpeed, reduceMotion]);
-
-  return (
-    <span
-      aria-hidden="true"
-      suppressHydrationWarning
-      className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-400"
-    >
-      {reduceMotion ? roles[0] : displayedText}
-    </span>
   );
 };

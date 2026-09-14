@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Roshan Thore — Resume</title>
+<style>
+  @font-face { font-family: Carlito; src: url(fonts/carlito-regular.ttf); font-weight: 400; font-style: normal; }
+  @font-face { font-family: Carlito; src: url(fonts/carlito-bold.ttf); font-weight: 700; font-style: normal; }
+  @font-face { font-family: Carlito; src: url(fonts/carlito-italic.ttf); font-weight: 400; font-style: italic; }
+  @page { size: Letter; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 612pt; }
+  body {
+    font-family: Carlito, sans-serif;
+    font-size: 9.5pt;
+    line-height: 11pt;
+    color: #111;
+    padding: 30pt 36pt 0;
+  }
+  a { color: #1155cc; }
+  .muted { color: #595959; font-weight: 400; }
+
+  header { text-align: center; }
+  h1 { font-size: 15pt; line-height: 18pt; letter-spacing: 2.3pt; }
+  header p { line-height: 13pt; }
+  header .title { color: #595959; }
+
+  h2 {
+    font-size: 10pt;
+    line-height: 13pt;
+    margin-top: 6pt;
+    padding-bottom: 1pt;
+    border-bottom: 1pt solid #999;
+    margin-bottom: 3.5pt;
+  }
+  .company { font-size: 10.5pt; line-height: 14pt; }
+  .role { font-weight: 700; line-height: 12.5pt; }
+  .intro { margin-top: 2pt; }
+  .product { font-weight: 700; line-height: 12pt; margin-top: 4pt; }
+  .stack { font-style: italic; font-size: 9pt; line-height: 12pt; color: #595959; }
+  ul { list-style: none; margin-top: 1pt; }
+  li { position: relative; padding-left: 10pt; margin-top: 1.9pt; }
+  li::before { content: "•"; position: absolute; left: 2pt; font-family: "Times New Roman", serif; font-size: 10pt; }
+  .rows p { line-height: 12.8pt; }
+  .rows b { margin-right: 4pt; }
+  .nowrap { white-space: nowrap; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>ROSHAN THORE</h1>
+    <p class="title">Frontend Engineer &nbsp;•&nbsp; React • Next.js • TypeScript &nbsp;•&nbsp; 3.5 Years</p>
+    <p>Mumbai, India &nbsp;•&nbsp; +91-7028643184 &nbsp;•&nbsp; thoreroshan2805@gmail.com</p>
+    <p><a href="https://linkedin.com/in/roshan-thore">linkedin.com/in/roshan-thore</a> &nbsp;•&nbsp; <a href="https://github.com/Roshan2805">github.com/Roshan2805</a></p>
+  </header>
+
+  <h2>SUMMARY</h2>
+  <p>Frontend engineer with 3.5 years building a creator monetization platform serving 30K+ users and 45K+ transactions a year. Depth in <span class="nowrap">multi-provider</span> payments, HLS media streaming, real-time video and chat, and virtualization-driven performance work.</p>
+
+  <h2>EXPERIENCE</h2>
+  <p class="company"><b>Ink In Caps</b> &nbsp;<span class="muted">— &nbsp;Mumbai, India</span></p>
+  <p class="role">Software Development Engineer &nbsp;<span class="muted">· &nbsp;Aug 2023 – Present</span></p>
+  <p class="role">Web Developer Intern &nbsp;<span class="muted">· &nbsp;Jan 2023 – Jul 2023 (converted to full-time)</span></p>
+  <p class="intro">Frontend engineer across three production products on a 10+ contributor team. Reviewed PRs and mentored two junior developers through their first production releases.</p>
+
+  <p class="product">KNKY — Creator Monetization Platform &nbsp;<span class="muted">· &nbsp;30K+ users &nbsp;· &nbsp;45K+ transactions a year</span></p>
+  <p class="stack">Next.js 14 (App Router), TypeScript, Redux Toolkit, TanStack Query/Virtual, Tailwind CSS, SCSS</p>
+  <ul>
+    <li>Owned the payments and subscription surface (9.6K+ subscription payments a year): multi-provider checkout spanning card tokenization and regional bank-transfer methods, with backend-driven failure states and guest checkout; plan state transitions across upgrade, downgrade, trial and lifetime tiers; and wallet, tipping and revenue-split flows.</li>
+    <li>Built the Stories and Media Vault subsystems (20K+ stories a month): HLS adaptive-bitrate playback tuned for slow connections, a gesture-driven 3D story carousel, a virtualized folder/asset library, and resumable large-file S3 uploads via Uppy + tus.</li>
+    <li>Integrated LiveKit for live video/audio rooms and Socket.IO / XMPP for chat, alongside a typed in-app notification system backed by Firebase push.</li>
+    <li>Added two-factor authentication over OTP, client-side payload encryption for API traffic, and token lifecycle handling with scheduled silent renewal.</li>
+    <li>Cut load and interaction cost with dynamic hls.js imports, lazy Firebase initialization and virtualized rendering across every long list. Also introduced a shared ModalPortal abstraction that replaced ad-hoc modal wiring app-wide.</li>
+  </ul>
+
+  <p class="product">KNKY Admin Console &nbsp;<span class="muted">· &nbsp;sole frontend engineer</span></p>
+  <p class="stack">Vite, React, React Router 7, Material UI, TanStack Table, ApexCharts</p>
+  <ul>
+    <li>Built the console as its only frontend engineer, covering architecture, routing, state and build setup. Replaced the previous Next.js/Webpack app with a Vite SPA, roughly halving build times for daily development.</li>
+    <li>Built a role-based permission model with server-driven grants resolved into client-side route and action guards.</li>
+    <li>Built transaction search over large datasets with server-side pagination, compound multi-field filters and unbounded CSV export, plus reporting dashboards aggregating earnings and payouts across accounts.</li>
+  </ul>
+
+  <p class="product">KNKY Agency Portal &nbsp;<span class="muted">· &nbsp;B2B</span></p>
+  <p class="stack">Vite, React, Radix UI, Tailwind CSS</p>
+  <ul>
+    <li>Modelled multi-tenant access, including role definitions, many-to-many employee-to-creator assignment, and an invitation flow covering pending, accepted and cancelled states.</li>
+    <li>Built analytics, earnings breakdown and product-listing surfaces, using virtualized rendering and debounced search to keep large lists responsive.</li>
+  </ul>
+
+  <p class="product">Heftyverse — Metaverse Integration Platform</p>
+  <p class="stack">Angular, Socket.IO, WebRTC, RxJS</p>
+  <ul>
+    <li>Built the Angular web layer bridging the browser and a Unity 3D runtime, handling bidirectional real-time messaging for chat, leaderboards and event state. Defined the web-to-engine message contract with the Unity team.</li>
+    <li>Integrated a WebRTC video streaming SDK for live in-world video, handling connection lifecycle and reconnection, and built session analytics for concurrency and engagement.</li>
+  </ul>
+
+  <h2>TECHNICAL SKILLS</h2>
+  <div class="rows">
+    <p><b>Languages</b> TypeScript, JavaScript (ES6+), HTML5, CSS3, SCSS</p>
+    <p><b>Frameworks</b> React 18, Next.js 14, Angular, Redux Toolkit, React Router, RxJS, Node.js</p>
+    <p><b>UI &amp; Data</b> Tailwind CSS, Radix UI, Material UI, ShadCN, TanStack (Query / Table / Virtual), React Hook Form, ApexCharts</p>
+    <p><b>Media &amp; Realtime</b> HLS.js, LiveKit, Socket.IO, WebRTC, XMPP, Uppy / tus resumable uploads, Firebase</p>
+    <p><b>Tooling &amp; Testing</b> Vite, Webpack, Vitest, React Testing Library, Git, CI/CD, Amplitude, PostHog, Figma</p>
+  </div>
+
+  <h2>EDUCATION</h2>
+  <div class="rows">
+    <p><b>Master of Computer Applications (MCA)</b> <span class="muted">— &nbsp;Sandip University, Nashik &nbsp;· &nbsp;June 2026</span></p>
+    <p><b>Bachelor of Commerce (BCom)</b> <span class="muted">— &nbsp;Yashwantrao Chavan Maharashtra Open University &nbsp;· &nbsp;Aug 2022</span></p>
+    <p><b>Full Stack Web Development</b> <span class="muted">— &nbsp;SPARK IT Training Institute, Pune &nbsp;· &nbsp;Dec 2022</span></p>
+  </div>
+</body>
+</html>

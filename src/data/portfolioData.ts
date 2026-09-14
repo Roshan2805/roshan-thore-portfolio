@@ -59,14 +59,8 @@ export interface EducationItem {
 export const PERSONAL_INFO = {
   name: "Roshan Thore",
   siteUrl: "https://roshanthore.dev",
-  title: "Frontend Engineer (React & Next.js)",
-  roles: [
-    "Frontend Engineer · React & Next.js",
-    "Software Development Engineer @ INK IN CAPS",
-    "Payments, streaming & real-time web apps",
-    "Full-stack when needed · Node.js & MongoDB"
-  ],
-  bio: "Frontend engineer with 3.5+ years at INK IN CAPS, from intern to SDE. I work on KNKY, a creator monetization platform with 30K+ users, where I own payments and subscriptions. I'm also the only frontend engineer on its admin console, and I mentor junior developers on the team.",
+  title: "Frontend Engineer · React & Next.js",
+  bio: "Frontend engineer with 3.5 years building KNKY, a creator monetization platform serving 30K+ users. I own its payments and subscription module, which handles 45K+ transactions a year, and built its admin console as the only frontend engineer. I also ship HLS video streaming and real-time chat.",
   location: "Mumbai / Nashik, Maharashtra, India",
   email: "thoreroshan2805@gmail.com",
   phone: "+91 7028643184",
@@ -80,21 +74,21 @@ export const PROJECTS: Project[] = [
   {
     id: "consumer-streaming-platform",
     title: "KNKY · Creator Monetization Platform",
-    subtitle: "Subscriptions, payments, streaming & live rooms",
+    subtitle: "Payments, subscriptions, streaming & live rooms",
     role: "Frontend Engineer",
     period: "Oct 2023 – Present",
     productType: "Consumer Web (PWA)",
-    highlightStat: "Next.js 14 · 30K+ users",
+    highlightStat: "Payments & subscriptions · 30K+ users",
     stats: [
       { label: "Users", value: "30K+" },
-      { label: "Owned", value: "Payments & plans" },
-      { label: "Framework", value: "Next.js 14" },
-      { label: "Media", value: "HLS.js + LiveKit" }
+      { label: "Transactions / Year", value: "45K+" },
+      { label: "Subscription Payments / Year", value: "9.6K+" },
+      { label: "Stories / Month", value: "20K+" }
     ],
     color: "#6366f1",
     gradient: "from-indigo-500/20 via-purple-500/10 to-transparent",
     description:
-      "A creator monetization platform with 30K+ users, built on Next.js 14. I own payments and subscriptions, and built the Stories and Media Vault features, live rooms, and chat.",
+      "A creator monetization platform with 30K+ users, built on Next.js 14. I own the payments and subscription module, which handles 45K+ transactions a year, and built the Stories and Media Vault features, live rooms, and chat.",
     tags: ["Next.js 14", "TypeScript", "Tailwind CSS", "HLS.js", "LiveKit", "Redux Toolkit", "TanStack Virtual", "PWA"],
     techStack: [
       "Next.js 14 (App Router)",
@@ -111,9 +105,9 @@ export const PROJECTS: Project[] = [
       "Amplitude & PostHog"
     ],
     architecturalHighlights: [
-      "Owned checkout across multiple payment providers, with card tokenization, regional bank transfers, guest checkout, and backend-driven failure states.",
-      "Built plan changes across upgrade, downgrade, trial, and lifetime tiers, plus wallet, tipping, and revenue-split flows.",
-      "Built Stories and Media Vault: HLS adaptive playback tuned for slow connections, a gesture-driven 3D story carousel, and a virtualized asset library.",
+      "Owned checkout across multiple payment providers, handling 45K+ transactions a year, with card tokenization, regional bank transfers, guest checkout, and backend-driven failure states.",
+      "Built the subscription module, which handles 9.6K+ subscription payments a year: plan changes across upgrade, downgrade, trial, and lifetime tiers, plus wallet, tipping, and revenue-split flows.",
+      "Built Stories and Media Vault, where creators post 20K+ stories a month: HLS adaptive playback tuned for slow connections, a gesture-driven 3D story carousel, and a virtualized asset library.",
       "Added resumable large-file S3 uploads with Uppy + tus, LiveKit video and audio rooms, and Socket.IO / XMPP chat."
     ],
     solvedChallenges: [
@@ -135,7 +129,7 @@ export const PROJECTS: Project[] = [
     ],
     features: [
       "Multi-Provider Checkout with Card Tokenization",
-      "Plan Upgrades, Downgrades, Trials & Lifetime Tiers",
+      "Subscription Module: Upgrades, Downgrades, Trials & Lifetime Plans",
       "Adaptive-Bitrate HLS Streaming Player",
       "3D Story Carousel with Gestures & Content Gating",
       "Live Video & Audio Rooms via LiveKit",
@@ -394,7 +388,7 @@ export const EXPERIENCES: ExperienceItem[] = [
     summary:
       "Frontend engineer on a 10+ person team, working across three production products: the KNKY creator platform, its admin console, and its B2B agency portal.",
     responsibilities: [
-      "Owned KNKY's payments and subscriptions: multi-provider checkout, card tokenization, regional bank transfers, plan changes, wallet, tipping, and revenue splits.",
+      "Owned KNKY's payments and subscription module, handling 45K+ transactions a year: multi-provider checkout, card tokenization, regional bank transfers, plan upgrades, downgrades, trials and lifetime tiers, plus wallet, tipping, and revenue splits.",
       "Built the KNKY Admin Console as its only frontend engineer, replacing a Next.js/Webpack app with a Vite SPA and roughly halving build times.",
       "Built the Stories and Media Vault features with HLS.js playback, a gesture-driven 3D story carousel, virtualized lists, and resumable S3 uploads.",
       "Integrated LiveKit for live video and audio rooms, and Socket.IO / XMPP for chat.",
@@ -402,9 +396,9 @@ export const EXPERIENCES: ExperienceItem[] = [
     ],
     technologies: ["React.js", "Next.js 14", "TypeScript", "Tailwind CSS", "HLS.js", "LiveKit", "Redux Toolkit", "TanStack", "Radix UI", "Material UI", "Vite"],
     metrics: [
-      "30K+ users on KNKY",
+      "45K+ transactions a year through checkout",
+      "20K+ stories posted a month",
       "Sole frontend engineer on the admin console",
-      "~50% faster builds after the move to Vite",
       "Mentored 2 junior developers"
     ]
   },

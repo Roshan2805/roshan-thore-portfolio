@@ -58,7 +58,7 @@ export interface EducationItem {
 
 export const PERSONAL_INFO = {
   name: "Roshan Thore",
-  siteUrl: "https://portfolio-six-henna-47.vercel.app",
+  siteUrl: "https://roshan-thore.vercel.app",
   title: "Frontend Engineer · React & Next.js",
   bio: "Frontend engineer with 3.5 years building KNKY, a creator monetization platform serving 30K+ users. I own its payments and subscription module, which handles 45K+ transactions a year, and built its admin console as the only frontend engineer. I also ship HLS video streaming and real-time chat.",
   location: "Mumbai / Nashik, Maharashtra, India",

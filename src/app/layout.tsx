@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   title: "Roshan Thore — Frontend Engineer | React & Next.js",
   description:
-    "Frontend engineer at INK IN CAPS with 3.5+ years of experience. Owns payments and subscriptions on KNKY, handling 45K+ transactions a year for a creator platform with 30K+ users, and builds with React, Next.js, and TypeScript.",
+    "Frontend engineer in Mumbai with 3.5+ years building React and Next.js apps at INK IN CAPS. I own payments and subscriptions on KNKY (30K+ users).",
   keywords: [
     "Roshan Thore",
     "Frontend Developer",
@@ -31,36 +31,65 @@ export const metadata: Metadata = {
     "Tailwind CSS",
     "Frontend Engineer Mumbai"
   ],
-  authors: [{ name: "Roshan Thore" }],
+  authors: [{ name: "Roshan Thore", url: PERSONAL_INFO.siteUrl }],
+  creator: "Roshan Thore",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  },
   openGraph: {
     title: "Roshan Thore — Frontend Engineer | React & Next.js",
     description:
-      "Frontend engineer at INK IN CAPS with 3.5+ years of experience. Owns payments and subscriptions on KNKY, handling 45K+ transactions a year for a creator platform with 30K+ users, and builds with React, Next.js, and TypeScript.",
-    type: "website",
+      "Frontend engineer in Mumbai with 3.5+ years building React and Next.js apps at INK IN CAPS. I own payments and subscriptions on KNKY (30K+ users).",
+    type: "profile",
     locale: "en_US",
+    url: PERSONAL_INFO.siteUrl,
+    siteName: "Roshan Thore",
     images: [
       {
-        url: "/profile.jpg",
-        width: 900,
-        height: 1200,
-        alt: "Roshan Thore"
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Roshan Thore — Frontend Engineer, React & Next.js"
       }
     ]
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Roshan Thore — Frontend Engineer | React & Next.js",
     description:
-      "Frontend engineer at INK IN CAPS with 3.5+ years of experience. Owns payments and subscriptions on KNKY, handling 45K+ transactions a year for a creator platform with 30K+ users, and builds with React, Next.js, and TypeScript.",
-    images: ["/profile.jpg"]
+      "Frontend engineer in Mumbai with 3.5+ years building React and Next.js apps at INK IN CAPS. I own payments and subscriptions on KNKY (30K+ users).",
+    images: ["/og.png"]
   }
 };
 
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${PERSONAL_INFO.siteUrl}/#roshan-thore`,
   name: PERSONAL_INFO.name,
-  jobTitle: "Software Development Engineer",
+  jobTitle: "Frontend Engineer",
+  description: "Frontend engineer building payments, streaming and real-time features for KNKY, a creator monetization platform.",
+  knowsAbout: [
+    "Frontend engineering",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Payments and subscription billing",
+    "HLS adaptive video streaming",
+    "WebRTC",
+    "Web performance"
+  ],
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Sandip University, Nashik"
+  },
   url: PERSONAL_INFO.siteUrl,
   image: `${PERSONAL_INFO.siteUrl}${PERSONAL_INFO.avatar}`,
   sameAs: [PERSONAL_INFO.github, PERSONAL_INFO.linkedin],

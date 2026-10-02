@@ -1,24 +1,29 @@
 import { Intro } from "@/components/Intro";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
-import { About } from "@/components/About";
+import { Story } from "@/components/Story";
+import { KnkyCase } from "@/components/KnkyCase";
+import { MoreWork } from "@/components/MoreWork";
 import { Experience } from "@/components/Experience";
-import { Projects } from "@/components/Projects";
-import { Education, Skills } from "@/components/Skills";
+import { Skills } from "@/components/Skills";
+import { About } from "@/components/About";
 import { Contact } from "@/components/Contact";
 
 export default function Home() {
   return (
     <>
       <Intro />
+      <SmoothScroll />
       <Nav />
       <main>
         <Hero />
-        <About />
+        <Story />
+        <KnkyCase />
+        <MoreWork />
         <Experience />
-        <Projects />
         <Skills />
-        <Education />
+        <About />
       </main>
       <Contact />
     </>

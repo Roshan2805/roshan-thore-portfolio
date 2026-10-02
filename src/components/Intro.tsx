@@ -3,76 +3,64 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
-import { JOURNEY } from "@/data/journeyData";
-import { endJourney, useJourneyPlaying } from "@/lib/journey";
+import { BEATS } from "@/data/journeyData";
+import { endJourney, markJourneySeen, useJourneyPlaying } from "@/lib/journey";
 
 const IntroScene = dynamic(() => import("./IntroScene"), { ssr: false });
 
-const STAGE_MS = 3800;
+const BEAT_MS = 2300;
+const LEAVE_MS = 1100;
 
 function IntroOverlay() {
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const elapsed = useRef(0);
-  const bar = useRef<HTMLSpanElement>(null);
+  const [leaving, setLeaving] = useState(false);
   const dialog = useRef<HTMLDivElement>(null);
+  const last = BEATS.length - 1;
 
-  const stage = JOURNEY[index];
-  const onScreen = stage.tone === "screen";
-
-  const go = useCallback(
-    (step: number) => {
-      const next = index + step;
-      elapsed.current = 0;
-      if (next >= JOURNEY.length) {
-        endJourney();
-        return;
-      }
-      setIndex(Math.max(next, 0));
-    },
-    [index]
-  );
+  // The particle name is sitting on the hero's name by now. The page fades in under it.
+  const leave = useCallback(() => {
+    markJourneySeen();
+    document.documentElement.classList.remove("intro-on");
+    document.documentElement.classList.add("from-intro");
+    setIndex(last);
+    setLeaving(true);
+  }, [last]);
 
   useEffect(() => {
-    if (paused) return;
-    let frame = 0;
-    let last = performance.now();
-    const tick = (now: number) => {
-      elapsed.current += Math.min(now - last, 100);
-      last = now;
-      const progress = Math.min(elapsed.current / STAGE_MS, 1);
-      if (bar.current) bar.current.style.transform = `scaleX(${progress})`;
-      if (progress >= 1) {
-        go(1);
-        return;
-      }
-      frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [go, paused]);
+    if (leaving) {
+      const timer = setTimeout(endJourney, LEAVE_MS);
+      return () => clearTimeout(timer);
+    }
+    const timer = setTimeout(() => (index === last ? leave() : setIndex(index + 1)), BEAT_MS);
+    return () => clearTimeout(timer);
+  }, [index, last, leave, leaving]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") endJourney();
-      if (e.key === "ArrowRight") go(1);
-      if (e.key === "ArrowLeft") go(-1);
-      if (e.key === " ") {
-        e.preventDefault();
-        setPaused((value) => !value);
-      }
+      if (e.key === "Escape") leave();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [go]);
+  }, [leave]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dialog.current?.focus({ preventScroll: true });
+    document.documentElement.classList.add("intro-on");
+    document.documentElement.classList.remove("from-intro");
     document.documentElement.style.overflow = "hidden";
     return () => {
+      document.documentElement.classList.remove("intro-on");
       document.documentElement.style.overflow = "";
     };
   }, []);
+
+  const beat = BEATS[index];
+  const tone = leaving
+    ? "bg-transparent text-ink pointer-events-none"
+    : beat.tone === "screen"
+      ? "bg-ink text-paper"
+      : "bg-paper text-ink";
 
   return (
     <motion.div
@@ -80,78 +68,39 @@ function IntroOverlay() {
       tabIndex={-1}
       role="dialog"
       aria-modal="true"
-      aria-label="My journey, in eight steps"
-      className={`fixed inset-0 z-[100] cursor-pointer outline-none select-none transition-colors duration-1000 ${
-        onScreen ? "bg-ink text-paper" : "bg-paper text-ink"
-      }`}
+      aria-label="Introduction"
+      className={`fixed inset-0 z-[100] select-none outline-none transition-colors duration-700 ${tone}`}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.9, ease: "easeInOut" }}
-      onClick={(e) => go(e.clientX < window.innerWidth * 0.3 ? -1 : 1)}
+      transition={{ duration: 0.3 }}
     >
-      <IntroScene index={index} />
+      <IntroScene index={index} leaving={leaving} />
 
-      <div className="absolute inset-x-0 top-0 px-5 pt-5 sm:px-10 sm:pt-8">
-        <div className="flex gap-1.5">
-          {JOURNEY.map((item, i) => (
-            <span key={item.label} className="h-px flex-1 bg-current/25">
-              <span
-                ref={i === index ? bar : undefined}
-                className="block h-full origin-left bg-current"
-                style={{ transform: `scaleX(${i < index ? 1 : 0})` }}
-              />
-            </span>
-          ))}
-        </div>
-        <div className="mt-4 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.14em]">
-          <span>
-            Roshan Thore<span className="max-sm:hidden">, the short version</span>
+      <div className={`transition-opacity duration-300 ${leaving ? "opacity-0" : ""}`}>
+        <div className="label absolute inset-x-0 top-0 flex items-center justify-between px-5 pt-5 sm:px-10 sm:pt-7">
+          <span className="flex w-24 gap-1.5">
+            {BEATS.map((item, i) => (
+              <span key={item.line} className={`h-px flex-1 transition-colors duration-500 ${i <= index ? "bg-current" : "bg-current/25"}`} />
+            ))}
           </span>
-          <span className="flex items-center gap-5">
-            <button
-              type="button"
-              className="hidden cursor-pointer opacity-60 hover:opacity-100 sm:block"
-              onClick={(e) => {
-                e.stopPropagation();
-                setPaused((value) => !value);
-              }}
-            >
-              {paused ? "Play" : "Pause"}
-            </button>
-            <button
-              type="button"
-              className="cursor-pointer border-b border-current pb-0.5"
-              onClick={(e) => {
-                e.stopPropagation();
-                endJourney();
-              }}
-            >
-              Skip journey
-            </button>
-          </span>
+          <button type="button" className="cursor-pointer border-b border-current pb-0.5 uppercase tracking-[inherit]" onClick={leave}>
+            Skip
+          </button>
         </div>
-      </div>
 
-      <div className="absolute inset-x-0 bottom-0 px-5 pb-8 sm:px-10 sm:pb-12">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.45, ease: [0.2, 0.7, 0.2, 1] }}
-            className="max-w-3xl"
-          >
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] opacity-60">
-              {String(index + 1).padStart(2, "0")} / {String(JOURNEY.length).padStart(2, "0")}
-              <span className="mx-3">·</span>
-              {stage.label}
-            </p>
-            <h2 className="mt-3 font-display text-[clamp(1.9rem,5vw,3.6rem)] leading-[1.05] tracking-[-0.02em] text-balance">
-              {stage.title}
-            </h2>
-            <p className="mt-3 max-w-xl text-base opacity-70 sm:text-lg">{stage.body}</p>
-          </motion.div>
-        </AnimatePresence>
+        <div className="absolute inset-x-0 bottom-0 px-5 pb-10 text-center sm:pb-16">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={beat.line}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
+              className="font-display text-[clamp(1.7rem,4.4vw,3.2rem)] leading-tight tracking-[-0.02em]"
+            >
+              {beat.line}
+            </motion.p>
+          </AnimatePresence>
+        </div>
       </div>
     </motion.div>
   );

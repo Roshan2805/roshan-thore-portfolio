@@ -28,11 +28,14 @@ export function playJourney() {
   setPlaying(true);
 }
 
-export function endJourney() {
+export function markJourneySeen() {
   try {
     localStorage.setItem(SEEN_KEY, "1");
   } catch {}
   document.documentElement.classList.remove("intro-pending");
+}
+
+export function endJourney() {
   setPlaying(false);
 }
 

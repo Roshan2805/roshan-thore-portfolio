@@ -4,12 +4,16 @@ Personal site of Roshan Thore, frontend engineer at Ink In Caps.
 
 ## What's on the site
 
-- **A 30-second intro** on a first visit: eight milestones, from a 52% in 12th to frontend engineer, drawn with one set of particles that rearranges for each step. It can be skipped, plays once, and can be replayed from the page.
-- **The portfolio**: overview, about, experience, three projects in detail, skills, education and contact.
+The page is one continuous scroll that tells how I got here and what I've built.
+
+- **A short intro** on a first visit (about eight seconds, skippable). Its last frame draws my name in particles exactly where the page's headline is, and the page takes over from there.
+- **The story**, pinned while you scroll: a guess at a website, a commerce ledger, the first code, an interface, a product.
+- **The work**: KNKY opens from a small window to the full screen and steps through Stories, checkout and the results, with previews you can use. The admin console and agency portal follow in a horizontal run.
+- **Experience, skills, about and contact**, each with its own layout.
 
 ## Tech stack
 
-Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, three.js, Framer Motion.
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Framer Motion for the scroll-driven parts, Lenis for smooth scrolling, three.js for the intro only.
 
 ## Running locally
 
@@ -33,23 +37,28 @@ portfolio/
     │   ├── layout.tsx           # Metadata, fonts, JSON-LD, first-visit check
     │   └── page.tsx             # Home page
     ├── components/
-    │   ├── Intro.tsx            # Intro overlay: timing, text, controls
-    │   ├── IntroScene.tsx       # three.js particles that form each milestone
-    │   ├── ReplayJourney.tsx    # Button that plays the intro again
+    │   ├── Intro.tsx            # Intro overlay and its timing
+    │   ├── IntroScene.tsx       # three.js particles, ending on the hero's name
+    │   ├── SmoothScroll.tsx     # Lenis
     │   ├── Nav.tsx
     │   ├── Hero.tsx
-    │   ├── About.tsx
+    │   ├── KineticName.tsx      # The headline name
+    │   ├── Story.tsx            # Pinned story sequence
+    │   ├── KnkyCase.tsx         # Expanding case study
+    │   ├── MoreWork.tsx         # Horizontal run of the other projects
+    │   ├── previews/            # The interactive sketches inside the projects
     │   ├── Experience.tsx
-    │   ├── Projects.tsx
-    │   ├── ProjectFigure.tsx    # The small diagram beside each project
-    │   ├── Skills.tsx           # Skills and education
-    │   └── Contact.tsx          # Contact and footer
+    │   ├── Skills.tsx
+    │   ├── About.tsx
+    │   └── Contact.tsx
     ├── data/
-    │   ├── journeyData.ts       # The eight intro milestones
+    │   ├── journeyData.ts       # Intro beats and story steps
     │   └── portfolioData.ts     # All other site content
     └── lib/
-        └── journey.ts           # Whether the intro is playing, and the seen flag
+        ├── journey.ts           # Whether the intro is playing, and the seen flag
+        └── useDesktop.ts        # Pinned layouts are desktop only
 ```
+
 
 
 ## Deploying

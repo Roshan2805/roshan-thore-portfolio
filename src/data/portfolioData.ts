@@ -13,10 +13,10 @@ export const PERSONAL_INFO = {
 };
 
 export const FIGURES = [
-  { label: "People using what I build", value: "30K+" },
-  { label: "Transactions through my checkout, a year", value: "45K+" },
-  { label: "Products in production", value: "3" },
-  { label: "Years writing frontend for a living", value: "3.5+" }
+  { label: "people use what I build", value: "30K+" },
+  { label: "transactions a year through my checkout", value: "45K+" },
+  { label: "products in production", value: "3" },
+  { label: "years of frontend, professionally", value: "3.5+" }
 ];
 
 export interface Project {
@@ -146,60 +146,76 @@ export const EARLIER_WORK = [
   }
 ];
 
-export const SKILLS = [
+export const CAPABILITIES = [
   {
-    group: "Frontend",
-    items: ["React", "Next.js (App Router)", "TypeScript", "JavaScript", "HTML", "CSS", "Angular"]
+    title: "I build interfaces.",
+    tools: ["React", "Next.js", "TypeScript", "JavaScript", "HTML and CSS", "Tailwind CSS", "Radix UI", "Material UI", "Framer Motion", "GSAP"]
   },
   {
-    group: "State and data",
-    items: ["Redux Toolkit", "TanStack Query", "TanStack Virtual", "React Hook Form", "REST APIs"]
+    title: "I build product functionality.",
+    tools: ["Checkout and card tokenization", "Subscription flows", "OTP sign-in and token renewal", "State with Redux Toolkit and TanStack Query", "REST API integration", "HLS video", "Live rooms and chat with LiveKit and Socket.IO"]
   },
   {
-    group: "Interface",
-    items: ["Tailwind CSS", "Radix UI", "Material UI", "Framer Motion", "GSAP", "SCSS"]
-  },
-  {
-    group: "Product areas",
-    items: ["Checkout and card tokenization", "Subscription billing", "HLS video streaming", "LiveKit and WebRTC", "Socket.IO chat"]
-  },
-  {
-    group: "Backend and tools",
-    items: ["Node.js", "Express", "MongoDB", "Git", "Vite", "AWS CodeBuild", "Firebase"]
+    title: "I ship production software.",
+    tools: ["Git and code review", "Vite", "AWS CodeBuild pipelines", "Code splitting", "List virtualization", "Responsive layouts", "Node.js, Express and MongoDB basics"]
   }
 ];
 
-export const EXPERIENCES = [
+export const GROWTH = [
   {
-    title: "Software Development Engineer",
-    period: "Aug 2024 – Present",
-    summary: "Frontend across three production products on a team of ten.",
+    stage: "Learning",
+    period: "Jun – Dec 2022",
+    role: "Full-stack course, SPARK IT, Pune",
+    points: ["Seven months of React, Node.js, Express and MongoDB, straight after a commerce degree."]
+  },
+  {
+    stage: "First opportunity",
+    period: "Jan – Jul 2023",
+    role: "Web Developer Intern, Ink In Caps",
+    points: [
+      "Worked in a production Angular codebase from the first weeks: admin panel updates, REST API integration, cross-browser fixes.",
+      "Converted to full-time after seven months."
+    ]
+  },
+  {
+    stage: "Building",
+    period: "Aug 2023",
+    role: "Junior Software Development Engineer",
+    points: [
+      "Built the web layer over Unity 3D worlds for Heftyverse, including the message contract between Angular and the 3D runtime.",
+      "Lead developer on the Digital Bharat Collaborative site for Piramal Swasthya."
+    ]
+  },
+  {
+    stage: "Shipping",
+    period: "Oct 2023",
+    role: "KNKY launches",
+    points: [
+      "Joined KNKY at launch and moved to React and Next.js.",
+      "Built Stories, Channels, Shop and the Media Vault, and integrated live rooms and real-time chat."
+    ]
+  },
+  {
+    stage: "Owning",
+    period: "Aug 2024",
+    role: "Software Development Engineer",
     points: [
       "Own KNKY's payments and subscription module, which handles 45K+ transactions a year.",
-      "Built the admin console finance and operations run the platform from, as its only frontend engineer.",
-      "Built Stories, Channels, Shop and the Media Vault, and integrated LiveKit rooms and real-time chat.",
-      "Review pull requests and mentored two junior developers through their first production releases."
+      "Only frontend engineer on the admin console finance and operations run the platform from."
     ]
   },
   {
-    title: "Junior Software Development Engineer",
-    period: "Aug 2023 – Aug 2024",
-    summary: "Angular, Unity and client sites, then the move to React and Next.js when KNKY started.",
+    stage: "Growing",
+    period: "Now",
+    role: "Same title, wider job",
     points: [
-      "Built the web layer over Unity 3D worlds for Heftyverse, including the messaging contract between Angular and the 3D runtime.",
-      "Was lead developer on the Digital Bharat Collaborative site for Piramal Swasthya.",
-      "Joined KNKY at launch in October 2023."
-    ]
-  },
-  {
-    title: "Web Developer Intern",
-    period: "Jan 2023 – Jul 2023",
-    summary: "Joined with no professional experience. Converted to full-time after seven months.",
-    points: [
-      "Worked in a production Angular codebase from the first weeks: admin panel updates, REST API integration, cross-browser fixes."
+      "Review pull requests across the team's frontend work.",
+      "Mentored two junior developers through their first production releases."
     ]
   }
 ];
+
+export const OUTSIDE = ["Anime", "Movies", "Hiking"];
 
 export const EDUCATION = [
   {

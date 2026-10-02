@@ -2,12 +2,13 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { JOURNEY, type Shape } from "@/data/journeyData";
+import { BEATS, type Shape } from "@/data/journeyData";
 
 const W = 1024;
 const H = 512;
 const BASE_WIDTH = 8;
-const MORPH_MS = 1500;
+const CAMERA_Z = 9;
+const MORPH_MS = 1300;
 
 const vertexShader = `
   attribute vec3 aFrom;
@@ -31,115 +32,103 @@ const vertexShader = `
 
 const fragmentShader = `
   uniform vec3 uColor;
+  uniform float uAlpha;
 
   void main() {
     float d = length(gl_PointCoord - 0.5);
     if (d > 0.5) discard;
-    gl_FragColor = vec4(uColor, smoothstep(0.5, 0.36, d) * 0.92);
+    gl_FragColor = vec4(uColor, smoothstep(0.5, 0.36, d) * 0.92 * uAlpha);
     #include <colorspace_fragment>
   }
 `;
 
-function drawShape(ctx: CanvasRenderingContext2D, shape: Shape, font: string) {
-  ctx.fillStyle = "#fff";
-  ctx.strokeStyle = "#fff";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
+const labels: Record<Shape, string> = { degree: "B.Com", tag: "</>", name: "Roshan Thore" };
 
-  const text = (value: string, size: number) => {
-    ctx.font = `700 ${size}px ${font}`;
-    const width = ctx.measureText(value).width;
-    if (width > W * 0.94) ctx.font = `700 ${(size * W * 0.94) / width}px ${font}`;
-    ctx.fillText(value, W / 2, H / 2);
-  };
-
-  if (shape === "tag") text("</>", 330);
-  if (shape === "score") text("52%", 360);
-  if (shape === "users") text("30K+", 340);
-  if (shape === "name") text("Roshan Thore", 190);
-
-  if (shape === "ring") {
-    ctx.lineWidth = 16;
-    ctx.beginPath();
-    ctx.arc(W / 2, H / 2, 190, 0, Math.PI * 2);
-    ctx.stroke();
-  }
-
-  if (shape === "code") {
-    const rows = [
-      [0, 180, 150],
-      [50, 260, 120],
-      [50, 120, 220],
-      [100, 300, 0],
-      [100, 150, 100],
-      [50, 210, 0],
-      [0, 90, 0]
-    ];
-    rows.forEach(([indent, first, second], row) => {
-      const y = 70 + row * 58;
-      ctx.fillRect(250 + indent, y, first, 18);
-      if (second) ctx.fillRect(250 + indent + first + 28, y, second, 18);
-    });
-  }
-
-  if (shape === "window") {
-    ctx.lineWidth = 12;
-    ctx.strokeRect(212, 56, 600, 400);
-    ctx.fillRect(212, 126, 600, 10);
-    [0, 1, 2].forEach((i) => {
-      ctx.beginPath();
-      ctx.arc(252 + i * 36, 92, 10, 0, Math.PI * 2);
-      ctx.fill();
-    });
-    ctx.fillRect(262, 186, 240, 26);
-    ctx.fillRect(262, 246, 500, 12);
-    ctx.fillRect(262, 286, 420, 12);
-    ctx.fillRect(262, 366, 130, 40);
-  }
-
-  if (shape === "bars") {
-    [90, 150, 200, 280, 400].forEach((height, i) => {
-      ctx.fillRect(272 + i * 104, 456 - height, 64, height);
-    });
-  }
-}
-
+// Draws the shape in white, samples its pixels, and returns particle targets
+// centred on the shape, plus the shape's width in the same units.
 function shapeTargets(shape: Shape, count: number, font: string) {
   const canvas = document.createElement("canvas");
   canvas.width = W;
   canvas.height = H;
   const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
-  drawShape(ctx, shape, font);
+  const weight = shape === "name" ? 500 : 700;
+  ctx.fillStyle = "#fff";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.font = `${weight} 300px ${font}`;
+  if (shape === "name") ctx.letterSpacing = "-13.5px";
+  const width = ctx.measureText(labels[shape]).width;
+  if (width > W * 0.94) {
+    const size = (300 * W * 0.94) / width;
+    ctx.font = `${weight} ${size}px ${font}`;
+    if (shape === "name") ctx.letterSpacing = `${-0.045 * size}px`;
+  }
+  ctx.fillText(labels[shape], W / 2, H / 2);
 
   const pixels = ctx.getImageData(0, 0, W, H).data;
   const filled: number[] = [];
+  let minX = W;
+  let maxX = 0;
+  let minY = H;
+  let maxY = 0;
   for (let y = 0; y < H; y += 2) {
     for (let x = 0; x < W; x += 2) {
-      if (pixels[(y * W + x) * 4 + 3] > 128) filled.push(x, y);
+      if (pixels[(y * W + x) * 4 + 3] > 128) {
+        filled.push(x, y);
+        minX = Math.min(minX, x);
+        maxX = Math.max(maxX, x);
+        minY = Math.min(minY, y);
+        maxY = Math.max(maxY, y);
+      }
     }
   }
 
-  // The first shape is an idea, not a fact yet, so it stays loose.
-  const spread = shape === "tag" ? 0.5 : 0.03;
+  const unit = BASE_WIDTH / W;
+  const centerX = (minX + maxX) / 2;
+  const centerY = (minY + maxY) / 2;
+  const depth = shape === "name" ? 0.08 : 0.5;
   const targets = new Float32Array(count * 3);
   for (let i = 0; i < count; i++) {
     const pick = Math.floor(Math.random() * (filled.length / 2)) * 2;
-    targets[i * 3] = (filled[pick] / W - 0.5) * BASE_WIDTH + (Math.random() - 0.5) * spread;
-    targets[i * 3 + 1] = -(filled[pick + 1] / H - 0.5) * BASE_WIDTH * (H / W) + (Math.random() - 0.5) * spread;
-    targets[i * 3 + 2] = (Math.random() - 0.5) * (0.5 + spread);
+    targets[i * 3] = (filled[pick] - centerX) * unit;
+    targets[i * 3 + 1] = -(filled[pick + 1] - centerY) * unit;
+    targets[i * 3 + 2] = (Math.random() - 0.5) * depth;
   }
-  return targets;
+  return { targets, width: (maxX - minX) * unit, height: (maxY - minY) * unit };
 }
 
-export default function IntroScene({ index }: { index: number }) {
+// Where the hero's name is on screen, measured from its ink rather than its line box.
+function heroNameBox(font: string) {
+  const el = document.querySelector<HTMLElement>("[data-hero-name]");
+  if (!el) return null;
+  const rect = el.getBoundingClientRect();
+  const style = getComputedStyle(el);
+  const ctx = document.createElement("canvas").getContext("2d")!;
+  ctx.font = `${style.fontWeight} ${style.fontSize} ${font}`;
+  ctx.letterSpacing = style.letterSpacing;
+  const m = ctx.measureText(el.textContent ?? "");
+  const baseline = rect.top + rect.height / 2 + (m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2;
+  return {
+    x: rect.left + rect.width / 2,
+    y: baseline - (m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2,
+    width: m.actualBoundingBoxLeft + m.actualBoundingBoxRight
+  };
+}
+
+export default function IntroScene({ index, leaving }: { index: number; leaving: boolean }) {
   const mountRef = useRef<HTMLDivElement>(null);
   const indexRef = useRef(index);
-  const showRef = useRef<((stage: number) => void) | null>(null);
+  const showRef = useRef<((beat: number) => void) | null>(null);
+  const leavingRef = useRef(leaving);
 
   useEffect(() => {
     indexRef.current = index;
     showRef.current?.(index);
   }, [index]);
+
+  useEffect(() => {
+    leavingRef.current = leaving;
+  }, [leaving]);
 
   useEffect(() => {
     const mount = mountRef.current;
@@ -158,6 +147,7 @@ export default function IntroScene({ index }: { index: number }) {
     const count = window.innerWidth < 768 ? 7000 : 14000;
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 50);
+    camera.position.z = CAMERA_Z;
 
     const geometry = new THREE.BufferGeometry();
     const from = new Float32Array(count * 3);
@@ -179,27 +169,22 @@ export default function IntroScene({ index }: { index: number }) {
       uMix: { value: 1 },
       uTime: { value: 0 },
       uSize: { value: 10 },
-      uColor: { value: new THREE.Color(JOURNEY[indexRef.current].dots) }
+      uAlpha: { value: 1 },
+      uColor: { value: new THREE.Color(BEATS[indexRef.current].dots) }
     };
-    const material = new THREE.ShaderMaterial({
-      uniforms,
-      vertexShader,
-      fragmentShader,
-      transparent: true,
-      depthTest: false
-    });
+    const material = new THREE.ShaderMaterial({ uniforms, vertexShader, fragmentShader, transparent: true, depthTest: false });
     const points = new THREE.Points(geometry, material);
     points.frustumCulled = false;
     scene.add(points);
 
+    const visible = { width: 1, height: 1 };
     const resize = () => {
       const { clientWidth, clientHeight } = mount;
       renderer.setSize(clientWidth, clientHeight);
       camera.aspect = clientWidth / clientHeight;
       camera.updateProjectionMatrix();
-      const visibleWidth = 2 * Math.tan(THREE.MathUtils.degToRad(25)) * 9 * camera.aspect;
-      points.scale.setScalar(Math.min(visibleWidth * 0.9, 10.5) / BASE_WIDTH);
-      points.position.y = camera.aspect < 1 ? 1.1 : 0.7;
+      visible.height = 2 * Math.tan(THREE.MathUtils.degToRad(25)) * CAMERA_Z;
+      visible.width = visible.height * camera.aspect;
       uniforms.uSize.value = clientHeight * renderer.getPixelRatio() * 0.014;
     };
     resize();
@@ -212,13 +197,16 @@ export default function IntroScene({ index }: { index: number }) {
     };
     window.addEventListener("pointermove", onPointerMove);
 
-    let targets: Float32Array[] = [];
+    const family = getComputedStyle(document.documentElement).getPropertyValue("--font-fraunces") || "serif";
+    let shapes: ReturnType<typeof shapeTargets>[] = [];
     let morphStart = 0;
+    let onName = false;
+    const place = { scale: 1, x: 0, y: 0 };
     const colorFrom = uniforms.uColor.value.clone();
     const colorTo = uniforms.uColor.value.clone();
 
-    const show = (stage: number) => {
-      if (!targets.length) return;
+    const show = (beat: number) => {
+      if (!shapes.length) return;
       // Freeze particles where they are so an interrupted morph doesn't jump.
       const mix = uniforms.uMix.value;
       for (let i = 0; i < count; i++) {
@@ -229,43 +217,62 @@ export default function IntroScene({ index }: { index: number }) {
           from[k] += (to[k] - from[k]) * t;
         }
       }
-      to.set(targets[stage]);
+      const shape = shapes[beat];
+      to.set(shape.targets);
       geometry.attributes.aFrom.needsUpdate = true;
       geometry.attributes.aTo.needsUpdate = true;
+
+      // The name forms exactly over the hero's name, so the page can take over from it.
+      onName = BEATS[beat].shape === "name";
+      const box = onName ? heroNameBox(family) : null;
+      if (box) {
+        const perPixel = visible.width / mount.clientWidth;
+        place.scale = (box.width * perPixel) / shape.width;
+        place.x = (box.x - mount.clientWidth / 2) * perPixel;
+        place.y = -(box.y - mount.clientHeight / 2) * perPixel;
+      } else {
+        place.scale = Math.min(Math.min(visible.width * 0.8, 9) / shape.width, (visible.height * 0.42) / shape.height);
+        place.x = 0;
+        place.y = camera.aspect < 1 ? 0.9 : 0.5;
+      }
+
       colorFrom.copy(uniforms.uColor.value);
-      colorTo.set(JOURNEY[stage].dots);
+      colorTo.set(BEATS[beat].dots);
       uniforms.uMix.value = reduceMotion ? 1 : 0;
       morphStart = performance.now();
     };
 
     let cancelled = false;
-    const family = getComputedStyle(document.documentElement).getPropertyValue("--font-fraunces") || "serif";
-    document.fonts
-      .load(`700 200px ${family}`)
+    Promise.all([document.fonts.load(`700 200px ${family}`), document.fonts.load(`500 200px ${family}`)])
       .catch(() => {})
       .then(() => {
         if (cancelled) return;
-        targets = JOURNEY.map((stage) => shapeTargets(stage.shape, count, family));
+        shapes = BEATS.map((beat) => shapeTargets(beat.shape, count, family));
         showRef.current = show;
         show(indexRef.current);
+        points.scale.setScalar(place.scale);
+        points.position.set(place.x, place.y, 0);
       });
 
     let frame = 0;
     const render = (now: number) => {
       frame = requestAnimationFrame(render);
       const sinceMorph = now - morphStart;
-      if (uniforms.uMix.value < 1) {
-        uniforms.uMix.value = Math.min(sinceMorph / MORPH_MS, 1);
-      }
-      uniforms.uColor.value.lerpColors(colorFrom, colorTo, Math.min(sinceMorph / 900, 1));
+      if (uniforms.uMix.value < 1) uniforms.uMix.value = Math.min(sinceMorph / MORPH_MS, 1);
+      uniforms.uColor.value.lerpColors(colorFrom, colorTo, Math.min(sinceMorph / 800, 1));
       uniforms.uTime.value = now / 1000;
+      if (leavingRef.current) uniforms.uAlpha.value = Math.max(uniforms.uAlpha.value - 0.03, 0);
 
-      // A slow push-in on every milestone, like a held camera shot.
-      const push = reduceMotion ? 0 : Math.min(sinceMorph / 4000, 1) * 0.7;
-      camera.position.x += (pointer.x * 0.9 - camera.position.x) * 0.04;
-      camera.position.y += (-pointer.y * 0.6 - camera.position.y) * 0.04;
-      camera.position.z = 9.4 - push;
-      camera.lookAt(0, 0, 0);
+      points.scale.setScalar(points.scale.x + (place.scale - points.scale.x) * 0.09);
+      points.position.x += (place.x - points.position.x) * 0.09;
+      points.position.y += (place.y - points.position.y) * 0.09;
+
+      const lookX = onName ? 0 : pointer.x * 0.9;
+      const lookY = onName ? 0 : -pointer.y * 0.6;
+      camera.position.x += (lookX - camera.position.x) * (onName ? 0.12 : 0.04);
+      camera.position.y += (lookY - camera.position.y) * (onName ? 0.12 : 0.04);
+      camera.rotation.set(0, 0, 0);
+      if (!onName) camera.lookAt(0, 0, 0);
       renderer.render(scene, camera);
     };
     frame = requestAnimationFrame(render);

@@ -13,11 +13,6 @@
   --color-ember: #ff7a4d;
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem;
-}
-
 body {
   background: var(--color-paper);
   color: var(--color-ink);
@@ -79,8 +74,54 @@ html.intro-pending body::before {
   }
 }
 
-.rise {
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes nudge {
+  50% {
+    transform: translateY(0.35rem);
+  }
+}
+
+/* Entrance of the first screen. It waits while the intro is covering the page. */
+.reveal,
+.hero-name {
   animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+html.intro-pending .reveal,
+html.intro-on .reveal,
+html.intro-pending .hero-name,
+html.intro-on .hero-name {
+  animation: none;
+  opacity: 0;
+}
+
+/* After the intro the name fades in exactly where the particles drew it, without moving. */
+html.from-intro .hero-name {
+  animation: fade 0.9s ease both;
+}
+
+.scroll-cue {
+  animation: nudge 1.8s ease-in-out infinite;
+}
+
+.story-in {
+  animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Headlines settle into place as they scroll into view, where the browser can do it without JavaScript. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .on-view {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 70%;
+    }
+  }
 }
 
 details > summary {
@@ -92,6 +133,10 @@ details > summary::-webkit-details-marker {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .scroll-fill span {
+    opacity: 1 !important;
+  }
+
   *,
   *::before,
   *::after {

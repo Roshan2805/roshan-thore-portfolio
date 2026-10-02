@@ -1,77 +1,49 @@
-export type Shape = "tag" | "score" | "ring" | "code" | "window" | "users" | "bars" | "name";
+export type Shape = "degree" | "tag" | "name";
 
-export interface Milestone {
-  label: string;
-  title: string;
-  body: string;
+export interface Beat {
+  line: string;
   shape: Shape;
   tone: "paper" | "screen";
   dots: string;
 }
 
-export const JOURNEY: Milestone[] = [
+export const BEATS: Beat[] = [
+  { line: "I studied commerce.", shape: "degree", tone: "paper", dots: "#6b675c" },
+  { line: "I write code for a living.", shape: "tag", tone: "screen", dots: "#ff7a4d" },
+  { line: "This is how that happened.", shape: "name", tone: "paper", dots: "#17160f" }
+];
+
+export const STORY = [
   {
-    label: "Early ambition",
-    title: "I wanted to build software before I knew how.",
-    body: "So I chose Science in 12th.",
-    shape: "tag",
-    tone: "paper",
-    dots: "#17160f"
+    stage: "Curiosity",
+    label: "Early on",
+    text: "I knew I wanted to build things with technology. I didn't really know what a software engineer did. I thought it meant websites."
   },
   {
-    label: "Unexpected direction",
-    title: "Then I scored 52%.",
-    body: "I took B.Com instead, and started planning a career in banking.",
-    shape: "score",
-    tone: "paper",
-    dots: "#6b675c"
+    stage: "Curiosity",
+    label: "After 12th",
+    text: "I scored 52% and ended up in B.Com. Banking looked like the plan."
   },
   {
+    stage: "Code",
     label: "Lockdown, 2020",
-    title: "Everything stopped. A friend showed me programming.",
-    body: "I got curious, and kept going.",
-    shape: "ring",
-    tone: "screen",
-    dots: "#8a867c"
+    text: "A friend showed me some code. It was the first time I understood that the sites and apps I used every day were written, line by line, by people."
   },
   {
-    label: "Learning to code, 2022",
-    title: "HTML, CSS, JavaScript. Then React.",
-    body: "Seven months of full-stack training to build the foundation properly.",
-    shape: "code",
-    tone: "screen",
-    dots: "#f1eee6"
+    stage: "Interface",
+    label: "Learning, 2022",
+    text: "So I started learning. HTML, CSS, JavaScript, then React. Type something, and a thing appears on the screen. I couldn't leave that alone."
   },
   {
-    label: "First job, 2023",
-    title: "An internship became a full-time job.",
-    body: "Ink In Caps, Mumbai. Real products, real deadlines.",
-    shape: "window",
-    tone: "screen",
-    dots: "#f1eee6"
+    stage: "Product",
+    label: "First opportunity, 2023",
+    text: "Ink In Caps took me on as an intern in Mumbai. Seven months later it was a job, and the screens I built were going to real users."
   },
   {
-    label: "Real products",
-    title: "Stories. Subscriptions. Payments.",
-    body: "Built for KNKY with a small team, and used by 30K+ people.",
-    shape: "users",
-    tone: "screen",
-    dots: "#ff7a4d"
-  },
-  {
-    label: "Ownership",
-    title: "From shipping features to owning the frontend.",
-    body: "React, Next.js, TypeScript. Reviewing code and mentoring two juniors.",
-    shape: "bars",
-    tone: "screen",
-    dots: "#ff7a4d"
-  },
-  {
+    stage: "Career",
     label: "Today",
-    title: "Frontend engineer. Still building.",
-    body: "Next: larger systems, and more technical ownership.",
-    shape: "name",
-    tone: "paper",
-    dots: "#17160f"
+    text: "Curiosity turned into a career. The things I build are now used by more than 30,000 people."
   }
 ];
+
+export const STAGES = ["Curiosity", "Code", "Interface", "Product", "Career"];

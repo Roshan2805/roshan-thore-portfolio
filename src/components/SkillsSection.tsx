@@ -10,7 +10,8 @@ import {
   Gauge, 
   Search,
   Zap,
-  Code
+  Code,
+  CreditCard
 } from "lucide-react";
 import { SKILL_CATEGORIES } from "@/data/portfolioData";
 
@@ -33,11 +34,12 @@ export const SkillsSection: React.FC = () => {
     if (category.includes("Media")) return Radio;
     if (category.includes("Styling")) return Sparkles;
     if (category.includes("Backend")) return Code;
+    if (category.includes("Payments")) return CreditCard;
     return Gauge;
   };
 
   return (
-    <section id="skills" className="py-24 relative overflow-hidden">
+    <section id="skills" className="py-16 sm:py-24 relative overflow-hidden">
       <div className="absolute top-1/3 left-0 w-96 h-96 bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-10 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-[160px] pointer-events-none" />
 
@@ -78,7 +80,7 @@ export const SkillsSection: React.FC = () => {
         </div>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCategories.map((cat, idx) => {
+          {filteredCategories.map((cat) => {
             const Icon = getCategoryIcon(cat.category);
             return (
               <div

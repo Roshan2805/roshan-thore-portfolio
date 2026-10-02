@@ -5,7 +5,8 @@ export interface Project {
   role: string;
   period: string;
   description: string;
-  productType: "Consumer Web (PWA)" | "Internal Admin Console" | "B2B Agency Portal" | "Metaverse Web Bridge";
+  productType: "Consumer Web (PWA)" | "Internal Admin Console" | "B2B Agency Portal" | "Metaverse Platform" | "Client Website";
+  status: "Live" | "Internal tool" | "Client project";
   stars?: number;
   highlightStat: string;
   stats: { label: string; value: string }[];
@@ -75,9 +76,10 @@ export const PROJECTS: Project[] = [
     id: "consumer-streaming-platform",
     title: "KNKY · Creator Monetization Platform",
     subtitle: "Payments, subscriptions, streaming & live rooms",
-    role: "Frontend Engineer",
+    role: "Lead Frontend Contributor",
     period: "Oct 2023 – Present",
     productType: "Consumer Web (PWA)",
+    status: "Live",
     highlightStat: "Payments & subscriptions · 30K+ users",
     stats: [
       { label: "Users", value: "30K+" },
@@ -88,7 +90,7 @@ export const PROJECTS: Project[] = [
     color: "#6366f1",
     gradient: "from-indigo-500/20 via-purple-500/10 to-transparent",
     description:
-      "A creator monetization platform with 30K+ users, built on Next.js 14. I own the payments and subscription module, which handles 45K+ transactions a year, and built the Stories and Media Vault features, live rooms, and chat.",
+      "A creator monetization platform with 30K+ users, built on Next.js 14. I have worked on it since launch and am its lead frontend contributor. I own the payments and subscription module, which handles 45K+ transactions a year, and built the Stories, Shop, Channels and Media Vault features.",
     tags: ["Next.js 14", "TypeScript", "Tailwind CSS", "HLS.js", "LiveKit", "Redux Toolkit", "TanStack Virtual", "PWA"],
     techStack: [
       "Next.js 14 (App Router)",
@@ -105,10 +107,10 @@ export const PROJECTS: Project[] = [
       "Amplitude & PostHog"
     ],
     architecturalHighlights: [
-      "Owned checkout across multiple payment providers, handling 45K+ transactions a year, with card tokenization, regional bank transfers, guest checkout, and backend-driven failure states.",
-      "Built the subscription module, which handles 9.6K+ subscription payments a year: plan changes across upgrade, downgrade, trial, and lifetime tiers, plus wallet, tipping, and revenue-split flows.",
-      "Built Stories and Media Vault, where creators post 20K+ stories a month: HLS adaptive playback tuned for slow connections, a gesture-driven 3D story carousel, and a virtualized asset library.",
-      "Added resumable large-file S3 uploads with Uppy + tus, LiveKit video and audio rooms, and Socket.IO / XMPP chat."
+      "Owned checkout across four payment methods (card tokenization, iDEAL, Centrobill, Bancontact), with guest checkout, transaction cancellation and idempotent payment finalization.",
+      "Built the subscription module: plan upgrades, downgrades, trials, lifetime tiers and retention offers, plus wallet, tipping and revenue-split flows.",
+      "Rebuilt the Stories feed with cube navigation, adaptive bitrate for slow connections, seen-state tracking and locked states for premium content.",
+      "Built Channels, Shop, Services and the Media Vault end to end, both creator side and buyer side, and shipped seasonal campaigns with their own pricing rules."
     ],
     solvedChallenges: [
       {
@@ -128,16 +130,16 @@ export const PROJECTS: Project[] = [
       }
     ],
     features: [
-      "Multi-Provider Checkout with Card Tokenization",
-      "Subscription Module: Upgrades, Downgrades, Trials & Lifetime Plans",
-      "Adaptive-Bitrate HLS Streaming Player",
-      "3D Story Carousel with Gestures & Content Gating",
+      "Checkout Across Four Payment Methods",
+      "Subscription Plans, Upgrades, Trials & Retention Offers",
+      "Stories Feed with Cube Navigation & Adaptive Bitrate",
+      "Channels, Collabs & Creator Shop",
+      "Services Marketplace & Media Vault",
       "Live Video & Audio Rooms via LiveKit",
-      "Resumable Large-File S3 Uploads (Uppy + tus)",
       "Real-Time Chat with XMPP & Socket.IO",
-      "Typed Notifications with Firebase Push",
       "Two-Factor Authentication over OTP",
-      "Client-Side Payload Encryption"
+      "Seasonal Campaigns with Campaign Pricing",
+      "Offline PWA with Service Worker Caching"
     ]
   },
   {
@@ -147,7 +149,8 @@ export const PROJECTS: Project[] = [
     role: "Sole Frontend Engineer",
     period: "Mar 2025 – Present",
     productType: "Internal Admin Console",
-    highlightStat: "Vite + React · ~50% faster builds",
+    status: "Internal tool",
+    highlightStat: "Sole frontend engineer · finance tooling",
     stats: [
       { label: "Role", value: "Sole frontend" },
       { label: "Builds", value: "~50% faster" },
@@ -157,25 +160,25 @@ export const PROJECTS: Project[] = [
     color: "#06b6d4",
     gradient: "from-cyan-500/20 via-blue-500/10 to-transparent",
     description:
-      "The internal console behind KNKY for transactions, payouts, and user access. I'm its only frontend engineer, and I replaced the previous Next.js/Webpack app with a Vite SPA, roughly halving build times.",
-    tags: ["Vite", "React 18", "React Router 7", "Material UI", "TanStack Table", "ApexCharts"],
+      "The internal console the operations and finance teams use to run KNKY: transactions, payouts, agencies, moderation and platform settings. I set the project up and have been its only frontend engineer since.",
+    tags: ["React 19", "React Router 7", "TypeScript", "Material UI", "MUI X Charts", "Material React Table", "Formik"],
     techStack: [
-      "Vite",
-      "React 18",
-      "React Router 7",
+      "React 19",
+      "React Router v7",
       "TypeScript",
-      "Material UI",
-      "TanStack Table",
-      "ApexCharts / MUI X Charts",
-      "Redux Toolkit",
+      "Redux Toolkit & redux-persist",
+      "Material UI v6",
+      "MUI X Charts",
+      "Material React Table",
+      "Formik & Yup",
       "Crypto-JS",
-      "@json2csv/plainjs"
+      "AWS CodeBuild"
     ],
     architecturalHighlights: [
-      "Built the console as its only frontend engineer, covering architecture, routing, state, and build setup.",
-      "Built a role-based permission model where server-driven grants become client-side route and action guards.",
-      "Built transaction search over large datasets with server-side pagination, combined filters, and unbounded CSV export.",
-      "Built reporting dashboards that aggregate earnings and payouts across accounts."
+      "Set the project up from scratch, including the AWS CodeBuild pipeline with separate test, staging and live builds.",
+      "Owned the Transactions and Payout modules: overview dashboards, revenue and transaction-type charts, advanced filters, Excel export and a VAT-inclusive toggle for finance.",
+      "Built the shared table and filter system behind most list pages, with server-side pagination, debounced search and filters saved in the URL so a view can be bookmarked.",
+      "Built the auth layer: JWT renewal scheduled before expiry, OTP login, and AES decryption of encrypted API responses."
     ],
     solvedChallenges: [
       {
@@ -187,15 +190,22 @@ export const PROJECTS: Project[] = [
         problem: "Sessions expired while admins were halfway through long forms.",
         solution: "Added silent token renewal scheduled shortly before the session expires.",
         impact: "Admins no longer lose form progress to an expired session."
+      },
+      {
+        problem: "Finance needed the same transaction views filtered many different ways.",
+        solution: "Made the filter system configuration-driven, with multi-select, text and user-search filters stored in the URL.",
+        impact: "New filter sets are configuration, not new code, and filtered views can be shared."
       }
     ],
     features: [
+      "Transactions Dashboard with Revenue Charts",
+      "Payout Module with Status Breakdown",
       "Role-Based Access Control (RBAC)",
-      "Transaction Search with Server-Side Pagination",
-      "Unbounded CSV Export",
-      "Earnings & Payout Dashboards",
-      "Platform Fee & Badge Settings",
-      "Device Session & Activity Tracking"
+      "Configuration-Driven Filter System",
+      "Unbounded Excel Export",
+      "VAT-Inclusive / Exclusive Toggle",
+      "Agency Approval & Magic-Link Login",
+      "Content Moderation & NSFW Location Controls"
     ]
   },
   {
@@ -203,8 +213,9 @@ export const PROJECTS: Project[] = [
     title: "KNKY Agency Portal",
     subtitle: "B2B portal for agencies managing creators and staff",
     role: "Frontend Engineer",
-    period: "Feb 2025 – Present",
+    period: "Feb 2025 – Sep 2025",
     productType: "B2B Agency Portal",
+    status: "Live",
     highlightStat: "B2B · Multi-tenant",
     stats: [
       { label: "Type", value: "B2B, multi-tenant" },
@@ -215,8 +226,8 @@ export const PROJECTS: Project[] = [
     color: "#10b981",
     gradient: "from-emerald-500/20 via-teal-500/10 to-transparent",
     description:
-      "A B2B portal where talent agencies manage their creators and staff: roles, invitations, earnings, and product listings. Built with Vite, React, Radix UI, and Tailwind CSS.",
-    tags: ["Vite", "React 18", "Radix UI", "Tailwind CSS", "TanStack Virtual", "Redux Toolkit"],
+      "A B2B dashboard where talent agencies manage their creators and staff: invitations, revenue splits, employees, earnings and content. Built with Vite, React, Radix UI and Tailwind CSS.",
+    tags: ["Vite", "React 18", "Radix UI", "Tailwind CSS", "TanStack Virtual", "Redux Toolkit", "ApexCharts"],
     techStack: [
       "Vite",
       "React 18",
@@ -225,154 +236,281 @@ export const PROJECTS: Project[] = [
       "Tailwind CSS",
       "TanStack Virtual",
       "Redux Toolkit",
-      "Lucide Icons",
-      "Sonner"
+      "React Hook Form",
+      "ApexCharts",
+      "Crypto-JS"
     ],
     architecturalHighlights: [
-      "Modelled multi-tenant access with role definitions and many-to-many assignment of employees to creators.",
-      "Built the invitation flow across pending, accepted, and cancelled states, with per-creator permissions and revenue splits.",
-      "Built analytics, earnings breakdown, and product-listing screens.",
-      "Kept large lists responsive with virtualized rendering and debounced search."
+      "Built the creator invitation flow with three revenue-share models, per-feature access permissions, and request bodies assembled from only what the agency selected.",
+      "Built employee management with role-based routing, multi-creator assignment that diffs previous and new assignments, and one shared create/edit modal opened through a global modal service.",
+      "Built the analytics and earnings pages with ApexCharts, date-range filters and an employee breakdown that still lists employees with zero earnings.",
+      "Built the wallet with infinite scroll, throttled scroll handling and a transaction details view with masked card information."
     ],
     solvedChallenges: [
       {
         problem: "Revenue split calculations varied across creator contracts.",
         solution: "Moved split calculations into one shared module that shows the same breakdown in creator and agency views.",
         impact: "Simpler monthly agency invoicing and clearer payouts."
+      },
+      {
+        problem: "Encrypted API responses would have meant changing every call site.",
+        solution: "Added AES decryption inside the Axios response interceptor, returning the usual response shape.",
+        impact: "Encryption landed without touching the calling code, and real error messages still reach the UI."
       }
     ],
     features: [
-      "Multi-Tenant Roles & Employee Assignment",
-      "Creator Invitations (Pending, Accepted, Cancelled)",
-      "Per-Creator Permissions & Revenue Splits",
-      "Virtualized Earnings Breakdown",
-      "Digital & Physical Product Listings",
-      "Analytics Dashboard"
+      "Creator Invitations with Revenue Splits",
+      "Per-Feature Access Permissions",
+      "Employee Management & Role-Based Access",
+      "Earnings & Agency Analytics",
+      "Wallet with Infinite-Scroll Transactions",
+      "Creator Shop & Story Creation",
+      "Channels, Collabs & Subscription Plans",
+      "AES-Encrypted API Responses"
     ]
   },
   {
     id: "metaverse-3d-bridge",
-    title: "Heftyverse · Metaverse Integration Platform",
-    subtitle: "Angular web layer for a Unity 3D world, with live video & chat",
+    title: "Heftyverse · Metaverse Platform",
+    subtitle: "Angular web layer over Unity 3D worlds, with AI and gamification",
     role: "Frontend Engineer",
     period: "Aug 2023 – Jan 2024",
-    productType: "Metaverse Web Bridge",
-    highlightStat: "Angular · Unity 3D · WebRTC",
+    productType: "Metaverse Platform",
+    status: "Live",
+    highlightStat: "Angular · Unity WebGL · AI",
     stats: [
       { label: "Framework", value: "Angular" },
       { label: "3D Engine", value: "Unity WebGL" },
-      { label: "Real-Time", value: "WebRTC + Socket.IO" },
-      { label: "State", value: "RxJS" }
+      { label: "AI", value: "Inworld chat & photobooth" },
+      { label: "Commerce", value: "Stripe store" }
     ],
     color: "#ec4899",
     gradient: "from-pink-500/20 via-rose-500/10 to-transparent",
     description:
-      "A metaverse platform where the browser talks to a Unity 3D world. I built the Angular web layer: two-way real-time messaging, live WebRTC video on in-world screens, leaderboards, and chat.",
-    tags: ["Angular", "WebRTC", "Socket.IO", "RxJS", "Unity 3D", "Lottie", "Bootstrap"],
+      "A browser-based metaverse where users explore 3D worlds built in Unity WebGL, play challenges, earn rewards, chat with AI characters and buy real merchandise. I built the Angular layer on top of those worlds and the messaging between the web app and Unity.",
+    tags: ["Angular", "Unity WebGL", "Inworld AI", "Stripe", "Socket.IO", "RxJS", "Firebase"],
     techStack: [
-      "Angular",
+      "Angular 14",
       "TypeScript",
       "RxJS",
-      "WebRTC Streaming SDK",
+      "SCSS & Bootstrap 5",
+      "Unity WebGL bridge (postMessage)",
+      "Inworld AI Web SDK",
+      "Stripe",
       "Socket.IO",
-      "Unity WebGL Bridge",
-      "Lottie Animations",
-      "Bootstrap"
+      "Firebase",
+      "Google Analytics & GTM"
     ],
     architecturalHighlights: [
-      "Built the Angular web layer connecting the browser to a Unity 3D runtime, with real-time messaging for chat, leaderboards, and event state.",
-      "Defined the web-to-engine message contract with the Unity team.",
-      "Integrated a WebRTC video streaming SDK for live in-world video, handling connection lifecycle and reconnection.",
-      "Built session analytics for concurrency and engagement."
+      "Built the two-way messaging contract between the Angular app and the Unity 3D runtime, and integrated four Unity worlds including an avatar world and a virtual plant ecosystem.",
+      "Integrated the Inworld AI Web SDK so users chat in real time with AI characters, and built an AI photobooth around a generated-image service.",
+      "Built the gamification stack: rewards and badges, Spin the Wheel with coupon claiming, leaderboard, bonus hours, XP and coin animations, and referrals.",
+      "Built the in-world merchandise store with cart, address management, guest checkout and Stripe payments."
     ],
     solvedChallenges: [
       {
         problem: "Chat messages lagged before showing up on avatars in the 3D world.",
         solution: "Queued events with RxJS and updated the UI optimistically while messages went over WebSockets.",
         impact: "Chat feels instant to users, even during crowded live events."
+      },
+      {
+        problem: "Guests who played challenges lost the rewards they had earned when they signed up.",
+        solution: "Held guest progress and replayed the reward calls once the account existed.",
+        impact: "Guests keep their XP and rewards after logging in, so the funnel stops leaking."
       }
     ],
     features: [
       "Two-Way Web ↔ Unity Messaging",
-      "In-World WebRTC Video with Reconnection",
-      "Real-Time Chat & Leaderboards",
-      "Concurrency & Engagement Analytics",
-      "Lottie Micro-Interactions & Responsive UI"
+      "Inworld AI Conversational Characters",
+      "AI Photobooth with Generated Images",
+      "Spin the Wheel, Leaderboard & Bonus Hours",
+      "Rewards, Badges & Referrals",
+      "In-World Store with Stripe Checkout",
+      "Avatar Customization Across Worlds",
+      "Google OAuth, GA, GTM & Meta Pixel"
     ]
+  },
+  {
+    id: "digital-bharat-collaborative",
+    title: "Digital Bharat Collaborative",
+    subtitle: "Healthcare non-profit site with an interactive India map",
+    role: "Lead Developer",
+    period: "2023",
+    productType: "Client Website",
+    status: "Live",
+    highlightStat: "Angular · GSAP · 16-state map",
+    stats: [
+      { label: "Role", value: "Lead developer" },
+      { label: "States Mapped", value: "16" },
+      { label: "Animation", value: "GSAP ScrollTrigger" },
+      { label: "Client", value: "Piramal Swasthya" }
+    ],
+    color: "#f59e0b",
+    gradient: "from-amber-500/20 via-orange-500/10 to-transparent",
+    description:
+      "The website for Digital Bharat Collaborative, part of Piramal Swasthya, which uses technology to bring healthcare to underserved populations across 16 Indian states. I was the lead developer and built the site from the designs up.",
+    tags: ["Angular 15", "TypeScript", "GSAP", "ScrollTrigger", "Swiper", "Bootstrap"],
+    techStack: [
+      "Angular 15",
+      "TypeScript",
+      "GSAP + ScrollTrigger",
+      "Swiper",
+      "Bootstrap",
+      "REST APIs"
+    ],
+    architecturalHighlights: [
+      "Built every page from scratch: home, about, news, blogs, case studies, resources and event details, with a navbar that changes with the page.",
+      "Integrated an interactive map of India showing programme information for 16 states, with info popups, map controls and a mobile landscape mode.",
+      "Built the scroll animations, animated counters and data ticker with GSAP ScrollTrigger.",
+      "Optimized assets and refactored the home page, moving media to static content."
+    ],
+    solvedChallenges: [
+      {
+        problem: "An interactive state-wise map of India is hard to use on a phone.",
+        solution: "Built a landscape-only mode for mobile with its own controls and a loading screen.",
+        impact: "The map stayed usable on phones instead of being dropped from the mobile site."
+      }
+    ],
+    features: [
+      "Interactive 16-State Programme Map",
+      "GSAP Scroll Animations & Counters",
+      "Case Studies & Blog System",
+      "Leadership & Partners Sections",
+      "Fully Responsive Page Set"
+    ]
+  }
+];
+
+export interface EarlierProject {
+  title: string;
+  org: string;
+  period: string;
+  status: "Live" | "Internal tool" | "Client project";
+  summary: string;
+  tech: string[];
+}
+
+export const EARLIER_WORK: EarlierProject[] = [
+  {
+    title: "Heftyverse Admin Panel",
+    org: "Ink In Caps",
+    period: "2023 – 2024",
+    status: "Internal tool",
+    summary:
+      "The CMS and analytics dashboard behind Heftyverse: events, spin-wheel configuration, coupons, bonus hours, inventory and games, with Chart.js analytics and Excel export.",
+    tech: ["Angular 13", "Chart.js", "SheetJS", "JWT auth"]
+  },
+  {
+    title: "Club Mahindra vRetail",
+    org: "Ink In Caps",
+    period: "2023",
+    status: "Client project",
+    summary:
+      "A virtual resort showcase where prospective members explore resorts, experiences and membership plans. I was the top contributor, building the UI from the designs plus resort maps, filters and the membership questionnaire.",
+    tech: ["Angular 15", "Maptalks", "Glide.js", "Bootstrap"]
+  },
+  {
+    title: "Ink In Caps Website",
+    org: "Ink In Caps",
+    period: "2023",
+    status: "Live",
+    summary:
+      "The company's Gatsby site. I handled technical SEO, including JSON-LD schema, canonical tags, the sitemap and Search Console setup, added GTM, and published around 40 blog posts.",
+    tech: ["Gatsby", "Styled Components", "GSAP", "Technical SEO"]
+  },
+  {
+    title: "Wata",
+    org: "Ink In Caps",
+    period: "2023",
+    status: "Client project",
+    summary:
+      "A scroll-driven storytelling site for a sustainable water brand, raising awareness of ocean plastic. I built the scroll animations across the site.",
+    tech: ["Angular 12", "GSAP ScrollTrigger", "Swiper"]
   }
 ];
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     category: "Frontend",
-    description: "Component architecture, responsive layouts, and modern JavaScript.",
+    description: "The frameworks I build products in, day to day.",
     skills: [
-      { name: "React.js", experience: "3 years", highlight: true },
-      { name: "Next.js", experience: "2+ years", highlight: true },
-      { name: "TypeScript", experience: "2+ years", highlight: true },
-      { name: "JavaScript (ES6+)", experience: "3 years", highlight: true },
-      { name: "Vite & React Router", experience: "2 years", highlight: true },
-      { name: "Angular & RxJS", experience: "1.5 years" },
-      { name: "HTML5 & Semantic Web", experience: "3 years" },
-      { name: "CSS3 / SASS / SCSS", experience: "3 years" }
+      { name: "React", experience: "3 years", highlight: true },
+      { name: "Next.js (App Router)", experience: "3 years", highlight: true },
+      { name: "TypeScript", experience: "3 years", highlight: true },
+      { name: "JavaScript (ES6+)", experience: "3.5 years", highlight: true },
+      { name: "Angular & RxJS", experience: "2 years" },
+      { name: "Semantic HTML & CSS", experience: "3.5 years" }
     ]
   },
   {
-    category: "State & Data",
-    description: "Application state, caching, data tables, and form handling.",
+    category: "Payments & Monetization",
+    description: "Checkout, subscriptions and the money flows behind them.",
     skills: [
-      { name: "Redux Toolkit", experience: "3 years", highlight: true },
-      { name: "TanStack Query", experience: "2 years", highlight: true },
-      { name: "TanStack Table", experience: "2 years", highlight: true },
-      { name: "TanStack Virtual", experience: "2 years", highlight: true },
-      { name: "React Hook Form", experience: "3 years" },
-      { name: "Context API", experience: "3 years" }
+      { name: "Multi-Gateway Checkout", experience: "2 years", highlight: true },
+      { name: "Card Tokenization", experience: "2 years", highlight: true },
+      { name: "Subscription & Billing Flows", experience: "2 years", highlight: true },
+      { name: "Wallet, Payouts & Revenue Splits", experience: "2 years", highlight: true },
+      { name: "Stripe", experience: "1 year" },
+      { name: "iDEAL, Bancontact & Centrobill", experience: "1 year" }
     ]
   },
   {
-    category: "Real-Time, Media & APIs",
-    description: "Video playback, WebRTC rooms, WebSockets, and file uploads.",
+    category: "Media & Streaming",
+    description: "Video playback, live rooms and 3D integration.",
     skills: [
-      { name: "HLS.js (Adaptive Video)", experience: "2 years", highlight: true },
+      { name: "HLS.js (Adaptive Bitrate)", experience: "2 years", highlight: true },
       { name: "LiveKit (WebRTC Rooms)", experience: "1.5 years", highlight: true },
-      { name: "Socket.IO Client", experience: "2.5 years", highlight: true },
-      { name: "Uppy & tus (S3 Uploads)", experience: "2 years", highlight: true },
-      { name: "RESTful APIs & GraphQL", experience: "3 years" },
+      { name: "Unity WebGL Bridge", experience: "1 year", highlight: true },
+      { name: "Uppy & tus (Resumable Uploads)", experience: "2 years" },
+      { name: "Socket.IO & XMPP", experience: "2.5 years" },
       { name: "Firebase Push Notifications", experience: "2 years" }
     ]
   },
   {
+    category: "State & Data",
+    description: "Application state, server data, tables and forms.",
+    skills: [
+      { name: "Redux Toolkit", experience: "3 years", highlight: true },
+      { name: "TanStack Query", experience: "2 years", highlight: true },
+      { name: "TanStack Virtual", experience: "2 years", highlight: true },
+      { name: "TanStack Table & Material React Table", experience: "2 years" },
+      { name: "React Hook Form", experience: "3 years" },
+      { name: "Formik & Yup", experience: "1.5 years" }
+    ]
+  },
+  {
     category: "Styling & UI",
-    description: "Design system implementation, animations, and accessible UI.",
+    description: "Design systems, component libraries and animation.",
     skills: [
       { name: "Tailwind CSS", experience: "3 years", highlight: true },
-      { name: "Framer Motion", experience: "2 years", highlight: true },
-      { name: "Radix UI Primitives", experience: "2 years", highlight: true },
-      { name: "Material UI (MUI)", experience: "2 years" },
-      { name: "Bootstrap", experience: "3 years" },
-      { name: "Lottie Animations", experience: "2 years" }
+      { name: "Radix UI & shadcn", experience: "2 years", highlight: true },
+      { name: "Material UI", experience: "2 years" },
+      { name: "Framer Motion", experience: "2 years" },
+      { name: "GSAP & ScrollTrigger", experience: "1 year" },
+      { name: "SCSS & Bootstrap", experience: "3 years" }
     ]
   },
   {
-    category: "Backend",
-    description: "Node.js services, MongoDB database, and authentication.",
+    category: "Performance & Tooling",
+    description: "Keeping apps fast, and the tools around them.",
     skills: [
-      { name: "Node.js", experience: "2 years" },
-      { name: "Express.js", experience: "2 years" },
-      { name: "MongoDB & Mongoose", experience: "2 years" },
-      { name: "2FA / OTP Authentication", experience: "2 years", highlight: true },
-      { name: "Postman & API Testing", experience: "3 years" }
+      { name: "List Virtualization", experience: "2 years", highlight: true },
+      { name: "Code Splitting & Dynamic Imports", experience: "2+ years", highlight: true },
+      { name: "Vite, Webpack & Gatsby", experience: "2 years" },
+      { name: "Technical SEO & Schema Markup", experience: "1.5 years" },
+      { name: "Analytics (GA, GTM, Amplitude, PostHog)", experience: "2 years" },
+      { name: "Git, CI/CD & AWS CodeBuild", experience: "3 years" }
     ]
   },
   {
-    category: "Performance, Testing & Tools",
-    description: "Performance optimization, testing, and modern developer workflow.",
+    category: "Backend Basics",
+    description: "Enough to work well with the people who own the API.",
     skills: [
-      { name: "Lighthouse Optimization", experience: "2+ years", highlight: true },
-      { name: "Code Splitting & Lazy Loading", experience: "2+ years", highlight: true },
-      { name: "Vitest & React Testing Library", experience: "1.5 years" },
-      { name: "Git & GitHub Workflow", experience: "3 years", highlight: true },
-      { name: "Figma to Code", experience: "3 years" }
+      { name: "REST API Integration", experience: "3.5 years", highlight: true },
+      { name: "Node.js & Express", experience: "2 years" },
+      { name: "MongoDB", experience: "2 years" },
+      { name: "2FA / OTP Authentication", experience: "2 years" },
+      { name: "AES Payload Encryption", experience: "1 year" }
     ]
   }
 ];
@@ -388,9 +526,10 @@ export const EXPERIENCES: ExperienceItem[] = [
     summary:
       "Frontend engineer on a 10+ person team, working across three production products: the KNKY creator platform, its admin console, and its B2B agency portal.",
     responsibilities: [
-      "Owned KNKY's payments and subscription module, handling 45K+ transactions a year: multi-provider checkout, card tokenization, regional bank transfers, plan upgrades, downgrades, trials and lifetime tiers, plus wallet, tipping, and revenue splits.",
-      "Built the KNKY Admin Console as its only frontend engineer, replacing a Next.js/Webpack app with a Vite SPA and roughly halving build times.",
-      "Built the Stories and Media Vault features with HLS.js playback, a gesture-driven 3D story carousel, virtualized lists, and resumable S3 uploads.",
+      "Owned KNKY's payments and subscription module, handling 45K+ transactions a year: checkout across four payment methods, card tokenization, plan upgrades, trials and lifetime tiers, plus wallet, tipping and revenue splits.",
+      "Built the Stories, Channels, Shop and Media Vault features, including a Stories feed with cube navigation, adaptive bitrate playback and seen-state tracking.",
+      "Built the KNKY Admin Console as its only frontend engineer, including the transactions and payout modules the finance team uses, and a reusable table and filter system.",
+      "Built the agency portal's invitation, revenue-split, employee management and analytics flows.",
       "Integrated LiveKit for live video and audio rooms, and Socket.IO / XMPP for chat.",
       "Reviewed pull requests and mentored two junior developers through their first production releases."
     ],
@@ -409,17 +548,19 @@ export const EXPERIENCES: ExperienceItem[] = [
     period: "Aug 2023 – Aug 2024",
     type: "Full-Time",
     summary:
-      "Built the Angular web layer for Heftyverse, a metaverse platform, and shipped UI across React and Angular projects.",
+      "Angular years: a metaverse platform built over Unity 3D worlds, its admin CMS, and client websites for healthcare, hospitality and consumer brands.",
     responsibilities: [
-      "Built the Angular web layer connecting the browser to a Unity 3D runtime, with real-time messaging for chat, leaderboards, and event state.",
-      "Defined the web-to-engine message contract with the Unity team.",
-      "Integrated a WebRTC video streaming SDK for live in-world video, including reconnection handling.",
-      "Built responsive UI components with SCSS, React, and Angular, working from Figma designs."
+      "Built the Angular web layer over Unity 3D worlds, including the two-way messaging contract, AI chat characters, an AI photobooth, rewards and an in-world store with Stripe.",
+      "Built the CMS and analytics dashboard behind that platform: events, spin-wheel configuration, coupons, bonus hours, inventory and Excel export.",
+      "Was lead developer on the Digital Bharat Collaborative site for Piramal Swasthya, including an interactive map showing programme information across 16 states.",
+      "Built a virtual resort showcase for Club Mahindra as its top contributor, and scroll-driven GSAP animations for brand sites.",
+      "Handled technical SEO on the company website, including schema markup, canonical tags, sitemap and Search Console, and published around 40 blog posts."
     ],
-    technologies: ["React.js", "Angular", "TypeScript", "WebRTC", "Socket.IO", "RxJS", "SASS/SCSS", "Bootstrap", "Lottie"],
+    technologies: ["Angular", "TypeScript", "RxJS", "Unity WebGL", "GSAP", "Stripe", "Chart.js", "Socket.IO", "SASS/SCSS", "Gatsby"],
     metrics: [
-      "Defined the web-to-Unity message contract",
-      "Shipped live in-world video over WebRTC"
+      "Lead developer on a 16-state healthcare site",
+      "Top contributor on the Club Mahindra build",
+      "Four Angular products shipped in a year"
     ]
   },
   {
@@ -429,13 +570,14 @@ export const EXPERIENCES: ExperienceItem[] = [
     period: "Jan 2023 – Jul 2023",
     type: "Internship",
     summary:
-      "Worked on frontend features, responsive styling, and bug fixes with the engineering team.",
+      "Joined with no professional experience and was converted to full-time after seven months.",
     responsibilities: [
-      "Developed responsive UI components using HTML5, CSS3, JavaScript, and React.",
+      "Started on production work early: updating an admin panel and integrating REST APIs in an existing Angular codebase.",
+      "Developed responsive UI components using HTML5, CSS3, JavaScript and Angular.",
       "Fixed frontend bugs across desktop and mobile browsers.",
       "Worked in agile sprints with a Git-based workflow."
     ],
-    technologies: ["JavaScript (ES6+)", "HTML5", "CSS3", "React.js", "Git", "Postman"],
+    technologies: ["JavaScript (ES6+)", "HTML5", "CSS3", "Angular", "Bootstrap", "Git", "Postman"],
     metrics: [
       "Converted to full-time after 7 months"
     ]

@@ -8,6 +8,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1
+    },
+    {
+      url: `${PERSONAL_INFO.siteUrl}/journey`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.8
     }
   ];
 }

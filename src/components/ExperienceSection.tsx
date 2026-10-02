@@ -14,7 +14,7 @@ export const ExperienceSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"experience" | "education">("experience");
 
   return (
-    <section id="experience" className="py-24 bg-[#090b12]/80 border-t border-slate-800/80 relative overflow-hidden">
+    <section id="experience" className="py-16 sm:py-24 bg-[#090b12]/80 border-t border-slate-800/80 relative overflow-hidden">
       <div className="absolute top-1/3 right-0 w-96 h-96 bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-10 left-0 w-96 h-96 bg-cyan-600/10 rounded-full blur-[160px] pointer-events-none" />
 

@@ -7,7 +7,7 @@ import {
   Zap, 
   ChevronRight
 } from "lucide-react";
-import { PROJECTS } from "@/data/portfolioData";
+import { PROJECTS, EARLIER_WORK } from "@/data/portfolioData";
 import { ProjectModal } from "./ProjectModal";
 
 interface ProjectsSectionProps {
@@ -26,7 +26,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   const selectedProject = PROJECTS.find((p) => p.id === selectedProjectId) ?? null;
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
+    <section id="projects" className="py-16 sm:py-24 relative overflow-hidden">
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-10 left-0 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[160px] pointer-events-none" />
 
@@ -40,12 +40,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             What I&apos;ve Built
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Four products I&apos;ve worked on at INK IN CAPS, from a creator platform with 30K+ users to the internal tools behind it.
+            Products I&apos;ve worked on at INK IN CAPS, from a creator platform with 30K+ users to the internal tools and client sites behind it.
           </p>
         </div>
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {PROJECTS.map((project, idx) => (
+          {PROJECTS.map((project) => (
             <div
               key={project.id}
               className="group relative rounded-3xl bg-[#0d1222]/80 border border-slate-800/90 hover:border-indigo-500/40 p-7 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between hover:shadow-2xl hover:shadow-indigo-500/10"
@@ -57,9 +57,14 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">
                     {project.productType}
                   </span>
-                  <span className="text-xs font-mono text-slate-400">
-                    {project.period}
-                  </span>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                      {project.status}
+                    </span>
+                    <span className="text-xs font-mono text-slate-400">
+                      {project.period}
+                    </span>
+                  </div>
                 </div>
 
                 <div>
@@ -123,6 +128,45 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-16 max-w-5xl mx-auto">
+          <div className="flex items-center space-x-3">
+            <h3 className="text-lg font-bold text-white">Earlier work</h3>
+            <div className="h-px flex-1 bg-slate-800" />
+          </div>
+          <p className="text-sm text-slate-400 mt-2">
+            Smaller projects and client sites I built at INK IN CAPS while working mainly in Angular.
+          </p>
+
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {EARLIER_WORK.map((item) => (
+              <div
+                key={item.title}
+                className="p-5 rounded-2xl bg-[#0d1222]/80 border border-slate-800/90 hover:border-slate-700 transition"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <h4 className="text-base font-bold text-white">{item.title}</h4>
+                  <span className="text-[10px] font-mono text-slate-400 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded-full whitespace-nowrap">
+                    {item.status}
+                  </span>
+                </div>
+                <div className="text-[11px] font-mono text-slate-400 mt-1">
+                  {item.org} · {item.period}
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed mt-3">
+                  {item.summary}
+                </p>
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {item.tech.map((t) => (
+                    <span key={t} className="px-2 py-0.5 rounded-md bg-slate-900 border border-slate-800 text-[10px] font-mono text-slate-300">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { 
   ArrowRight, 
@@ -133,6 +134,20 @@ export const Hero: React.FC = () => {
                 <FileDown className="w-4 h-4 text-indigo-400" />
                 <span>Resume (PDF)</span>
               </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+            >
+              <Link
+                href="/journey"
+                className="inline-flex items-center space-x-1.5 text-sm text-slate-400 hover:text-cyan-300 transition group"
+              >
+                <span>I came into tech from a commerce degree. Read how I got here</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
             </motion.div>
 
             <motion.div

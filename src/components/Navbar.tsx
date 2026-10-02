@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Terminal, 
@@ -127,6 +128,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
                 </a>
               );
             })}
+            <Link
+              href="/journey"
+              className="px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-400 hover:text-slate-200 transition-colors"
+            >
+              Journey
+            </Link>
           </nav>
 
           <div className="flex items-center space-x-2 sm:space-x-3">
@@ -188,6 +195,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
                   {link.label}
                 </a>
               ))}
+              <Link
+                href="/journey"
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-800/50 transition"
+              >
+                Journey
+              </Link>
               <div className="pt-3 border-t border-slate-800 flex flex-col space-y-2">
                 <button
                   onClick={() => {

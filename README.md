@@ -48,7 +48,9 @@ portfolio/
     │   ├── MoreWork.tsx         # Horizontal run of the other projects
     │   ├── previews/            # The interactive sketches inside the projects
     │   ├── Experience.tsx
+    │   ├── Decisions.tsx        # Problems and fixes per project
     │   ├── Skills.tsx
+    │   ├── Education.tsx
     │   ├── About.tsx
     │   └── Contact.tsx
     ├── data/

@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useMotionValueEvent, useScroll } from "framer-motion";
-import { EDUCATION, OUTSIDE } from "@/data/portfolioData";
+import { OUTSIDE } from "@/data/portfolioData";
 import { ReplayJourney } from "./ReplayJourney";
 
 const statement =
@@ -63,16 +63,7 @@ export function About() {
           </p>
           <p className="mt-5 text-mute">The last one is the only hobby I have that doesn&apos;t involve a screen.</p>
 
-          <dl className="mt-12">
-            {EDUCATION.map((item) => (
-              <div key={item.degree} className="flex items-baseline justify-between gap-4 border-t border-rule py-2.5 text-sm">
-                <dt>{item.degree}</dt>
-                <dd className="font-mono tabular-nums text-mute">{item.period}</dd>
-              </div>
-            ))}
-          </dl>
-
-          <ReplayJourney className="link mt-8 cursor-pointer text-sm font-medium">↗ Replay the intro</ReplayJourney>
+          <ReplayJourney className="link mt-10 cursor-pointer text-sm font-medium">↗ Replay the intro</ReplayJourney>
         </div>
       </div>
     </section>

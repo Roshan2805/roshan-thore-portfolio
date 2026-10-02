@@ -222,7 +222,7 @@ export const EDUCATION = [
     degree: "Master of Computer Applications",
     school: "Sandip University, Nashik",
     period: "2023 – 2026",
-    note: "Studied alongside the full-time job."
+    note: "Studied alongside the full-time job at Ink In Caps."
   },
   {
     degree: "Full Stack Web Development",
@@ -234,6 +234,6 @@ export const EDUCATION = [
     degree: "Bachelor of Commerce",
     school: "Yashwantrao Chavan Maharashtra Open University",
     period: "2019 – 2022",
-    note: "Banking and accounting. Where the plan was, before code."
+    note: "Banking and accounting. This was the plan, before I found code."
   }
 ];

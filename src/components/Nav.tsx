@@ -7,6 +7,8 @@ import { playJourney } from "@/lib/journey";
 const links = [
   { id: "work", label: "Work" },
   { id: "experience", label: "Experience" },
+  { id: "skills", label: "Skills" },
+  { id: "education", label: "Education" },
   { id: "about", label: "About" },
   { id: "contact", label: "Contact" }
 ];
@@ -40,7 +42,7 @@ export function Nav() {
             Roshan Thore
           </a>
 
-          <nav aria-label="Sections" className="pointer-events-auto hidden items-center gap-7 md:flex">
+          <nav aria-label="Sections" className="pointer-events-auto hidden items-center gap-6 lg:flex">
             {links.map(({ id, label }) => (
               <a key={id} href={`#${id}`} className="opacity-70 transition-opacity hover:opacity-100">
                 {label}
@@ -53,11 +55,14 @@ export function Nav() {
             >
               ↗ Replay intro
             </button>
+            <a href={PERSONAL_INFO.resumeUrl} download>
+              Résumé ↓
+            </a>
           </nav>
 
           <button
             type="button"
-            className="pointer-events-auto uppercase tracking-[inherit] md:hidden"
+            className="pointer-events-auto uppercase tracking-[inherit] lg:hidden"
             aria-expanded={open}
             onClick={() => setOpen(true)}
           >
@@ -67,7 +72,7 @@ export function Nav() {
       </header>
 
       {open && (
-        <div data-lenis-prevent className="fixed inset-0 z-[60] flex flex-col bg-ink px-5 pb-8 pt-4 text-paper md:hidden">
+        <div data-lenis-prevent className="fixed inset-0 z-[60] flex flex-col bg-ink px-5 pb-8 pt-4 text-paper lg:hidden">
           <button type="button" className="label self-end py-3" onClick={() => setOpen(false)}>
             Close
           </button>
@@ -77,7 +82,7 @@ export function Nav() {
                 key={id}
                 href={`#${id}`}
                 onClick={() => setOpen(false)}
-                className="flex items-baseline gap-4 border-b border-paper/20 py-4 font-display text-4xl tracking-tight"
+                className="flex items-baseline gap-4 border-b border-paper/20 py-3 font-display text-3xl tracking-tight"
               >
                 <span className="label text-paper/50">{String(i + 1).padStart(2, "0")}</span>
                 {label}

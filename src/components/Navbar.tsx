@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Terminal, 
@@ -13,6 +12,7 @@ import { PERSONAL_INFO } from "@/data/portfolioData";
 
 const navLinks = [
   { label: "Overview", href: "#hero", id: "hero" },
+  { label: "Journey", href: "#journey", id: "journey" },
   { label: "Projects", href: "#projects", id: "projects" },
   { label: "Demos", href: "#simulators", id: "simulators" },
   { label: "Skills", href: "#skills", id: "skills" },
@@ -26,11 +26,16 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => {
+      const top = document.getElementById("portfolio")?.getBoundingClientRect().top ?? 0;
+      setVisible(top <= 80);
+      setScrolled(top < -40);
+    };
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -66,7 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${visible ? "" : "opacity-0 -translate-y-3 pointer-events-none"} ${
           scrolled
             ? "py-3 bg-[#090a0f]/80 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl"
             : "py-5 bg-transparent"
@@ -128,12 +133,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
                 </a>
               );
             })}
-            <Link
-              href="/journey"
-              className="px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-400 hover:text-slate-200 transition-colors"
-            >
-              Journey
-            </Link>
           </nav>
 
           <div className="flex items-center space-x-2 sm:space-x-3">
@@ -195,13 +194,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCommandPalette }) => {
                   {link.label}
                 </a>
               ))}
-              <Link
-                href="/journey"
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-800/50 transition"
-              >
-                Journey
-              </Link>
               <div className="pt-3 border-t border-slate-800 flex flex-col space-y-2">
                 <button
                   onClick={() => {

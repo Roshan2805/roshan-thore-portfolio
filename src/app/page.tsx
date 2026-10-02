@@ -6,6 +6,8 @@ import { AmbientBackground } from "@/components/AmbientBackground";
 import { Navbar } from "@/components/Navbar";
 import { CommandPalette } from "@/components/CommandPalette";
 import { Hero } from "@/components/Hero";
+import { JourneyLanding } from "@/components/JourneyLanding";
+import { Snapshot } from "@/components/Snapshot";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { InteractiveSimulators } from "@/components/InteractiveSimulators";
 import { SkillsSection } from "@/components/SkillsSection";
@@ -31,6 +33,7 @@ export default function Home() {
     <MotionConfig reducedMotion="user">
       <main className="min-h-screen bg-[#090a0f] text-slate-100 selection:bg-indigo-500/30 selection:text-white relative">
         <AmbientBackground />
+        <JourneyLanding />
         <Navbar onOpenCommandPalette={openPalette} />
         <CommandPalette
           isOpen={commandPaletteOpen}
@@ -39,7 +42,9 @@ export default function Home() {
           onSelectProject={openProject}
         />
 
-        <Hero />
+        <div id="portfolio">
+          <Hero />
+        <Snapshot />
         <ProjectsSection
           selectedProjectId={selectedProjectId}
           isModalOpen={projectModalOpen}
@@ -51,6 +56,7 @@ export default function Home() {
         <ExperienceSection />
         <ContactSection />
         <Footer />
+        </div>
       </main>
     </MotionConfig>
   );

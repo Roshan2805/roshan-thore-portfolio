@@ -23,7 +23,7 @@ export const JourneyStory: React.FC = () => {
 
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
         <Link
-          href="/"
+          href="/#portfolio"
           className="inline-flex items-center space-x-2 text-xs font-mono text-slate-400 hover:text-white transition"
         >
           <ArrowLeft className="w-3.5 h-3.5" />

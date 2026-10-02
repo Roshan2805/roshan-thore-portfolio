@@ -14,7 +14,7 @@ export const PERSONAL_INFO = {
 
 export const FIGURES = [
   { label: "people use what I build", value: "30K+" },
-  { label: "transactions a year through my checkout", value: "45K+" },
+  { label: "transactions a month through my checkout", value: "3.7K+" },
   { label: "products in production", value: "3" },
   { label: "years of frontend, professionally", value: "3.5+" }
 ];
@@ -47,8 +47,8 @@ export const PROJECTS: Project[] = [
       "I own checkout and subscriptions: four payment methods, card tokenization, guest checkout, and plan upgrades, downgrades, trials and lifetime tiers. I also built Stories, Channels, Shop and the Media Vault.",
     results: [
       { label: "Users", value: "30K+" },
-      { label: "Transactions a year", value: "45K+" },
-      { label: "Subscription payments a year", value: "9.6K+" },
+      { label: "Transactions a month", value: "3.7K+" },
+      { label: "Subscription payments a month", value: "800+" },
       { label: "Stories posted a month", value: "20K+" }
     ],
     stack: ["Next.js 14", "TypeScript", "Redux Toolkit", "TanStack Query", "TanStack Virtual", "Tailwind CSS", "HLS.js", "LiveKit", "Socket.IO"],
@@ -200,7 +200,7 @@ export const GROWTH = [
     period: "Aug 2024",
     role: "Software Development Engineer",
     points: [
-      "Own KNKY's payments and subscription module, which handles 45K+ transactions a year.",
+      "Own KNKY's payments and subscription module, which handles 3.7K+ transactions a month.",
       "Only frontend engineer on the admin console finance and operations run the platform from."
     ]
   },
@@ -210,7 +210,7 @@ export const GROWTH = [
     role: "Same title, wider job",
     points: [
       "Review pull requests across the team's frontend work.",
-      "Mentored two junior developers through their first production releases."
+      "Set up the admin console from an empty repository, including its build pipeline."
     ]
   }
 ];

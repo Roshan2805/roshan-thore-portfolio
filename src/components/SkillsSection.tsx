@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import { 
   Cpu, 
   Layers, 
@@ -82,12 +81,8 @@ export const SkillsSection: React.FC = () => {
           {filteredCategories.map((cat, idx) => {
             const Icon = getCategoryIcon(cat.category);
             return (
-              <motion.div
+              <div
                 key={cat.category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.08 }}
                 className="rounded-3xl bg-[#0d1222]/80 border border-slate-800/90 hover:border-indigo-500/30 p-6 backdrop-blur-xl transition duration-300 flex flex-col justify-between space-y-5"
               >
                 <div className="space-y-4">
@@ -129,7 +124,7 @@ export const SkillsSection: React.FC = () => {
                 <div className="pt-2 border-t border-slate-800/60 flex items-center justify-between text-[10px] font-mono text-slate-400">
                   <span>{cat.skills.length} core technologies</span>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { 
   Layers, 
   ArrowUpRight, 
@@ -47,12 +46,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
           {PROJECTS.map((project, idx) => (
-            <motion.div
+            <div
               key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
               className="group relative rounded-3xl bg-[#0d1222]/80 border border-slate-800/90 hover:border-indigo-500/40 p-7 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between hover:shadow-2xl hover:shadow-indigo-500/10"
             >
               <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${project.gradient} rounded-full blur-3xl opacity-30 group-hover:opacity-60 transition duration-500 pointer-events-none`} />
@@ -126,7 +121,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import { 
   Briefcase, 
   GraduationCap, 
@@ -66,12 +65,8 @@ export const ExperienceSection: React.FC = () => {
             <div className="absolute top-4 bottom-4 left-4 md:left-8 w-[2px] bg-gradient-to-b from-indigo-500 via-cyan-500 to-transparent" />
 
             {EXPERIENCES.map((exp, idx) => (
-              <motion.div
+              <div
                 key={idx}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="relative pl-12 md:pl-20"
               >
                 <div className={`absolute left-1 md:left-5 top-1.5 w-6 h-6 rounded-full border-2 flex items-center justify-center bg-[#090b12] ${
@@ -139,7 +134,7 @@ export const ExperienceSection: React.FC = () => {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         )}
@@ -147,12 +142,8 @@ export const ExperienceSection: React.FC = () => {
         {activeTab === "education" && (
           <div className="mt-14 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
             {EDUCATION_LIST.map((edu, idx) => (
-              <motion.div
+              <div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
                 className="p-6 rounded-3xl bg-[#0e1424]/90 border border-slate-800 hover:border-cyan-500/30 backdrop-blur-xl shadow-xl flex flex-col justify-between space-y-4"
               >
                 <div className="space-y-3">
@@ -187,7 +178,7 @@ export const ExperienceSection: React.FC = () => {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         )}

@@ -166,7 +166,7 @@ export const GROWTH = [
     stage: "Learning",
     period: "Jun – Dec 2022",
     role: "Full-stack course, SPARK IT, Pune",
-    points: ["Seven months of React, Node.js, Express and MongoDB, straight after a commerce degree."]
+    points: ["Seven months of full-stack training, including Angular, straight after a commerce degree."]
   },
   {
     stage: "First opportunity",
@@ -191,7 +191,7 @@ export const GROWTH = [
     period: "Oct 2023",
     role: "KNKY launches",
     points: [
-      "Joined KNKY at launch and moved to React and Next.js.",
+      "Joined KNKY at launch and learned React and Next.js on the job.",
       "Built Stories, Channels, Shop and the Media Vault, and integrated live rooms and real-time chat."
     ]
   },
@@ -228,7 +228,7 @@ export const EDUCATION = [
     degree: "Full Stack Web Development",
     school: "SPARK IT Training Institute, Pune",
     period: "2022",
-    note: "Seven months of React, Node.js, Express and MongoDB."
+    note: "Seven months of full-stack training, including Angular."
   },
   {
     degree: "Bachelor of Commerce",

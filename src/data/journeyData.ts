@@ -27,22 +27,22 @@ export const STORY = [
   {
     stage: "Code",
     label: "Lockdown, 2020",
-    text: "A friend showed me some code. It was the first time I understood that the sites and apps I used every day were written, line by line, by people."
+    text: "A friend showed me some code. It was the first time I understood that the sites and apps I used every day were written, line by line, by people. I started learning Python on YouTube."
   },
   {
     stage: "Interface",
-    label: "Learning, 2022",
-    text: "So I started learning. HTML, CSS, JavaScript, then React. Type something, and a thing appears on the screen. I couldn't leave that alone."
+    label: "The course, 2022",
+    text: "I had the basics but couldn't work out how to build a whole app on my own. So I joined a full-stack course in Pune, and learned Angular there."
   },
   {
     stage: "Product",
     label: "First opportunity, 2023",
-    text: "Ink In Caps took me on as an intern in Mumbai. Seven months later it was a job, and the screens I built were going to real users."
+    text: "Ink In Caps took me on as an intern in Mumbai. My first task was an admin panel in a codebase I didn't understand yet. Seven months later it was a job."
   },
   {
     stage: "Career",
     label: "Today",
-    text: "Curiosity turned into a career. The things I build are now used by more than 30,000 people."
+    text: "Then I was moved to a product built in React and Next.js, and learned both on the job. What I build there is now used by more than 30,000 people."
   }
 ];
 

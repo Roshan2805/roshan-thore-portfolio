@@ -4,21 +4,44 @@ import { useRef, useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { STAGES, STORY } from "@/data/journeyData";
 
-const code = [
-  ["function ", "Story", "({ seen }) {"],
-  ["  return (", "", ""],
-  ["    <button className=", '{seen ? "ring seen" : "ring"}', ">"],
-  ["      <Avatar />", "", ""],
-  ["    </button>", "", ""],
-  ["  );", "", ""],
-  ["}", "", ""]
+const python = [
+  ["steps = ", '["learn", "build", "repeat"]', ""],
+  ["", "", ""],
+  ["for ", "step", " in steps:"],
+  ["    print(", '"Roshan will"', ", step)"]
 ];
+
+const angular = [
+  ["@Component({ selector: ", '"app-story"', " })"],
+  ["export class ", "StoryComponent", " {"],
+  ["  @Input() seen = false;", "", ""],
+  ["}", "", ""],
+  ["", "", ""],
+  ["<button class=\"ring\" ", "[class.seen]", '="seen">'],
+  ["  <app-avatar />", "", ""],
+  ["</button>", "", ""]
+];
+
+function Code({ lines }: { lines: string[][] }) {
+  return (
+    <pre className="overflow-hidden leading-relaxed">
+      {lines.map(([plain, accent, rest], i) => (
+        <span key={i} className="block">
+          <span className="mr-4 text-paper/30">{i + 1}</span>
+          {plain}
+          <span className="text-ember">{accent}</span>
+          {rest}
+        </span>
+      ))}
+    </pre>
+  );
+}
 
 function Rings() {
   return (
     <div className="flex gap-3">
       {[0, 1, 2, 3].map((i) => (
-        <span key={i} className={`size-11 rounded-full border-2 p-0.5 ${i < 3 ? "border-ember" : "border-paper/30"}`}>
+        <span key={i} className={`size-7 rounded-full border-2 p-0.5 sm:size-11 ${i < 3 ? "border-ember" : "border-paper/30"}`}>
           <span className="block size-full rounded-full bg-paper/20" />
         </span>
       ))}
@@ -45,7 +68,7 @@ function Visual({ step }: { step: number }) {
   return (
     <div
       aria-hidden="true"
-      className={`relative size-full overflow-hidden border font-mono text-[13px] transition-colors duration-700 ${
+      className={`relative size-full overflow-hidden border font-mono text-[11px] transition-colors sm:text-[13px] duration-700 ${
         dark ? "border-ink bg-ink text-paper" : "border-rule text-ink"
       }`}
     >
@@ -77,21 +100,18 @@ function Visual({ step }: { step: number }) {
         ))}
       </Layer>
 
-      <Layer show={step === 2 || step === 3} className={step === 3 ? "!justify-start" : ""}>
-        <pre className="overflow-hidden leading-relaxed">
-          {code.map(([plain, accent, rest], i) => (
-            <span key={i} className="block">
-              <span className="mr-4 text-paper/30">{i + 1}</span>
-              {plain}
-              <span className="text-ember">{accent}</span>
-              {rest}
-            </span>
-          ))}
-        </pre>
+      <Layer show={step === 2}>
+        <p className="label mb-4 text-paper/50">first.py</p>
+        <Code lines={python} />
+      </Layer>
+
+      <Layer show={step === 3} className="!justify-start">
+        <p className="label mb-4 text-paper/50">story.component.ts</p>
+        <Code lines={angular} />
       </Layer>
 
       <Layer show={step === 3} className="!justify-end">
-        <p className="label mb-3 text-paper/50">→ renders</p>
+        <p className="label mb-3 text-paper/50 max-sm:hidden">→ renders</p>
         <Rings />
       </Layer>
 

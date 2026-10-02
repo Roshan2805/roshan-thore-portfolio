@@ -1,40 +1,94 @@
 @import "tailwindcss";
 
-:root {
-  --background: #090a0f;
-  --foreground: #f1f5f9;
+@theme inline {
+  --font-sans: var(--font-body), system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-mono: var(--font-plex), ui-monospace, monospace;
+
+  --color-paper: #f1eee6;
+  --color-ink: #17160f;
+  --color-mute: #6b675c;
+  --color-rule: #17160f26;
+  --color-signal: #b8391a;
+  --color-ember: #ff7a4d;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
-  overflow-x: hidden;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
 }
 
-::-webkit-scrollbar-track {
-  background: #090a0f;
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
+/* First visit: keep the page covered until the intro mounts over it. */
+html.intro-pending {
+  overflow: hidden;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+html.intro-pending body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: var(--color-paper);
 }
 
-.cyber-grid {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.leader {
+  flex: 1;
+  min-width: 1.5rem;
+  border-bottom: 1px dotted currentColor;
+  opacity: 0.35;
+  transform: translateY(-0.3em);
+}
+
+.link {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+  transition: background-size 0.3s ease;
+}
+
+.link:hover {
+  background-size: 0 1px;
+  background-position: 100% 100%;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+}
+
+.rise {
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+details > summary {
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -42,7 +96,6 @@ body {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }

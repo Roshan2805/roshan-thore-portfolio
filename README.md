@@ -1,20 +1,15 @@
 # Roshan Thore · Portfolio
 
-Personal site of Roshan Thore, frontend engineer at INK IN CAPS. It covers the products I've worked on (KNKY, its admin console and agency portal, and Heftyverse), a few interactive demos, and how to get in touch.
+Personal site of Roshan Thore, frontend engineer at Ink In Caps.
 
 ## What's on the site
 
-- **Projects**, each with a details view: what I built, problems I solved, and the stack
-- **Interactive demos**
-  - Adaptive bitrate streaming (simulated): change the network speed and see which rendition a player picks
-  - Stories viewer (simulated): tap through stories, pause, and reveal gated content
-  - Virtualization benchmark (real): TanStack Virtual against a plain list of up to 25,000 rows, timed in your browser
-- **Command palette**: press ⌘K or Ctrl+K to jump anywhere (try `sudo hire`)
-- Skills, experience, education, and a contact form that opens your email app
+- **A 30-second intro** on a first visit: eight milestones, from a 52% in 12th to frontend engineer, drawn with one set of particles that rearranges for each step. It can be skipped, plays once, and can be replayed from the page.
+- **The portfolio**: overview, about, experience, three projects in detail, skills, education and contact.
 
 ## Tech stack
 
-Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Framer Motion, TanStack Virtual.
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, three.js, Framer Motion.
 
 ## Running locally
 
@@ -29,40 +24,33 @@ Then open http://localhost:3000. `npm run build` creates a production build. Git
 
 ```
 portfolio/
-├── .github/workflows/ci.yml        # Lint and build
-├── public/
-│   ├── profile.jpg                 # Profile photo
-│   └── Roshan-Thore-Resume.pdf     # Resume
-├── src/
-│   ├── app/
-│   │   ├── globals.css             # Global styles
-│   │   ├── layout.tsx              # Metadata, fonts, JSON-LD
-│   │   ├── page.tsx                # Home page
-│   │   ├── robots.ts               # robots.txt
-│   │   └── sitemap.ts              # sitemap.xml
-│   ├── components/
-│   │   ├── AmbientBackground.tsx   # Background grid and cursor glow
-│   │   ├── CommandPalette.tsx      # ⌘K command palette
-│   │   ├── ContactSection.tsx      # Contact details and email form
-│   │   ├── ExperienceSection.tsx   # Work history and education
-│   │   ├── Footer.tsx              # Footer with Mumbai clock
-│   │   ├── Hero.tsx                # Intro, profile card, stats
-│   │   ├── Icons.tsx               # GitHub and LinkedIn icons
-│   │   ├── InteractiveSimulators.tsx  # Demo tabs
-│   │   ├── Navbar.tsx              # Header and navigation
-│   │   ├── ProjectModal.tsx        # Project details
-│   │   ├── ProjectsSection.tsx     # Project cards
-│   │   ├── SkillsSection.tsx       # Searchable skills
-│   │   └── VirtualizationBenchmark.tsx  # Real virtualization benchmark
-│   ├── data/
-│   │   └── portfolioData.ts        # All site content
-│   ├── hooks/
-│   │   └── useDialog.ts            # Focus trap and scroll lock
-│   └── lib/
-│       └── confetti.ts             # Lazy-loaded confetti
-├── package.json
-└── tsconfig.json
+├── .github/workflows/ci.yml     # Lint and build
+├── public/                      # Resume PDF, share image
+├── resume/                      # Resume source (HTML) and fonts
+└── src/
+    ├── app/
+    │   ├── globals.css          # Colors, type and the few shared styles
+    │   ├── layout.tsx           # Metadata, fonts, JSON-LD, first-visit check
+    │   └── page.tsx             # Home page
+    ├── components/
+    │   ├── Intro.tsx            # Intro overlay: timing, text, controls
+    │   ├── IntroScene.tsx       # three.js particles that form each milestone
+    │   ├── ReplayJourney.tsx    # Button that plays the intro again
+    │   ├── Nav.tsx
+    │   ├── Hero.tsx
+    │   ├── About.tsx
+    │   ├── Experience.tsx
+    │   ├── Projects.tsx
+    │   ├── ProjectFigure.tsx    # The small diagram beside each project
+    │   ├── Skills.tsx           # Skills and education
+    │   └── Contact.tsx          # Contact and footer
+    ├── data/
+    │   ├── journeyData.ts       # The eight intro milestones
+    │   └── portfolioData.ts     # All other site content
+    └── lib/
+        └── journey.ts           # Whether the intro is playing, and the seen flag
 ```
+
 
 ## Deploying
 

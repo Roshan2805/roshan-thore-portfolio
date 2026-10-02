@@ -1,17 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz", "SOFT"]
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const instrumentSans = Instrument_Sans({
+  variable: "--font-body",
+  subsets: ["latin"]
 });
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex",
+  subsets: ["latin"],
+  weight: ["400", "500"]
+});
+
+// Runs before first paint so a first-time visitor never sees the page flash under the intro.
+const introGate = `try{if(!localStorage.getItem("journey-seen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("intro-pending")}catch(e){}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(PERSONAL_INFO.siteUrl),
@@ -111,9 +122,10 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
+      className={`${fraunces.variable} ${instrumentSans.variable} ${plexMono.variable} antialiased`}
     >
-      <body suppressHydrationWarning className="min-h-full flex flex-col bg-[#090a0f] text-slate-100">
+      <body suppressHydrationWarning>
+        <script dangerouslySetInnerHTML={{ __html: introGate }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}

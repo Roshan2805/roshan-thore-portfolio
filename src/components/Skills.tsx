@@ -9,7 +9,7 @@ export function Skills() {
   return (
     <section id="skills" className="mt-28 bg-ink text-paper sm:mt-44">
       <div ref={list} className="mx-auto max-w-[96rem] px-5 py-24 sm:px-10 sm:py-40">
-        <p className="label text-paper/50">What I&apos;ve become good at</p>
+        <p className="label text-paper/50">What I work with</p>
 
         {CAPABILITIES.map((item, i) => (
           <div key={item.title} data-index={i} className="grid gap-x-8 gap-y-6 py-12 md:grid-cols-12 md:py-[9vh]">
@@ -53,7 +53,6 @@ export function Skills() {
             ))}
           </dl>
         </details>
-        <p className="text-sm text-paper/50">Only what I use at work and can explain in an interview.</p>
       </div>
     </section>
   );

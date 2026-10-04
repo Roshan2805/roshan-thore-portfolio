@@ -14,64 +14,73 @@ export const BEATS: Beat[] = [
 ];
 
 export interface StoryStep {
-  stage: string;
   label: string;
-  text: string;
+  title: string;
   note?: string;
 }
 
-export const STORY: StoryStep[] = [
+export const CHAPTERS = ["Early on", "Education", "Discovery", "Going deeper", "Today"];
+
+export const EARLY: (StoryStep & { chapter: number })[] = [
   {
-    stage: "Childhood",
-    label: "Early on",
-    text: "I was curious about computers long before I understood code.",
-    note: "Mostly games and the internet. I'd heard the words \u201csoftware engineer\u201d and liked the sound of them. I had no idea what the job actually was."
+    chapter: 0,
+    label: "As a kid",
+    title: "I was curious about computers.",
+    note: "Games, the internet, just being around a computer. I'd heard of software engineers and liked the idea of working with computers. I didn't know what the job actually involved."
   },
   {
-    stage: "12th",
-    label: "A different start",
-    text: "I chose Science in 12th because I was drawn to computers.",
-    note: "I scored 52%, and that changed the direction of my education."
+    chapter: 1,
+    label: "12th",
+    title: "My education took a different path.",
+    note: "I chose Science in 12th because of that interest in computers. I scored 52%, and that changed where my education went next."
   },
   {
-    stage: "B.Com",
+    chapter: 1,
     label: "2019 – 2022",
-    text: "So I studied B.Com.",
-    note: "A different path from where my curiosity about computers had started. The curiosity didn't go anywhere, though."
-  },
-  {
-    stage: "Discovery",
-    label: "Lockdown, 2020",
-    text: "A friend who knew some code got me wondering how the apps I used every day were actually made.",
-    note: "I tried Python, from YouTube. The two paths started to meet."
-  },
-  {
-    stage: "Learning",
-    label: "The course, 2022",
-    text: "My curiosity about computers finally became something I could build with.",
-    note: "A six-month software development course: HTML, CSS and JavaScript first, then Angular, Node.js and MongoDB."
-  },
-  {
-    stage: "Learning",
-    label: "The course",
-    text: "For the first time I understood what actually happens behind the websites and apps I'd been using for years."
-  },
-  {
-    stage: "Work",
-    label: "First job, 2023",
-    text: "Ink In Caps took me on as an intern. My first task was an admin panel in a codebase I didn't understand, so for the first few days I mostly just read it."
-  },
-  {
-    stage: "MCA",
-    label: "I wanted to understand more",
-    text: "Once I was working in software, I wanted to go deeper.",
-    note: "So I took a part-time MCA at Sandip University alongside the job, to understand computers and software beyond what day-to-day work teaches."
-  },
-  {
-    stage: "Today",
-    label: "On the job",
-    text: "Then I moved to a product built in React and Next.js, which I had never written. I learned it by building Stories. About 30,000 people use it now."
+    title: "B.Com.",
+    note: "Three years of commerce. I wasn't a programmer, and I didn't really know what software development was. Computers stayed in the background."
   }
 ];
 
-export const STAGES = ["Childhood", "12th", "B.Com", "Discovery", "Learning", "Work", "MCA", "Today"];
+export const DISCOVERY: StoryStep[] = [
+  {
+    label: "Lockdown, 2020",
+    title: "Then a friend showed me some code.",
+    note: "I tried Python from YouTube, mostly to see how it worked."
+  },
+  {
+    label: "After B.Com, 2022",
+    title: "So I learned it properly.",
+    note: "A six-month software development course, starting from the fundamentals."
+  },
+  {
+    label: "The course",
+    title: "Then Angular, Node.js and MongoDB.",
+    note: "A screen, a server and a database, talking to each other."
+  },
+  {
+    label: "The course",
+    title: "For the first time, I understood what was behind the websites I had always used."
+  }
+];
+
+export const LATER: (StoryStep & { chapter: number })[] = [
+  {
+    chapter: 3,
+    label: "2023",
+    title: "I started working in software.",
+    note: "An internship at Ink In Caps that became a job. My first task was an admin panel in a codebase I didn't understand, so for the first few days I mostly read it."
+  },
+  {
+    chapter: 3,
+    label: "2023 – 2026",
+    title: "Alongside the job, I went back to studying.",
+    note: "A part-time MCA at Sandip University, because I wanted to understand computers and software beyond what work was teaching me."
+  },
+  {
+    chapter: 4,
+    label: "Now",
+    title: "I build software for a living.",
+    note: "Frontend engineer, in React, Next.js and TypeScript. I learned React on the job by building Stories, for a product about 30,000 people use."
+  }
+];

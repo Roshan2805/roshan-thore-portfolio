@@ -8,8 +8,8 @@ import { endJourney, markJourneySeen, useJourneyPlaying } from "@/lib/journey";
 
 const IntroScene = dynamic(() => import("./IntroScene"), { ssr: false });
 
-const BEAT_MS = 2300;
-const LEAVE_MS = 1100;
+const BEAT_MS = 2000;
+const LEAVE_MS = 1700;
 
 function IntroOverlay() {
   const [index, setIndex] = useState(0);

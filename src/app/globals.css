@@ -105,8 +105,55 @@ html.from-intro .hero-name {
   animation: fade 0.9s ease both;
 }
 
-.scroll-cue {
-  animation: nudge 1.8s ease-in-out infinite;
+/* Hero paper: faint ledger ruling with a red margin line, the commerce degree it started from. */
+.ledger {
+  --margin: 0.6rem;
+  background-image:
+    linear-gradient(to right, transparent calc(var(--margin) - 1px), #b8391a40 calc(var(--margin) - 1px), #b8391a40 var(--margin), transparent var(--margin)),
+    repeating-linear-gradient(to bottom, transparent 0 calc(2.4rem - 1px), #17160f0d calc(2.4rem - 1px) 2.4rem);
+  mask-image: linear-gradient(to bottom, #000 70%, transparent);
+}
+
+@media (min-width: 640px) {
+  .ledger {
+    --margin: 1.4rem;
+  }
+}
+
+@keyframes draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+}
+
+.hero-line {
+  animation: draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.3s both;
+}
+
+.hero-mark {
+  animation: pop 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+html.intro-pending :is(.hero-line, .hero-mark),
+html.intro-on :is(.hero-line, .hero-mark) {
+  animation: none;
+  opacity: 0;
+}
+
+/* After the intro the particles settle on the line first, so it draws a little later. */
+html.from-intro .hero-line {
+  animation-delay: 0.8s;
+}
+
+html.from-intro .hero-mark {
+  animation-delay: 1.3s !important;
 }
 
 .story-in {
@@ -133,10 +180,6 @@ details > summary::-webkit-details-marker {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scroll-fill span {
-    opacity: 1 !important;
-  }
-
   *,
   *::before,
   *::after {

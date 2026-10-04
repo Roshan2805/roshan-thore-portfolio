@@ -59,7 +59,8 @@ portfolio/
     │   └── portfolioData.ts     # All other site content
     └── lib/
         ├── journey.ts           # Whether the intro is playing, and the seen flag
-        └── useDesktop.ts        # Pinned layouts are desktop only
+        ├── useDesktop.ts        # Pinned layouts are desktop only
+        └── useMotionState.ts    # React state read from a scroll position
 ```
 
 

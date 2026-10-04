@@ -97,6 +97,14 @@ function shapeTargets(shape: Shape, count: number, font: string) {
   return { targets, width: (maxX - minX) * unit, height: (maxY - minY) * unit };
 }
 
+// The box the hero's journey line draws into, so the particles can come to rest on it.
+function heroLineBox() {
+  const el = document.querySelector<HTMLElement>("[data-hero-line]");
+  if (!el) return null;
+  const rect = el.getBoundingClientRect();
+  return { left: rect.left, right: rect.right, y: rect.top };
+}
+
 // Where the hero's name is on screen, measured from its ink rather than its line box.
 function heroNameBox(font: string) {
   const el = document.querySelector<HTMLElement>("[data-hero-name]");
@@ -119,7 +127,7 @@ export default function IntroScene({ index, leaving }: { index: number; leaving:
   const mountRef = useRef<HTMLDivElement>(null);
   const indexRef = useRef(index);
   const showRef = useRef<((beat: number) => void) | null>(null);
-  const leavingRef = useRef(leaving);
+  const settleRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     indexRef.current = index;
@@ -127,7 +135,7 @@ export default function IntroScene({ index, leaving }: { index: number; leaving:
   }, [index]);
 
   useEffect(() => {
-    leavingRef.current = leaving;
+    if (leaving) settleRef.current?.();
   }, [leaving]);
 
   useEffect(() => {
@@ -242,6 +250,45 @@ export default function IntroScene({ index, leaving }: { index: number; leaving:
       morphStart = performance.now();
     };
 
+    // Leaving: the name dissolves down into the line under it, then fades out
+    // as the real line draws itself in the same place.
+    let leaveStart = 0;
+    const settle = () => {
+      const line = heroLineBox();
+      if (!line || !shapes.length) return;
+      const mix = uniforms.uMix.value;
+      for (let i = 0; i < count; i++) {
+        let t = Math.min(Math.max((mix - seeds[i] * 0.35) / 0.65, 0), 1);
+        t = t * t * (3 - 2 * t);
+        for (let axis = 0; axis < 3; axis++) {
+          const k = i * 3 + axis;
+          // Store positions in world space, since the group is reset to identity below.
+          from[k] += (to[k] - from[k]) * t;
+          from[k] = axis === 0 ? from[k] * points.scale.x + points.position.x : axis === 1 ? from[k] * points.scale.y + points.position.y : from[k];
+        }
+      }
+      const perPixel = visible.width / mount.clientWidth;
+      for (let i = 0; i < count; i++) {
+        const px = line.left + Math.random() * (line.right - line.left);
+        to[i * 3] = (px - mount.clientWidth / 2) * perPixel;
+        to[i * 3 + 1] = -(line.y - mount.clientHeight / 2) * perPixel + (Math.random() - 0.5) * 0.02;
+        to[i * 3 + 2] = 0;
+      }
+      geometry.attributes.aFrom.needsUpdate = true;
+      geometry.attributes.aTo.needsUpdate = true;
+      points.scale.setScalar(1);
+      points.position.set(0, 0, 0);
+      place.scale = 1;
+      place.x = 0;
+      place.y = 0;
+      colorFrom.copy(uniforms.uColor.value);
+      colorTo.set("#17160f");
+      uniforms.uMix.value = reduceMotion ? 1 : 0;
+      morphStart = performance.now();
+      leaveStart = morphStart;
+    };
+    settleRef.current = settle;
+
     let cancelled = false;
     Promise.all([document.fonts.load(`700 200px ${family}`), document.fonts.load(`500 200px ${family}`)])
       .catch(() => {})
@@ -261,7 +308,7 @@ export default function IntroScene({ index, leaving }: { index: number; leaving:
       if (uniforms.uMix.value < 1) uniforms.uMix.value = Math.min(sinceMorph / MORPH_MS, 1);
       uniforms.uColor.value.lerpColors(colorFrom, colorTo, Math.min(sinceMorph / 800, 1));
       uniforms.uTime.value = now / 1000;
-      if (leavingRef.current) uniforms.uAlpha.value = Math.max(uniforms.uAlpha.value - 0.03, 0);
+      if (leaveStart && now - leaveStart > 800) uniforms.uAlpha.value = Math.max(uniforms.uAlpha.value - 0.04, 0);
 
       points.scale.setScalar(points.scale.x + (place.scale - points.scale.x) * 0.09);
       points.position.x += (place.x - points.position.x) * 0.09;
@@ -280,6 +327,7 @@ export default function IntroScene({ index, leaving }: { index: number; leaving:
     return () => {
       cancelled = true;
       showRef.current = null;
+      settleRef.current = null;
       cancelAnimationFrame(frame);
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onPointerMove);

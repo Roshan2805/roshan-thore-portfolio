@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll } from "framer-motion";
+import { useMotionState } from "@/lib/useMotionState";
 import { STAGES, STORY } from "@/data/journeyData";
 
 const python = [
@@ -144,12 +145,8 @@ function Visual({ step }: { step: number }) {
 
 export function Story() {
   const ref = useRef<HTMLElement>(null);
-  const [step, setStep] = useState(0);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-
-  useMotionValueEvent(scrollYProgress, "change", (value) => {
-    setStep(Math.min(STORY.length - 1, Math.floor(value * STORY.length)));
-  });
+  const step = useMotionState(scrollYProgress, (value) => Math.min(STORY.length - 1, Math.floor(value * STORY.length)));
 
   const stage = STAGES.indexOf(STORY[step].stage);
 

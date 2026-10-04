@@ -1,17 +1,16 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { useMotionValueEvent, useScroll } from "framer-motion";
+import { useRef } from "react";
+import { useScroll } from "framer-motion";
+import { useMotionState } from "@/lib/useMotionState";
 
 const path = ["52% in 12th.", "A B.Com.", "Python, from YouTube.", "Angular, in a course in Pune.", "React, on the job."];
 
 // The whole path again in five short lines, then the line it was all leading to.
 export function Ending() {
   const ref = useRef<HTMLElement>(null);
-  const [shown, setShown] = useState(0);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-
-  useMotionValueEvent(scrollYProgress, "change", (value) => setShown(Math.floor(value * (path.length + 2))));
+  const shown = useMotionState(scrollYProgress, (value) => Math.floor(value * (path.length + 2)));
 
   const done = shown > path.length;
 

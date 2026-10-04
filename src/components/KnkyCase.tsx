@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useMotionTemplate, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { motion, useMotionTemplate, useScroll, useTransform } from "framer-motion";
+import { useMotionState } from "@/lib/useMotionState";
 import { PROJECTS } from "@/data/portfolioData";
 import { useDesktop } from "@/lib/useDesktop";
 import { StoriesPreview } from "./previews/StoriesPreview";
@@ -14,7 +15,6 @@ const parts = ["KNKY", "Stories", "Checkout", "Result"];
 export function KnkyCase() {
   const ref = useRef<HTMLDivElement>(null);
   const desktop = useDesktop();
-  const [part, setPart] = useState(0);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
 
   // The panel opens from a small window to the full screen, then its contents change.
@@ -22,9 +22,7 @@ export function KnkyCase() {
   const horizontal = useTransform(scrollYProgress, [0, 0.16], [30, 0]);
   const clipPath = useMotionTemplate`inset(${vertical}% ${horizontal}%)`;
 
-  useMotionValueEvent(scrollYProgress, "change", (value) => {
-    setPart(value < 0.24 ? 0 : value < 0.5 ? 1 : value < 0.76 ? 2 : 3);
-  });
+  const part = useMotionState(scrollYProgress, (value) => (value < 0.24 ? 0 : value < 0.5 ? 1 : value < 0.76 ? 2 : 3));
 
   const layer = (i: number) =>
     `flex flex-col justify-center px-5 py-16 transition-all duration-500 sm:px-10 md:absolute md:inset-0 md:py-20 ${

@@ -20,23 +20,19 @@ export function RotatingLine() {
   }, [index, held]);
 
   return (
-    <p
-      className="font-display text-[clamp(1.6rem,3.2vw,2.8rem)] leading-[1.1] tracking-[-0.02em]"
-      onPointerEnter={() => setHeld(true)}
-      onPointerLeave={() => setHeld(false)}
-    >
+    <p className="text-lg leading-snug sm:text-xl" onPointerEnter={() => setHeld(true)} onPointerLeave={() => setHeld(false)}>
       I build
       <button
         type="button"
         aria-live="polite"
         onClick={() => setIndex((index + 1) % things.length)}
-        className="relative block h-[2.3em] w-full sm:h-[1.15em] cursor-pointer overflow-hidden text-left text-signal italic"
+        className="relative block h-[2.5em] w-full cursor-pointer overflow-hidden text-left font-display text-[1.35em] italic leading-tight"
       >
         {things.map((thing, i) => (
           <span
             key={thing}
             aria-hidden={i !== index}
-            className={`absolute inset-x-0 top-0 transition-all duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] sm:whitespace-nowrap ${
+            className={`absolute inset-x-0 top-0 transition-all duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] ${
               i === index ? "translate-y-0 opacity-100" : i === (index + things.length - 1) % things.length ? "-translate-y-full opacity-0" : "translate-y-full opacity-0"
             }`}
           >

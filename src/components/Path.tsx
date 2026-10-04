@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { useMotionValueEvent, useScroll } from "framer-motion";
+import { useRef } from "react";
+import { useScroll } from "framer-motion";
+import { useMotionState } from "@/lib/useMotionState";
 import { TIMELINE } from "@/data/portfolioData";
 import { useDesktop } from "@/lib/useDesktop";
 
@@ -34,12 +35,8 @@ function Lane({ name, bars, at, top }: { name: string; bars: typeof education; a
 export function Path() {
   const ref = useRef<HTMLElement>(null);
   const desktop = useDesktop();
-  const [at, setAt] = useState(start);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-
-  useMotionValueEvent(scrollYProgress, "change", (value) => {
-    setAt(start + Math.min(Math.max((value - 0.05) / 0.85, 0), 1) * (end - start));
-  });
+  const at = useMotionState(scrollYProgress, (value) => start + Math.min(Math.max((value - 0.05) / 0.85, 0), 1) * (end - start));
 
   const current = [...stages].reverse().find((stage) => at >= stage.from) ?? stages[0];
 

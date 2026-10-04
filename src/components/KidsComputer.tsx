@@ -17,7 +17,9 @@ export function KidsComputer() {
             </div>
           </div>
           <div className="screen absolute inset-0 p-3" style={{ animationDelay: "2.4s" }}>
-            <p className="border border-paper/30 px-2 py-1.5">how are games made?</p>
+            <p className="flex items-center border border-paper/30 px-2 py-1.5">
+              <span className="blink h-3 w-px bg-paper/80" />
+            </p>
             <div className="mt-3 space-y-2">
               <span className="block h-1.5 w-3/4 bg-ember/70" />
               <span className="block h-1.5 w-full bg-paper/25" />

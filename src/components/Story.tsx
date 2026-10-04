@@ -150,7 +150,7 @@ function LikeButton({ live }: { live: boolean }) {
 export function Discovery() {
   const { ref, step, progress } = usePinnedStep(DISCOVERY.length);
   const dark = step >= 2;
-  const showObject = step >= 2 && step <= 6;
+  const showObject = step >= 2 && step <= 5;
   const current = DISCOVERY[step];
 
   return (
@@ -186,43 +186,20 @@ export function Discovery() {
             </Layer>
 
             <Layer show={step === 5}>
-              <div className="w-full max-w-md border border-paper/30 text-left font-mono text-[12px]">
-                <div className="flex items-center gap-1.5 border-b border-paper/30 px-3 py-2">
-                  <span className="size-2 rounded-full bg-paper/30" />
-                  <span className="size-2 rounded-full bg-paper/30" />
-                  <span className="size-2 rounded-full bg-paper/30" />
-                  <span className="ml-3 flex-1 bg-paper/10 px-2 py-0.5 text-paper/50">localhost:4200/posts</span>
-                </div>
-                <div className="space-y-2.5 p-4">
-                  {["Post one", "Post two", "Post three"].map((post, i) => (
-                    <div key={post} className="flex items-center justify-between border border-paper/20 px-3 py-2.5">
-                      {post}
-                      <span className={`rounded-full px-3 py-0.5 text-[11px] ${i === 0 ? "bg-ember text-ink" : "border border-paper/40"}`}>
-                        {i === 0 ? "Liked" : "Like"}
-                      </span>
+              <div className="grid w-full max-w-xl grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-2 font-mono text-[12px] sm:gap-4 sm:text-sm">
+                {[
+                  ["Angular", "the screen"],
+                  ["Node.js", "the server"],
+                  ["MongoDB", "the data"]
+                ].map(([name, role], i) => (
+                  <div key={name} className="contents">
+                    {i > 0 && <span className="text-ember">↔</span>}
+                    <div className="border border-paper/30 px-2 py-6 text-center sm:py-10">
+                      <p className="font-display text-xl tracking-tight sm:text-3xl">{name}</p>
+                      <p className="mt-2 text-paper/50">{role}</p>
                     </div>
-                  ))}
-                </div>
-              </div>
-              <p className="mt-5 flex items-center gap-2 font-mono text-xs text-paper/60 sm:text-sm">
-                screen <span className="text-ember">↔</span> server <span className="text-ember">↔</span> database
-              </p>
-            </Layer>
-
-            <Layer show={step === 6}>
-              <div className="w-48 border border-paper/30 p-3 sm:w-56">
-                <div className="flex gap-1.5">
-                  {[0, 1, 2, 3].map((i) => (
-                    <span key={i} className={`size-7 rounded-full border-2 ${i < 3 ? "border-ember" : "border-paper/30"}`} />
-                  ))}
-                </div>
-                <div className="mt-2 flex gap-1">
-                  <span className="h-0.5 flex-1 bg-paper" />
-                  <span className="h-0.5 flex-1 bg-paper/30" />
-                  <span className="h-0.5 flex-1 bg-paper/30" />
-                </div>
-                <div className="mt-2 h-36 bg-paper/10 sm:h-44" />
-                <div className="mt-2 bg-ember py-1.5 text-center text-[11px] text-ink">Subscribe</div>
+                  </div>
+                ))}
               </div>
             </Layer>
           </div>
@@ -242,7 +219,7 @@ export function Discovery() {
             >
               {current.line}
             </p>
-            {step === 5 && <p className="mt-3 text-sm opacity-60">Angular, Node.js and MongoDB, in a six-month course after B.Com.</p>}
+            {step === 2 && <p className="mt-3 text-sm opacity-60">A six-month software development course after B.Com, starting from the fundamentals.</p>}
           </div>
         </div>
         <Chapters active={2} progress={progress} dark={dark} />
@@ -262,22 +239,28 @@ export function StoryLater() {
             aria-hidden="true"
             className="relative h-[30svh] overflow-hidden bg-ink font-mono text-[11px] text-paper sm:text-[13px] md:order-2 md:col-span-5 md:col-start-8 md:h-[52svh]"
           >
-            <Layer show={step === 0} className="px-6">
-              <div className="w-full max-w-sm">
-                <p className="label text-paper/50">admin-panel / src / app</p>
-                {["users.component.ts", "events.service.ts", "rewards.module.ts", "api.interceptor.ts"].map((file, i) => (
-                  <p key={file} className={`border-b border-paper/15 py-2 ${i === 1 ? "text-ember" : ""}`}>
-                    {file}
-                    {i === 1 && <span className="ml-3 text-paper/40">← reading</span>}
-                  </p>
+            <Layer show={step === 0} className="!items-start px-6 sm:px-10">
+              <p className="label text-paper/50">Ink In Caps, Mumbai</p>
+              <ol className="mt-6 w-full">
+                {[
+                  ["Web Developer Intern", "Jan 2023"],
+                  ["Junior Software Development Engineer", "Aug 2023"],
+                  ["Software Development Engineer", "Aug 2024"]
+                ].map(([title, from], i) => (
+                  <li key={title} className="flex items-baseline gap-3 border-t border-paper/20 py-3 sm:py-4">
+                    <span className="text-ember">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="font-sans text-sm sm:text-base">{title}</span>
+                    <span className="leader" />
+                    <span className="text-paper/60">{from}</span>
+                  </li>
                 ))}
-              </div>
+              </ol>
             </Layer>
 
             <Layer show={step === 1} className="!items-start px-6 sm:px-10">
               <p className="label text-paper/50">Part-time, alongside the job</p>
               <p className="mt-3 font-display text-2xl leading-tight tracking-tight sm:mt-4 sm:text-4xl">Master of Computer Applications</p>
-              <p className="mt-2 text-paper/60">Sandip University · 2023</p>
+              <p className="mt-2 text-paper/60">Sandip University · 2023 – 2026 · 5 semesters</p>
               <div className="mt-8 grid w-full grid-cols-5 gap-2 max-sm:hidden">
                 {[1, 2, 3, 4, 5].map((semester) => (
                   <div key={semester} className="border-t-2 border-ember pt-2 text-paper/60">

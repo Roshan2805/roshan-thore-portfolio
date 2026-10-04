@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 
 const things = [
   "the checkout people pay through.",
-  "the stories they tap through.",
-  "the console a finance team runs on.",
-  "screens that still work on a slow phone."
+  "the stories people tap through.",
+  "the tools a team runs its product on.",
+  "interfaces that still work when the connection doesn't."
 ];
 
 export function RotatingLine() {

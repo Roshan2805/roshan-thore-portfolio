@@ -21,8 +21,8 @@ export function Contact() {
       <div className="mx-auto max-w-[96rem] px-5 pb-8 pt-20 sm:px-10 sm:pt-32">
         <p className="label text-paper/60">What&apos;s next</p>
         <p className="mt-6 max-w-3xl text-xl leading-relaxed text-paper/70 sm:text-2xl">
-          Bigger systems, harder frontend problems, and more say in how a product&apos;s frontend gets built. If you&apos;re
-          working on something like that, I&apos;d like to hear about it.
+          Bigger systems. Harder frontend problems. More ownership. If you&apos;re working on something like that, I&apos;d
+          like to hear about it.
         </p>
 
         <h2 className="on-view mt-16 font-display text-[clamp(3rem,11vw,10rem)] leading-[0.88] tracking-[-0.045em] sm:mt-24">

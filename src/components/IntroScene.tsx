@@ -42,7 +42,7 @@ const fragmentShader = `
   }
 `;
 
-const labels: Record<Shape, string> = { degree: "B.Com", tag: "</>", name: "Roshan Thore" };
+const labels: Record<Shape, string> = { question: "?", tag: "</>", name: "Roshan Thore" };
 
 // Draws the shape in white, samples its pixels, and returns particle targets
 // centred on the shape, plus the shape's width in the same units.

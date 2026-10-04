@@ -15,6 +15,7 @@ const links = [
 
 export function Nav() {
   const [past, setPast] = useState(false);
+  const [current, setCurrent] = useState("");
   const [open, setOpen] = useState(false);
   const progress = useRef<HTMLSpanElement>(null);
 
@@ -23,6 +24,13 @@ export function Nav() {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       if (progress.current) progress.current.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
       setPast(window.scrollY > window.innerHeight * 0.5);
+      const line = window.innerHeight * 0.4;
+      let inView = "";
+      links.forEach(({ id }) => {
+        const top = document.getElementById(id)?.getBoundingClientRect().top;
+        if (top !== undefined && top <= line) inView = id;
+      });
+      setCurrent(inView);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -44,7 +52,12 @@ export function Nav() {
 
           <nav aria-label="Sections" className="pointer-events-auto hidden items-center gap-6 lg:flex">
             {links.map(({ id, label }) => (
-              <a key={id} href={`#${id}`} className="opacity-70 transition-opacity hover:opacity-100">
+              <a
+                key={id}
+                href={`#${id}`}
+                aria-current={current === id ? "true" : undefined}
+                className={`transition-opacity hover:opacity-100 ${current === id ? "opacity-100 underline underline-offset-[6px]" : "opacity-60"}`}
+              >
                 {label}
               </a>
             ))}

@@ -37,7 +37,7 @@ export const PROJECTS: Project[] = [
     problem:
       "A platform where creators earn from subscriptions, tips, a shop and paid content. Every one of those ends in a checkout that has to work in different countries.",
     contribution:
-      "I own checkout and subscriptions: four payment methods, card tokenization, guest checkout, and plan upgrades, downgrades, trials and lifetime tiers. I also built Stories, Channels, Shop and the Media Vault.",
+      "I own checkout and subscriptions: four payment methods, card tokenization, guest checkout, and plan upgrades, downgrades, trials and lifetime tiers. I also built Stories, Channels, Shop and the Media Vault, integrated live video and audio rooms and real-time chat, and added OTP sign-in.",
     results: [
       { label: "Users", value: "30K+" },
       { label: "Transactions a month", value: "45K+" },
@@ -70,7 +70,7 @@ export const PROJECTS: Project[] = [
     problem:
       "Operations and finance need to see every transaction and payout on the platform, filter them many ways, and export them without waiting on an engineer.",
     contribution:
-      "I set the project up and have been its only frontend engineer. I built the transactions and payout modules, role-based access, and the table and filter system most list pages share.",
+      "I set the project up and have been its only frontend engineer. I built the transactions and payout modules, role-based access, the table and filter system most list pages share, and CSV exports. I also moved it to Vite and set up its AWS CodeBuild pipeline.",
     results: [
       { label: "Frontend engineers on it", value: "1" },
       { label: "Build time after moving to Vite", value: "~50% less" },
@@ -142,34 +142,35 @@ export const EARLIER_WORK = [
 export const CAPABILITIES = [
   {
     title: "I build interfaces.",
-    tools: ["React", "Next.js", "TypeScript", "JavaScript", "HTML and CSS", "Tailwind CSS", "Radix UI", "Material UI", "Framer Motion", "GSAP"]
+    tools: ["React", "Next.js", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind CSS", "Radix UI", "Material UI", "Framer Motion", "GSAP"]
   },
   {
     title: "I build product functionality.",
-    tools: ["Checkout and card tokenization", "Subscription flows", "OTP sign-in and token renewal", "State with Redux Toolkit and TanStack Query", "REST API integration", "HLS video", "Live rooms and chat with LiveKit and Socket.IO"]
+    tools: ["Checkout", "Subscription flows", "Authentication", "REST API integration", "Redux Toolkit", "TanStack Query", "HLS video", "Live rooms", "Chat"]
   },
   {
     title: "I ship production software.",
-    tools: ["Git and code review", "Vite", "AWS CodeBuild pipelines", "Code splitting", "List virtualization", "Responsive layouts", "Node.js, Express and MongoDB basics"]
+    tools: ["Git", "Code review", "Vite", "AWS CodeBuild", "Code splitting", "List virtualization", "Responsive design", "Node.js, Express and MongoDB basics"]
   }
 ];
 
 // Education and work on one time axis. Years are decimal: 2023.5 is roughly July 2023.
+// The story above tells why; this is just what happened, and when.
 export const TIMELINE = {
   start: 2019.3,
   end: 2026.8,
   education: [
     { label: "B.Com", detail: "YCMOU", from: 2019.5, to: 2022.4 },
-    { label: "Dev course", detail: "6 months", from: 2022.45, to: 2022.95 },
-    { label: "MCA, part-time", detail: "CGPA 7.85", from: 2023.5, to: 2026.45 }
+    { label: "Course", detail: "6 months", from: 2022.45, to: 2022.95 },
+    { label: "MCA, part-time", detail: "Sandip University", from: 2023.5, to: 2026.45 }
   ],
   work: [
-    { label: "Intern", detail: "Ink In Caps", from: 2023.0, to: 2023.55 },
-    { label: "Junior SDE", detail: "Ink In Caps", from: 2023.6, to: 2024.6 },
-    { label: "SDE", detail: "Ink In Caps", from: 2024.6, to: 2026.8 }
+    { label: "Intern", detail: "", from: 2023.0, to: 2023.55 },
+    { label: "Junior SDE", detail: "", from: 2023.6, to: 2024.55 },
+    { label: "SDE", detail: "", from: 2024.6, to: 2026.8 }
   ],
   moments: [
-    { label: "A friend shows me code", at: 2020.3 },
+    { label: "First lines of code", at: 2020.3 },
     { label: "KNKY launches", at: 2023.78 }
   ],
   stages: [
@@ -177,49 +178,49 @@ export const TIMELINE = {
       from: 2019.3,
       word: "B.Com",
       period: "2019 – 2022",
-      text: "Science in 12th because I liked computers, then 52%, and my education went a different way. Three years of commerce."
+      text: "Bachelor of Commerce, Yashwantrao Chavan Maharashtra Open University."
     },
     {
       from: 2020.2,
-      word: "Curious",
+      word: "Lockdown",
       period: "2020",
-      text: "Lockdown. A friend introduced me to coding, and I started to wonder how things actually worked."
+      text: "A friend introduces me to coding."
     },
     {
       from: 2022.45,
-      word: "Learning",
+      word: "Course",
       period: "2022",
-      text: "After B.Com, a six-month software development course. HTML, CSS and JavaScript first, then Angular, Node.js and MongoDB. The first time I saw how an application is actually built."
+      text: "Full Stack Web Development, SPARK IT Training Institute, Pune. Six months: HTML, CSS and JavaScript, then Angular, Node.js and MongoDB."
     },
     {
       from: 2023.0,
-      word: "First job",
+      word: "Intern",
       period: "Jan – Jul 2023",
-      text: "Intern at Ink In Caps. Admin panel work and REST APIs in a production Angular codebase. Full-time after seven months."
+      text: "Web Developer Intern, Ink In Caps, Mumbai. Admin panel and REST API work in a production Angular codebase. Converted to full-time."
     },
     {
       from: 2023.5,
-      word: "Building",
-      period: "Aug 2023",
-      text: "Junior SDE. I start a part-time MCA alongside the job, because I want to understand more than work teaches. At work: the web layer over Unity 3D worlds for Heftyverse."
+      word: "MCA",
+      period: "2023",
+      text: "Part-time MCA at Sandip University begins, alongside the job."
     },
     {
-      from: 2023.78,
-      word: "Shipping",
-      period: "Oct 2023",
-      text: "KNKY launches. I learn React and Next.js on the job, and build Stories, Shop, Channels and the Media Vault."
+      from: 2023.6,
+      word: "Junior SDE",
+      period: "Aug 2023 – Jul 2024",
+      text: "Junior Software Development Engineer. The web layer over Unity WebGL for Heftyverse, lead developer on Digital Bharat Collaborative, and KNKY from its launch in October 2023."
     },
     {
       from: 2024.6,
-      word: "Owning",
-      period: "Aug 2024",
-      text: "SDE. I own payments and subscriptions, 45K+ transactions a month, and I'm the only frontend engineer on the admin console."
+      word: "SDE",
+      period: "Aug 2024 – Present",
+      text: "Software Development Engineer. I own KNKY's payments and subscriptions, 45K+ transactions a month, and I'm the only frontend engineer on its admin console."
     },
     {
       from: 2026.4,
-      word: "Now",
+      word: "MCA done",
       period: "2026",
-      text: "MCA done, part-time over five semesters, CGPA 7.85. Reviewing the team's pull requests and building the next thing."
+      text: "Five semesters, part-time, CGPA 7.85."
     }
   ]
 };

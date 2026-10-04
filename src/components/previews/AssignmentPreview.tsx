@@ -67,7 +67,7 @@ export function AssignmentPreview() {
       </div>
 
       <p className="mt-4 border-t border-paper/15 pt-3 text-paper/50">
-        {staff[active].name} is assigned {staff[active].creators.length} creators. Saving sends only what changed.
+        {staff[active].name} is assigned {staff[active].creators.length} creators. Saving sends only what changed. Sample data.
       </p>
     </div>
   );

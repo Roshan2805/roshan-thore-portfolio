@@ -257,4 +257,4 @@ export const PRINCIPLES = [
   }
 ];
 
-export const OUTSIDE = ["Anime", "Movies", "Hiking", "Exploring"];
+export const OUTSIDE = ["Games", "Movies", "Anime", "Weekend rides", "Hiking", "Exploring"];

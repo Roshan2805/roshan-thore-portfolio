@@ -52,7 +52,7 @@ export const LATER: Chapter[] = [
     label: "2023",
     title: "Then I started building real software.",
     facts: ["Ink In Caps, Mumbai", "Intern → full-time"],
-    text: "I joined Ink In Caps as an intern. My first task was an admin panel in a production Angular codebase I didn't understand yet, so I spent the first few days reading it. Seven months later I was full-time."
+    text: "After the course I looked for my first opportunity and joined Ink In Caps as an intern. My first task was an admin panel in a production Angular codebase I didn't understand yet, so I spent the first few days reading it. Seven months later I was full-time."
   },
   {
     chapter: 4,

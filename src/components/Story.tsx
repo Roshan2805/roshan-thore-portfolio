@@ -165,10 +165,11 @@ export function Discovery() {
           <Layer show={part === 0}>
             <p className="label text-signal">03 · Lockdown, 2020</p>
             <p className="mt-5 max-w-4xl font-display text-[clamp(2rem,5vw,4.4rem)] leading-[1.06] tracking-[-0.025em] text-balance">
-              During lockdown, a friend introduced me to coding.
+              During lockdown, a friend told me about courses that could get me into IT.
             </p>
             <p className="mt-6 max-w-xl text-lg leading-relaxed opacity-70">
-              That&apos;s when I started understanding what was actually happening behind the screen.
+              I liked computers, but I didn&apos;t really know what careers there were in software. That conversation made
+              me think about it seriously, so I signed up for a six-month software development course.
             </p>
           </Layer>
 
@@ -201,7 +202,8 @@ export function Discovery() {
                 </li>
               ))}
             </ol>
-            <p className="mt-6 max-w-lg text-base opacity-70">I started with the fundamentals.</p>
+            <p className="label mt-6 text-signal">The course, 2022</p>
+            <p className="mt-2 max-w-lg text-base opacity-70">That&apos;s where I started learning to code, from the fundamentals.</p>
           </Layer>
 
           <Layer show={part === 2}>
@@ -224,7 +226,7 @@ export function Discovery() {
               Then how a complete application comes together.
             </p>
             <p className="mt-3 max-w-lg text-base opacity-70">
-              All of it in a six-month software development course after B.Com, my first structured introduction to building software.
+              My first real look at how software is actually built.
             </p>
           </Layer>
         </div>

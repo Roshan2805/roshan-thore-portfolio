@@ -179,7 +179,7 @@ export const TIMELINE = {
     { label: "SDE", detail: "", from: 2024.6, to: 2026.8 }
   ],
   moments: [
-    { label: "First lines of code", at: 2020.3 },
+    { label: "A friend mentions IT courses", at: 2020.3 },
     { label: "KNKY launches", at: 2023.78 }
   ],
   stages: [
@@ -193,7 +193,7 @@ export const TIMELINE = {
       from: 2020.2,
       word: "Lockdown",
       period: "2020",
-      text: "A friend introduces me to coding."
+      text: "Talking to a friend about what I'm into, I hear about courses that could get me into IT."
     },
     {
       from: 2022.45,

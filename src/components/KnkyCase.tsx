@@ -6,6 +6,7 @@ import { PROJECTS } from "@/data/portfolioData";
 import { useDesktop } from "@/lib/useDesktop";
 import { StoriesPreview } from "./previews/StoriesPreview";
 import { CheckoutPreview } from "./previews/CheckoutPreview";
+import { Flow } from "./Flow";
 
 const knky = PROJECTS[0];
 const parts = ["KNKY", "Stories", "Checkout", "Result"];
@@ -47,22 +48,29 @@ export function KnkyCase() {
               {knky.title}
             </h2>
             <div className="mt-8 grid gap-6 md:grid-cols-12">
-              <p className="font-display text-2xl italic text-ember md:col-span-4">{knky.role}</p>
+              <p className="font-display text-2xl italic text-ember md:col-span-4">
+                Built for real users.
+                <span className="label mt-2 block not-italic text-paper/50">{knky.role}</span>
+              </p>
               <p className="max-w-xl text-lg leading-relaxed text-paper/80 md:col-span-6 md:col-start-7">{knky.problem}</p>
             </div>
           </div>
 
           <div className={layer(1)}>
             <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12">
-              <div className="md:col-span-4 md:col-start-2">
+              <div className="md:col-span-4 md:col-start-2" data-cursor="Tap">
                 <StoriesPreview />
               </div>
               <div className="md:col-span-5 md:col-start-7">
                 <p className="label text-ember">What I built · 1</p>
                 <h3 className="mt-4 font-display text-5xl tracking-tight sm:text-7xl">Stories</h3>
-                <p className="mt-5 text-lg leading-relaxed text-paper/80">
-                  The Stories feed, rebuilt: cube navigation between creators, adaptive bitrate for slow connections,
-                  seen-state tracking, and locked states for premium content. 20K+ stories are posted a month.
+                <div className="mt-6">
+                  <Flow steps={["Create", "Publish", "View", "Seen", "Unlock"]} />
+                </div>
+                <p className="mt-6 text-lg leading-relaxed text-paper/80">
+                  The first thing I built in React. Cube navigation between creators, a lower bitrate on slow
+                  connections, seen state, and premium stories that stay locked until you subscribe. 20K+ are posted a
+                  month.
                 </p>
                 <p className="label mt-6 text-paper/50">← Tap it, hold it, unlock it</p>
               </div>
@@ -74,20 +82,23 @@ export function KnkyCase() {
               <div className="md:col-span-5">
                 <p className="label text-ember">What I built · 2</p>
                 <h3 className="mt-4 font-display text-5xl tracking-tight sm:text-7xl">Checkout &amp; subscriptions</h3>
-                <p className="mt-5 text-lg leading-relaxed text-paper/80">
-                  Four payment methods, card tokenization and guest checkout, with failure states that always give the
-                  buyer a next step. Then the plans themselves: upgrades, downgrades, trials and lifetime tiers.
+                <div className="mt-6">
+                  <Flow steps={["Create plan", "Set price", "Subscribe", "Pay", "Active"]} />
+                </div>
+                <p className="mt-6 text-lg leading-relaxed text-paper/80">
+                  The part I own. Four payment methods, saved cards, guest checkout, and a clear next step when a bank
+                  says no. Then everything after: upgrades, downgrades, trials and lifetime plans.
                 </p>
                 <p className="label mt-6 text-paper/50">Try a payment, then make the bank decline it →</p>
               </div>
-              <div className="md:col-span-5 md:col-start-8">
+              <div className="md:col-span-5 md:col-start-8" data-cursor="Try it">
                 <CheckoutPreview />
               </div>
             </div>
           </div>
 
           <div className={layer(3)}>
-            <p className="label text-ember">What it adds up to</p>
+            <p className="label text-ember">What that adds up to, every month</p>
             <dl className="mt-8 grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-4">
               {knky.results.map((result) => (
                 <div key={result.label} className="border-t border-paper/30 pt-4">

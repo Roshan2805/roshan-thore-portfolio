@@ -12,13 +12,6 @@ export const PERSONAL_INFO = {
   avatar: "/profile.jpg"
 };
 
-export const FIGURES = [
-  { label: "people use what I build", value: "30K+" },
-  { label: "transactions a month through my checkout", value: "45K+" },
-  { label: "products in production", value: "3" },
-  { label: "years of frontend, professionally", value: "3.5+" }
-];
-
 export interface Project {
   id: string;
   title: string;
@@ -42,7 +35,7 @@ export const PROJECTS: Project[] = [
     period: "Oct 2023 – Present",
     status: "Live",
     problem:
-      "Creators earn through subscriptions, tips, a shop and paid content. Every one of those ends in a checkout that has to work across countries and payment methods.",
+      "A platform where creators earn from subscriptions, tips, a shop and paid content. Every one of those ends in a checkout that has to work in different countries.",
     contribution:
       "I own checkout and subscriptions: four payment methods, card tokenization, guest checkout, and plan upgrades, downgrades, trials and lifetime tiers. I also built Stories, Channels, Shop and the Media Vault.",
     results: [
@@ -161,79 +154,91 @@ export const CAPABILITIES = [
   }
 ];
 
-export const GROWTH = [
+// Education and work on one time axis. Years are decimal: 2023.5 is roughly July 2023.
+export const TIMELINE = {
+  start: 2019.3,
+  end: 2026.8,
+  education: [
+    { label: "B.Com", detail: "YCMOU", from: 2019.5, to: 2022.6 },
+    { label: "Course", detail: "Pune", from: 2022.42, to: 2022.95 },
+    { label: "MCA", detail: "Sandip University", from: 2023.5, to: 2026.45 }
+  ],
+  work: [
+    { label: "Intern", detail: "Ink In Caps", from: 2023.0, to: 2023.55 },
+    { label: "Junior SDE", detail: "Ink In Caps", from: 2023.6, to: 2024.6 },
+    { label: "SDE", detail: "Ink In Caps", from: 2024.6, to: 2026.8 }
+  ],
+  moments: [
+    { label: "Python, from YouTube", at: 2020.3 },
+    { label: "KNKY launches", at: 2023.78 }
+  ],
+  stages: [
+    {
+      from: 2019.3,
+      word: "Commerce",
+      period: "2019 – 2022",
+      text: "B.Com, with banking as the plan. No computer science anywhere in sight."
+    },
+    {
+      from: 2020.2,
+      word: "Learning",
+      period: "2020 – 2022",
+      text: "Python from YouTube during lockdown. Then a seven-month full-stack course in Pune, where I learned Angular."
+    },
+    {
+      from: 2023.0,
+      word: "First job",
+      period: "Jan – Jul 2023",
+      text: "Intern at Ink In Caps. Admin panel work and REST APIs in a production Angular codebase. Full-time after seven months."
+    },
+    {
+      from: 2023.5,
+      word: "Building",
+      period: "Aug 2023",
+      text: "Junior SDE, with an MCA started alongside the job. The web layer over Unity 3D worlds for Heftyverse, and lead developer on the Digital Bharat Collaborative site."
+    },
+    {
+      from: 2023.78,
+      word: "Shipping",
+      period: "Oct 2023",
+      text: "KNKY launches. I learn React and Next.js on the job, and build Stories, Shop, Channels and the Media Vault."
+    },
+    {
+      from: 2024.6,
+      word: "Owning",
+      period: "Aug 2024",
+      text: "SDE. I own payments and subscriptions, 45K+ transactions a month, and I'm the only frontend engineer on the admin console."
+    },
+    {
+      from: 2026.4,
+      word: "Now",
+      period: "2026",
+      text: "MCA done. Reviewing the team's pull requests, and still building."
+    }
+  ]
+};
+
+export const PRINCIPLES = [
   {
-    stage: "Learning",
-    period: "Jun – Dec 2022",
-    role: "Full-stack course, SPARK IT, Pune",
-    points: ["Seven months of full-stack training, including Angular, straight after a commerce degree."]
+    title: "Small details change how it feels.",
+    proof: "On a slow connection, Stories drop to a lower bitrate instead of stalling. Skeletons hold the layout while content loads, so nothing jumps."
   },
   {
-    stage: "First opportunity",
-    period: "Jan – Jul 2023",
-    role: "Web Developer Intern, Ink In Caps",
-    points: [
-      "Worked in a production Angular codebase from the first weeks: admin panel updates, REST API integration, cross-browser fixes.",
-      "Converted to full-time after seven months."
-    ]
+    title: "Plan for the failure first.",
+    proof: "A declined payment tells the buyer what happened and what to do next. Admin sessions renew before they expire, so nobody loses a half-filled form."
   },
   {
-    stage: "Building",
-    period: "Aug 2023",
-    role: "Junior Software Development Engineer",
-    points: [
-      "Built the web layer over Unity 3D worlds for Heftyverse, including the message contract between Angular and the 3D runtime.",
-      "Lead developer on the Digital Bharat Collaborative site for Piramal Swasthya."
-    ]
+    title: "Fix it once, in the right place.",
+    proof: "One shared modal portal replaced a modal per feature. Decryption lives in one Axios interceptor instead of at every call site."
   },
   {
-    stage: "Shipping",
-    period: "Oct 2023",
-    role: "KNKY launches",
-    points: [
-      "Joined KNKY at launch and learned React and Next.js on the job.",
-      "Built Stories, Channels, Shop and the Media Vault, and integrated live rooms and real-time chat."
-    ]
+    title: "Send less code.",
+    proof: "The video player only downloads on pages that play video. Lists of thousands render only the rows on screen. Big CSV exports are built in chunks so the tab keeps working."
   },
   {
-    stage: "Owning",
-    period: "Aug 2024",
-    role: "Software Development Engineer",
-    points: [
-      "Own KNKY's payments and subscription module, which handles 45K+ transactions a month.",
-      "Only frontend engineer on the admin console finance and operations run the platform from."
-    ]
-  },
-  {
-    stage: "Growing",
-    period: "Now",
-    role: "Same title, wider job",
-    points: [
-      "Review pull requests across the team's frontend work.",
-      "Set up the admin console from an empty repository, including its build pipeline."
-    ]
+    title: "Learn by building.",
+    proof: "Python from YouTube, Angular in a course, and React by building Stories on a real product in my first weeks with it."
   }
 ];
 
-export const OUTSIDE = ["Anime", "Movies", "Hiking"];
-
-export const EDUCATION = [
-  {
-    degree: "Master of Computer Applications",
-    school: "Sandip University, Nashik",
-    period: "2023 – 2026",
-    note: "Studied alongside the full-time job at Ink In Caps."
-  },
-  {
-    degree: "Full Stack Web Development",
-    school: "SPARK IT Training Institute, Pune",
-    period: "2022",
-    note: "Seven months of full-stack training, including Angular."
-  },
-  {
-    degree: "Bachelor of Commerce",
-    school: "Yashwantrao Chavan Maharashtra Open University",
-    period: "2019 – 2022",
-    note: "Banking and accounting. This was the plan, before I found code."
-  }
-];
+export const OUTSIDE = ["Anime", "Movies", "Hiking", "Exploring"];

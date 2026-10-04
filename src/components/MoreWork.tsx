@@ -30,7 +30,7 @@ function Panel({ project, index, children }: { project: Project; index: number; 
         </dl>
         <p className="mt-5 max-w-xl font-mono text-xs leading-relaxed text-mute">{project.stack.join(" / ")}</p>
       </div>
-      <div className="bg-ink p-5 text-paper sm:p-8 md:col-span-5 md:col-start-8">{children}</div>
+      <div data-cursor="Try it" className="bg-ink p-5 text-paper sm:p-8 md:col-span-5 md:col-start-8">{children}</div>
     </article>
   );
 }

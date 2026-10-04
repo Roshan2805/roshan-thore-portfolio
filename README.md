@@ -4,12 +4,13 @@ Personal site of Roshan Thore, frontend engineer at Ink In Caps.
 
 ## What's on the site
 
-The page is one continuous scroll that tells how I got here and what I've built.
+One continuous scroll, in the order the story happened.
 
-- **A short intro** on a first visit (about eight seconds, skippable). Its last frame draws my name in particles exactly where the page's headline is, and the page takes over from there.
-- **The story**, pinned while you scroll: a guess at a website, a commerce ledger, the first code, an interface, a product.
-- **The work**: KNKY opens from a small window to the full screen and steps through Stories, checkout and the results, with previews you can use. The admin console and agency portal follow in a horizontal run.
-- **Experience, skills, about and contact**, each with its own layout.
+- **A short intro** on a first visit (about eight seconds, skippable). Its last frame draws my name in particles exactly where the headline sits, and the page takes over.
+- **One dark sentence** that lights up word by word as you scroll, then **the story**, pinned while a single frame changes from a guessed-at website to a ledger, to code, to a product.
+- **The work**: KNKY opens from a small window to the full screen, with the Stories and checkout flows animated and usable. The admin console and agency portal follow in a horizontal run.
+- **Education and work on one timeline**, with a playhead that moves through the years as you scroll.
+- **Skills, how I work** (each principle tied to something I actually fixed), a band of what I do outside work that speeds up with your scroll, and **an ending** that replays the whole path in five lines.
 
 ## Tech stack
 
@@ -37,21 +38,21 @@ portfolio/
     │   ├── layout.tsx           # Metadata, fonts, JSON-LD, first-visit check
     │   └── page.tsx             # Home page
     ├── components/
-    │   ├── Intro.tsx            # Intro overlay and its timing
-    │   ├── IntroScene.tsx       # three.js particles, ending on the hero's name
-    │   ├── SmoothScroll.tsx     # Lenis
+    │   ├── Intro.tsx, IntroScene.tsx   # Intro overlay and its three.js particles
+    │   ├── SmoothScroll.tsx            # Lenis, plus eased section links
+    │   ├── Cursor.tsx                  # Pointer dot that opens over previews
     │   ├── Nav.tsx
-    │   ├── Hero.tsx
-    │   ├── KineticName.tsx      # The headline name
-    │   ├── Story.tsx            # Pinned story sequence
-    │   ├── KnkyCase.tsx         # Expanding case study
-    │   ├── MoreWork.tsx         # Horizontal run of the other projects
-    │   ├── previews/            # The interactive sketches inside the projects
-    │   ├── Experience.tsx
-    │   ├── Decisions.tsx        # Problems and fixes per project
+    │   ├── Hero.tsx, KineticName.tsx, RotatingLine.tsx
+    │   ├── Statement.tsx               # The dark sentence
+    │   ├── Story.tsx                   # Pinned story sequence
+    │   ├── KnkyCase.tsx, Flow.tsx      # Expanding case study and its flows
+    │   ├── MoreWork.tsx                # Horizontal run of the other projects
+    │   ├── previews/                   # The interactive sketches
+    │   ├── Path.tsx                    # Education and work timeline
     │   ├── Skills.tsx
-    │   ├── Education.tsx
-    │   ├── About.tsx
+    │   ├── Thinking.tsx                # How I work
+    │   ├── Outside.tsx                 # Scroll-speed band
+    │   ├── Ending.tsx
     │   └── Contact.tsx
     ├── data/
     │   ├── journeyData.ts       # Intro beats and story steps

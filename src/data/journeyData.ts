@@ -17,32 +17,32 @@ export const STORY = [
   {
     stage: "Curiosity",
     label: "Early on",
-    text: "I knew I wanted to build things with technology. I didn't really know what a software engineer did. I thought it meant websites."
+    text: "As a kid I wanted to work with computers. I couldn't have told you what a software engineer did. I thought it meant making websites."
   },
   {
     stage: "Curiosity",
-    label: "After 12th",
-    text: "I scored 52% and ended up in B.Com. Banking looked like the plan."
+    label: "12th, then B.Com",
+    text: "I took Science in 12th for it, scored 52%, and ended up in commerce. Banking started to look like the sensible plan."
   },
   {
     stage: "Code",
     label: "Lockdown, 2020",
-    text: "A friend showed me some code. It was the first time I understood that the sites and apps I used every day were written, line by line, by people. I started learning Python on YouTube."
+    text: "A friend who knew some code got me curious. It was the first time I saw that the apps I used every day were written by people, line by line. I started on Python, from YouTube."
   },
   {
     stage: "Interface",
     label: "The course, 2022",
-    text: "I had the basics but couldn't work out how to build a whole app on my own. So I joined a full-stack course in Pune, and learned Angular there."
+    text: "I could write small programs, but I couldn't build a real app. So I joined a full-stack course in Pune, and that's where Angular clicked."
   },
   {
     stage: "Product",
-    label: "First opportunity, 2023",
-    text: "Ink In Caps took me on as an intern in Mumbai. My first task was an admin panel in a codebase I didn't understand yet. Seven months later it was a job."
+    label: "First job, 2023",
+    text: "Ink In Caps took me on as an intern. My first task was an admin panel in a codebase I didn't understand, so for the first few days I mostly just read it."
   },
   {
     stage: "Career",
-    label: "Today",
-    text: "Then I was moved to a product built in React and Next.js, and learned both on the job. What I build there is now used by more than 30,000 people."
+    label: "On the job",
+    text: "Then I moved to a product built in React and Next.js, which I had never written. I learned it by building Stories. About 30,000 people use it now."
   }
 ];
 

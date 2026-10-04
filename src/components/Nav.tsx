@@ -5,11 +5,11 @@ import { PERSONAL_INFO } from "@/data/portfolioData";
 import { playJourney } from "@/lib/journey";
 
 const links = [
+  { id: "story", label: "Story" },
   { id: "work", label: "Work" },
-  { id: "experience", label: "Experience" },
+  { id: "experience", label: "Experience & education" },
   { id: "skills", label: "Skills" },
-  { id: "education", label: "Education" },
-  { id: "about", label: "About" },
+  { id: "about", label: "How I work" },
   { id: "contact", label: "Contact" }
 ];
 

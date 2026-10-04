@@ -1,15 +1,17 @@
 import { Intro } from "@/components/Intro";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { Cursor } from "@/components/Cursor";
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
+import { Statement } from "@/components/Statement";
 import { Story } from "@/components/Story";
 import { KnkyCase } from "@/components/KnkyCase";
 import { MoreWork } from "@/components/MoreWork";
-import { Decisions } from "@/components/Decisions";
-import { Experience } from "@/components/Experience";
+import { Path } from "@/components/Path";
 import { Skills } from "@/components/Skills";
-import { Education } from "@/components/Education";
-import { About } from "@/components/About";
+import { Thinking } from "@/components/Thinking";
+import { Outside } from "@/components/Outside";
+import { Ending } from "@/components/Ending";
 import { Contact } from "@/components/Contact";
 
 export default function Home() {
@@ -17,17 +19,19 @@ export default function Home() {
     <>
       <Intro />
       <SmoothScroll />
+      <Cursor />
       <Nav />
       <main>
         <Hero />
+        <Statement />
         <Story />
         <KnkyCase />
         <MoreWork />
-        <Decisions />
-        <Experience />
+        <Path />
         <Skills />
-        <Education />
-        <About />
+        <Thinking />
+        <Outside />
+        <Ending />
       </main>
       <Contact />
     </>

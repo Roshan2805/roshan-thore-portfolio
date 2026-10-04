@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from "react";
+import { INTRO_KEY } from "./introKey";
 
-const SEEN_KEY = "journey-seen";
 const listeners = new Set<() => void>();
 let playing: boolean | undefined;
 
@@ -30,7 +30,7 @@ export function playJourney() {
 
 export function markJourneySeen() {
   try {
-    localStorage.setItem(SEEN_KEY, "1");
+    localStorage.setItem(INTRO_KEY, "1");
   } catch {}
   document.documentElement.classList.remove("intro-pending");
 }

@@ -3,6 +3,7 @@ import { JourneyLine } from "./JourneyLine";
 import { KineticName } from "./KineticName";
 import { Magnetic } from "./Magnetic";
 import { MumbaiTime } from "./MumbaiTime";
+import { ReplayJourney } from "./ReplayJourney";
 import { RotatingLine } from "./RotatingLine";
 
 export function Hero() {
@@ -35,13 +36,14 @@ export function Hero() {
 
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3 md:col-span-3 md:justify-end">
           <Magnetic>
-            <a href="#story" className="block bg-ink px-5 py-3 text-sm font-medium text-paper transition-colors hover:bg-signal">
-              Start the story ↓
+            <a href="#work" className="block bg-ink px-5 py-3 text-sm font-medium text-paper transition-colors hover:bg-signal">
+              See my work ↓
             </a>
           </Magnetic>
           <a href={PERSONAL_INFO.resumeUrl} download className="link text-sm font-medium">
             Résumé
           </a>
+          <ReplayJourney className="label cursor-pointer text-mute transition-colors hover:text-signal">↗ Replay story</ReplayJourney>
         </div>
       </div>
     </section>

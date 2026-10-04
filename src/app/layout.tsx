@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
 import { PERSONAL_INFO } from "@/data/portfolioData";
+import { INTRO_KEY } from "@/lib/introKey";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -22,7 +23,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 // Runs before first paint so a first-time visitor never sees the page flash under the intro.
-const introGate = `try{if(!localStorage.getItem("journey-seen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("intro-pending")}catch(e){}`;
+const introGate = `try{if(!localStorage.getItem("${INTRO_KEY}")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("intro-pending")}catch(e){}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(PERSONAL_INFO.siteUrl),

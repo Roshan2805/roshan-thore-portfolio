@@ -168,8 +168,9 @@ export const TIMELINE = {
   start: 2019.3,
   end: 2026.8,
   education: [
-    { label: "B.Com", detail: "YCMOU", from: 2019.6, to: 2022.4 },
-    { label: "Course", detail: "6 months", from: 2022.45, to: 2022.95 },
+    { label: "B.Com", detail: "YCMOU", from: 2019.6, to: 2022.6 },
+    // The course ran while B.Com was finishing, so it sits just under it.
+    { label: "Course", detail: "6 months", from: 2022.45, to: 2022.95, row: 1 },
     { label: "MCA, part-time", detail: "Sandip University", from: 2023.58, to: 2026.45 }
   ],
   work: [
@@ -185,8 +186,8 @@ export const TIMELINE = {
     {
       from: 2019.3,
       word: "B.Com",
-      period: "2019 – 2022",
-      text: "Bachelor of Commerce, Yashwantrao Chavan Maharashtra Open University."
+      period: "Aug 2019 – Aug 2022",
+      text: "Bachelor of Commerce, Yashwantrao Chavan Maharashtra Open University. 64%."
     },
     {
       from: 2020.2,
@@ -210,7 +211,7 @@ export const TIMELINE = {
       from: 2023.58,
       word: "MCA",
       period: "Aug 2023",
-      text: "Part-time MCA at Sandip University begins, alongside the job."
+      text: "Master of Computer Applications at Sandip University begins, part-time, alongside the job."
     },
     {
       from: 2023.6,

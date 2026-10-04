@@ -35,7 +35,7 @@ export const EARLY: Chapter[] = [
     chapter: 1,
     label: "School and college",
     title: "My education took a different direction.",
-    facts: ["12th · Science · 52%", "B.Com · 2019 – 2022"],
+    facts: ["12th · Science · 52%", "B.Com · Aug 2019 – Aug 2022"],
     text: "I chose Science in 12th because I was interested in computers. After scoring 52%, I went on to study B.Com. My interest in computers was still there. I just hadn't found my way into software yet."
   }
 ];
@@ -58,7 +58,7 @@ export const LATER: Chapter[] = [
     chapter: 4,
     label: "Alongside the job",
     title: "I wanted to understand it more deeply.",
-    facts: ["MCA · Sandip University", "Part-time · 5 semesters", "2023 – 2026 · CGPA 7.85"],
+    facts: ["MCA · Sandip University", "Part-time · 5 semesters", "Aug 2023 – Jun 2026 · CGPA 7.85"],
     text: "By then I was already working in software. I wanted to understand computers and software development beyond what day-to-day work teaches, so I took an MCA alongside my job."
   },
   {

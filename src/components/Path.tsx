@@ -10,14 +10,20 @@ const { start, end, education, work, moments, stages } = TIMELINE;
 const years = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
 const x = (year: number) => `${((year - start) / (end - start)) * 100}%`;
 
-function Lane({ name, bars, at, top }: { name: string; bars: typeof education; at: number; top: string }) {
+type Bar = { label: string; detail: string; from: number; to: number; row?: number };
+
+function Lane({ name, bars, at, top }: { name: string; bars: Bar[]; at: number; top: string }) {
   return (
     <div className="absolute inset-x-0" style={{ top }}>
       <span className="label absolute -top-6 left-0 text-mute">{name}</span>
       {bars.map((bar) => {
         const filled = Math.min(Math.max((at - bar.from) / (bar.to - bar.from), 0), 1);
         return (
-          <div key={bar.label} className="absolute" style={{ left: x(bar.from), width: `calc(${x(bar.to)} - ${x(bar.from)} - 6px)` }}>
+          <div
+            key={bar.label}
+            className="absolute"
+            style={{ left: x(bar.from), top: `${(bar.row ?? 0) * 14}px`, width: `calc(${x(bar.to)} - ${x(bar.from)} - 6px)` }}
+          >
             <span className="block h-1.5 bg-rule">
               <span className="block h-full origin-left bg-signal" style={{ transform: `scaleX(${filled})` }} />
             </span>

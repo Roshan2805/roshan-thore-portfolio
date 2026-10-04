@@ -266,7 +266,7 @@ export function StoryLater() {
             <Layer show={step === 1} className="!items-start px-6 sm:px-10">
               <p className="label text-paper/50">Part-time, alongside the job</p>
               <p className="mt-3 font-display text-2xl leading-tight tracking-tight sm:mt-4 sm:text-4xl">Master of Computer Applications</p>
-              <p className="mt-2 text-paper/60">Sandip University · 2023 – 2026 · 5 semesters</p>
+              <p className="mt-2 text-paper/60">Sandip University · Aug 2023 – Jun 2026</p>
               <div className="mt-8 grid w-full grid-cols-5 gap-2 max-sm:hidden">
                 {[1, 2, 3, 4, 5].map((semester) => (
                   <div key={semester} className="border-t-2 border-ember pt-2 text-paper/60">

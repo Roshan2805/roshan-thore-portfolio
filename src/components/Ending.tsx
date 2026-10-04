@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useScroll } from "framer-motion";
 import { useMotionState } from "@/lib/useMotionState";
 
-const path = ["A kid who liked computers.", "52% in 12th.", "A B.Com.", "Python, from YouTube.", "A six-month course, from HTML up.", "React, on the job."];
+const path = ["A kid who liked computers.", "Science, then 52%.", "A B.Com.", "Python, from YouTube.", "A six-month course, from HTML up.", "A job, and an MCA alongside it.", "React, on the job."];
 
 // The whole path again in a few short lines, then the line it was all leading to.
 export function Ending() {

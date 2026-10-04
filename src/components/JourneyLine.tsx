@@ -2,7 +2,7 @@ import { TIMELINE } from "@/data/portfolioData";
 
 const { start, end } = TIMELINE;
 const marks = [
-  { at: 2019.5, label: "Commerce" },
+  { at: 2019.5, label: "B.Com" },
   { at: 2020.3, label: "Curious" },
   { at: 2022.6, label: "Learning" },
   { at: 2023.0, label: "First job" },

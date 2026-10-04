@@ -161,7 +161,7 @@ export const TIMELINE = {
   education: [
     { label: "B.Com", detail: "YCMOU", from: 2019.5, to: 2022.4 },
     { label: "Dev course", detail: "6 months", from: 2022.45, to: 2022.95 },
-    { label: "MCA", detail: "Sandip University", from: 2023.5, to: 2026.45 }
+    { label: "MCA, part-time", detail: "CGPA 7.85", from: 2023.5, to: 2026.45 }
   ],
   work: [
     { label: "Intern", detail: "Ink In Caps", from: 2023.0, to: 2023.55 },
@@ -175,9 +175,9 @@ export const TIMELINE = {
   stages: [
     {
       from: 2019.3,
-      word: "Commerce",
+      word: "B.Com",
       period: "2019 – 2022",
-      text: "A kid who liked computers, now doing a B.Com, with banking as the plan. No code anywhere in sight yet."
+      text: "Science in 12th because I liked computers, then 52%, and my education went a different way. Three years of commerce."
     },
     {
       from: 2020.2,
@@ -201,7 +201,7 @@ export const TIMELINE = {
       from: 2023.5,
       word: "Building",
       period: "Aug 2023",
-      text: "Junior SDE, with an MCA started alongside the job. The web layer over Unity 3D worlds for Heftyverse, and lead developer on the Digital Bharat Collaborative site."
+      text: "Junior SDE. I start a part-time MCA alongside the job, because I want to understand more than work teaches. At work: the web layer over Unity 3D worlds for Heftyverse."
     },
     {
       from: 2023.78,
@@ -219,7 +219,7 @@ export const TIMELINE = {
       from: 2026.4,
       word: "Now",
       period: "2026",
-      text: "MCA done. Reviewing the team's pull requests, and still building."
+      text: "MCA done, part-time over five semesters, CGPA 7.85. Reviewing the team's pull requests, and still building."
     }
   ]
 };

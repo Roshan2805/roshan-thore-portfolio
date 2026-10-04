@@ -5,13 +5,6 @@ import { motion, useScroll } from "framer-motion";
 import { useMotionState } from "@/lib/useMotionState";
 import { STAGES, STORY } from "@/data/journeyData";
 
-const python = [
-  ["steps = ", '["learn", "build", "repeat"]', ""],
-  ["", "", ""],
-  ["for ", "step", " in steps:"],
-  ["    print(", '"Roshan will"', ", step)"]
-];
-
 const fundamentals = [
   { file: "index.html", lines: ['<div class="card">', '  <button id="like">Like</button>', "</div>"] },
   { file: "style.css", lines: [".card { padding: 1rem; }", "#like { border-radius: 99px; }"] },
@@ -47,6 +40,47 @@ function Rings() {
   );
 }
 
+// Curiosity about computers and formal education run apart for a while, then meet at code.
+function TwoPaths({ phase }: { phase: number }) {
+  const show = (from: number, to = 3) => `transition-opacity duration-700 ${phase >= from && phase <= to ? "opacity-100" : "opacity-0"}`;
+
+  return (
+    <svg viewBox="0 0 400 240" className="w-full overflow-visible font-mono" fill="none" stroke="currentColor">
+      <circle cx="16" cy="120" r="4" fill="currentColor" />
+      <text x="16" y="104" fill="currentColor" stroke="none" fontSize="11">
+        Computers
+      </text>
+      <path d="M16 120 H120" strokeWidth="1.5" />
+
+      <path d="M120 120 C190 120 220 60 300 60" strokeWidth="1.5" strokeDasharray="5 5" className={show(1)} />
+      <text x="168" y="52" fill="currentColor" stroke="none" fontSize="10" className={show(2)} opacity="0.7">
+        still curious
+      </text>
+
+      <path d="M120 120 C190 120 220 180 300 180" strokeWidth="1.5" className={show(1)} />
+      <text x="16" y="142" fill="currentColor" stroke="none" fontSize="10" className={show(1)}>
+        12th · Science · 52%
+      </text>
+      <text x="196" y="204" fill="currentColor" stroke="none" fontSize="10" className={show(2)}>
+        B.Com, 2019 – 2022
+      </text>
+
+      <path d="M300 60 H384" strokeWidth="1" strokeDasharray="2 6" className={show(1, 2)} opacity="0.4" />
+      <path d="M300 180 H384" strokeWidth="1" strokeDasharray="2 6" className={show(1, 2)} opacity="0.4" />
+
+      <path d="M300 60 C340 60 350 120 384 120" strokeWidth="1.5" className={`text-ember ${show(3)}`} />
+      <path d="M300 180 C340 180 350 120 384 120" strokeWidth="1.5" className={`text-ember ${show(3)}`} />
+      <circle cx="384" cy="120" r="5" className={`fill-ember stroke-none ${show(3)}`} />
+      <text x="384" y="102" textAnchor="end" stroke="none" fontSize="11" className={`fill-ember ${show(3)}`}>
+        Code
+      </text>
+      <text x="384" y="150" textAnchor="end" stroke="none" fontSize="10" className={`fill-current ${show(3)}`} opacity="0.6">
+        print(&quot;hello&quot;)
+      </text>
+    </svg>
+  );
+}
+
 function Layer({ show, children, className = "" }: { show: boolean; children: React.ReactNode; className?: string }) {
   return (
     <div
@@ -59,9 +93,9 @@ function Layer({ show, children, className = "" }: { show: boolean; children: Re
   );
 }
 
-// One frame that changes with the story: a computer, a ledger, code, an interface, a product.
+// One frame that changes with the story: a computer, two paths that meet, code, an application, a job, a degree, a product.
 function Visual({ step }: { step: number }) {
-  const dark = step >= 2;
+  const dark = step >= 3;
 
   return (
     <div
@@ -116,25 +150,13 @@ function Visual({ step }: { step: number }) {
         </div>
       </Layer>
 
-      <Layer show={step === 1}>
-        <p className="label mb-4 text-mute">B.Com, 2019 – 2022</p>
-        {["Accounting", "Banking", "Business studies", "A career in software"].map((row, i) => (
-          <p key={row} className={`flex items-baseline gap-2 border-b border-rule py-2.5 ${i === 3 ? "text-mute line-through" : ""}`}>
-            {row}
-            <span className="leader" />
-            {i === 3 ? "not on the syllabus" : "Dr / Cr"}
-          </p>
-        ))}
+      <Layer show={step >= 1 && step <= 3}>
+        <TwoPaths phase={step} />
       </Layer>
 
-      <Layer show={step === 2}>
-        <p className="label mb-4 text-paper/50">first.py</p>
-        <Code lines={python} />
-      </Layer>
-
-      <Layer show={step === 3} className="!justify-start">
+      <Layer show={step === 4} className="!justify-start">
         {/* Three files, one after another, the way the course taught them. */}
-        <div key={step === 3 ? "on" : "off"} className="space-y-4">
+        <div key={step === 4 ? "on" : "off"} className="space-y-4">
           {fundamentals.map((file, i) => (
             <div key={file.file} className="type-in" style={{ animationDelay: `${i * 450}ms` }}>
               <p className="label mb-1.5 text-ember">{file.file}</p>
@@ -144,7 +166,7 @@ function Visual({ step }: { step: number }) {
         </div>
       </Layer>
 
-      <Layer show={step === 4}>
+      <Layer show={step === 5}>
         <p className="label mb-6 text-paper/50">How an application fits together</p>
         <div className="flex items-center gap-2 sm:gap-3">
           {stack.map((part, i) => (
@@ -165,10 +187,10 @@ function Visual({ step }: { step: number }) {
         </div>
       </Layer>
 
-      <Layer show={step >= 5} className="!items-center">
+      <Layer show={step === 6 || step === 8} className="!items-center">
         <div
           className={`w-44 border border-paper/30 p-3 transition-transform duration-700 sm:w-52 ${
-            step === 6 ? "-translate-x-[45%] sm:-translate-x-[60%]" : ""
+            step === 8 ? "-translate-x-[45%] sm:-translate-x-[60%]" : ""
           }`}
         >
           <div className="origin-left scale-[0.6]">
@@ -184,7 +206,25 @@ function Visual({ step }: { step: number }) {
         </div>
       </Layer>
 
-      <Layer show={step === 6} className="!items-end">
+      <Layer show={step === 7}>
+        <p className="label text-paper/50">Part-time, alongside the job</p>
+        <p className="mt-4 font-display text-3xl leading-tight tracking-tight sm:text-4xl">Master of Computer Applications</p>
+        <p className="mt-2 text-paper/60">Sandip University · 2023 – 2026</p>
+        <div className="mt-8 grid grid-cols-5 gap-2">
+          {[1, 2, 3, 4, 5].map((semester) => (
+            <div key={semester} className="border-t-2 border-ember pt-2 text-paper/60">
+              Sem {semester}
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 flex items-baseline gap-2 text-base">
+          CGPA
+          <span className="leader" />
+          7.85
+        </p>
+      </Layer>
+
+      <Layer show={step === 8} className="!items-end">
         <p className="font-display text-6xl tracking-tight sm:text-8xl">30K+</p>
         <p className="label mt-2 text-paper/60">people using it</p>
       </Layer>
@@ -200,7 +240,7 @@ export function Story() {
   const stage = STAGES.indexOf(STORY[step].stage);
 
   return (
-    <section id="story" ref={ref} style={{ height: `${STORY.length * 85}vh` }} className="relative">
+    <section id="story" ref={ref} style={{ height: `${STORY.length * 72}vh` }} className="relative">
       <div className="sticky top-0 flex h-[100svh] flex-col px-5 pb-6 pt-20 sm:px-10">
         <div className="grid min-h-0 flex-1 items-center gap-6 md:grid-cols-12 md:gap-8">
           <div className="relative h-[38svh] md:order-2 md:col-span-6 md:col-start-7 md:h-[62svh]">

@@ -28,35 +28,50 @@ export const STORY: StoryStep[] = [
     note: "Mostly games and the internet. I'd heard the words \u201csoftware engineer\u201d and liked the sound of them. I had no idea what the job actually was."
   },
   {
-    stage: "Detour",
-    label: "12th, then B.Com",
-    text: "I took Science in 12th, scored 52%, and ended up in commerce. Banking started to look like the sensible plan."
+    stage: "12th",
+    label: "A different start",
+    text: "I chose Science in 12th because I was drawn to computers.",
+    note: "I scored 52%, and that changed the direction of my education."
   },
   {
-    stage: "Curiosity",
-    label: "Lockdown, 2020",
-    text: "A friend who knew some code got me wondering how the apps I used every day were actually made. I tried Python, from YouTube."
+    stage: "B.Com",
+    label: "2019 – 2022",
+    text: "So I studied B.Com.",
+    note: "A different path from where my curiosity about computers had started. The curiosity didn't go anywhere, though."
   },
   {
     stage: "Discovery",
-    label: "After B.Com, 2022",
-    text: "I joined a six-month software development course. It was the first time I learned to code properly, from the ground up: HTML, then CSS, then JavaScript."
+    label: "Lockdown, 2020",
+    text: "A friend who knew some code got me wondering how the apps I used every day were actually made.",
+    note: "I tried Python, from YouTube. The two paths started to meet."
   },
   {
-    stage: "Understanding",
+    stage: "Learning",
+    label: "The course, 2022",
+    text: "My curiosity about computers finally became something I could build with.",
+    note: "A six-month software development course: HTML, CSS and JavaScript first, then Angular, Node.js and MongoDB."
+  },
+  {
+    stage: "Learning",
     label: "The course",
-    text: "Then Angular, Node.js and MongoDB. A screen, a server, a database. That's when it clicked: this is what software development actually is."
+    text: "For the first time I understood what actually happens behind the websites and apps I'd been using for years."
   },
   {
-    stage: "Career",
+    stage: "Work",
     label: "First job, 2023",
     text: "Ink In Caps took me on as an intern. My first task was an admin panel in a codebase I didn't understand, so for the first few days I mostly just read it."
   },
   {
-    stage: "Career",
+    stage: "MCA",
+    label: "I wanted to understand more",
+    text: "Once I was working in software, I wanted to go deeper.",
+    note: "So I took a part-time MCA at Sandip University alongside the job, to understand computers and software beyond what day-to-day work teaches."
+  },
+  {
+    stage: "Today",
     label: "On the job",
     text: "Then I moved to a product built in React and Next.js, which I had never written. I learned it by building Stories. About 30,000 people use it now."
   }
 ];
 
-export const STAGES = ["Childhood", "Detour", "Curiosity", "Discovery", "Understanding", "Career"];
+export const STAGES = ["Childhood", "12th", "B.Com", "Discovery", "Learning", "Work", "MCA", "Today"];

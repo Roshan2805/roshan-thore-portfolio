@@ -3,7 +3,8 @@ import { TIMELINE } from "@/data/portfolioData";
 const { start, end } = TIMELINE;
 const marks = [
   { at: 2019.5, label: "Commerce" },
-  { at: 2020.3, label: "Code" },
+  { at: 2020.3, label: "Curious" },
+  { at: 2022.6, label: "Learning" },
   { at: 2023.0, label: "First job" },
   { at: 2024.6, label: "Owning it" },
   { at: 2026.8, label: "Now" }
@@ -27,7 +28,7 @@ export function JourneyLine() {
             }`}
           />
           <span
-            className={`label absolute top-4 whitespace-nowrap transition-colors duration-300 ${
+            className={`label absolute whitespace-nowrap transition-colors duration-300 ${i % 2 && i < marks.length - 1 ? "bottom-3" : "top-4"} ${
               i === marks.length - 1
                 ? "right-0 translate-x-1 text-signal"
                 : i === 0

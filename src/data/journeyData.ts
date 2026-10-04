@@ -30,9 +30,14 @@ export const STORY = [
     text: "A friend who knew some code got me curious. It was the first time I saw that the apps I used every day were written by people, line by line. I started on Python, from YouTube."
   },
   {
+    stage: "Code",
+    label: "After B.Com, 2022",
+    text: "I joined a six-month software development course. It was the first time I learned to code properly, from the ground up: HTML, then CSS, then JavaScript."
+  },
+  {
     stage: "Interface",
-    label: "The course, 2022",
-    text: "I could write small programs, but I couldn't build a real app. So I joined a full-stack course in Pune, and that's where Angular clicked."
+    label: "The course",
+    text: "Then Angular, Node.js and MongoDB. A screen, a server, a database. That's when it clicked: this is what software development actually is."
   },
   {
     stage: "Product",

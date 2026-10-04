@@ -12,16 +12,13 @@ const python = [
   ["    print(", '"Roshan will"', ", step)"]
 ];
 
-const angular = [
-  ["@Component({ selector: ", '"app-story"', " })"],
-  ["export class ", "StoryComponent", " {"],
-  ["  @Input() seen = false;", "", ""],
-  ["}", "", ""],
-  ["", "", ""],
-  ["<button class=\"ring\" ", "[class.seen]", '="seen">'],
-  ["  <app-avatar />", "", ""],
-  ["</button>", "", ""]
+const fundamentals = [
+  { file: "index.html", lines: ['<div class="card">', '  <button id="like">Like</button>', "</div>"] },
+  { file: "style.css", lines: [".card { padding: 1rem; }", "#like { border-radius: 99px; }"] },
+  { file: "app.js", lines: ['like.addEventListener("click", () => {', '  like.textContent = "Liked";', "});"] }
 ];
+
+const stack = ["Angular", "Node.js", "MongoDB"];
 
 function Code({ lines }: { lines: string[][] }) {
   return (
@@ -107,19 +104,42 @@ function Visual({ step }: { step: number }) {
       </Layer>
 
       <Layer show={step === 3} className="!justify-start">
-        <p className="label mb-4 text-paper/50">story.component.ts</p>
-        <Code lines={angular} />
+        {/* Three files, one after another, the way the course taught them. */}
+        <div key={step === 3 ? "on" : "off"} className="space-y-4">
+          {fundamentals.map((file, i) => (
+            <div key={file.file} className="type-in" style={{ animationDelay: `${i * 450}ms` }}>
+              <p className="label mb-1.5 text-ember">{file.file}</p>
+              <Code lines={file.lines.map((line) => [line, "", ""])} />
+            </div>
+          ))}
+        </div>
       </Layer>
 
-      <Layer show={step === 3} className="!justify-end">
-        <p className="label mb-3 text-paper/50 max-sm:hidden">→ renders</p>
-        <Rings />
+      <Layer show={step === 4}>
+        <p className="label mb-6 text-paper/50">How an application fits together</p>
+        <div className="flex items-center gap-2 sm:gap-3">
+          {stack.map((part, i) => (
+            <div key={part} className="contents">
+              {i > 0 && <span className="text-ember">↔</span>}
+              <span className="flex-1 border border-paper/30 px-2 py-4 text-center sm:px-3">{part}</span>
+            </div>
+          ))}
+        </div>
+        <div className="mt-2 flex justify-between px-2 text-paper/40">
+          <span>screen</span>
+          <span>server</span>
+          <span>data</span>
+        </div>
+        <p className="label mb-3 mt-8 text-paper/50 max-sm:hidden">→ renders</p>
+        <div className="max-sm:mt-6">
+          <Rings />
+        </div>
       </Layer>
 
-      <Layer show={step >= 4} className="!items-center">
+      <Layer show={step >= 5} className="!items-center">
         <div
           className={`w-44 border border-paper/30 p-3 transition-transform duration-700 sm:w-52 ${
-            step === 5 ? "-translate-x-[45%] sm:-translate-x-[60%]" : ""
+            step === 6 ? "-translate-x-[45%] sm:-translate-x-[60%]" : ""
           }`}
         >
           <div className="origin-left scale-[0.6]">
@@ -135,7 +155,7 @@ function Visual({ step }: { step: number }) {
         </div>
       </Layer>
 
-      <Layer show={step === 5} className="!items-end">
+      <Layer show={step === 6} className="!items-end">
         <p className="font-display text-6xl tracking-tight sm:text-8xl">30K+</p>
         <p className="label mt-2 text-paper/60">people using it</p>
       </Layer>

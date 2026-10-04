@@ -159,8 +159,8 @@ export const TIMELINE = {
   start: 2019.3,
   end: 2026.8,
   education: [
-    { label: "B.Com", detail: "YCMOU", from: 2019.5, to: 2022.6 },
-    { label: "Course", detail: "Pune", from: 2022.42, to: 2022.95 },
+    { label: "B.Com", detail: "YCMOU", from: 2019.5, to: 2022.4 },
+    { label: "Dev course", detail: "6 months", from: 2022.45, to: 2022.95 },
     { label: "MCA", detail: "Sandip University", from: 2023.5, to: 2026.45 }
   ],
   work: [
@@ -181,9 +181,15 @@ export const TIMELINE = {
     },
     {
       from: 2020.2,
+      word: "Curious",
+      period: "2020",
+      text: "Lockdown. A friend got me curious about code, and I tried Python from YouTube."
+    },
+    {
+      from: 2022.45,
       word: "Learning",
-      period: "2020 – 2022",
-      text: "Python from YouTube during lockdown. Then a seven-month full-stack course in Pune, where I learned Angular."
+      period: "2022",
+      text: "After B.Com, a six-month software development course. HTML, CSS and JavaScript first, then Angular, Node.js and MongoDB. The first time I saw how an application is actually built."
     },
     {
       from: 2023.0,
@@ -237,7 +243,7 @@ export const PRINCIPLES = [
   },
   {
     title: "Learn by building.",
-    proof: "Python from YouTube, Angular in a course, and React by building Stories on a real product in my first weeks with it."
+    proof: "Python from YouTube, the fundamentals in a six-month course, and React by building Stories on a real product in my first weeks with it."
   }
 ];
 

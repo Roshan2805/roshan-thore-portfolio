@@ -21,8 +21,12 @@ export interface Project {
   status: string;
   problem: string;
   contribution: string;
+  headline: { label: string; value: string }[];
+  areas: string[];
+  flow?: string[];
   results: { label: string; value: string }[];
   stack: string[];
+  built: { area: string; points: string[] }[];
   solved: { problem: string; fix: string }[];
 }
 
@@ -38,6 +42,11 @@ export const PROJECTS: Project[] = [
       "A platform where creators earn from subscriptions, tips, a shop and paid content. Every one of those ends in a checkout that has to work in different countries.",
     contribution:
       "I own checkout and subscriptions: four payment methods, card tokenization, guest checkout, and plan upgrades, downgrades, trials and lifetime tiers. I also built Stories, Channels, Shop and the Media Vault, integrated live video and audio rooms and real-time chat, and added OTP sign-in.",
+    headline: [
+      { label: "Users", value: "30K+" },
+      { label: "Transactions a month", value: "45K+" }
+    ],
+    areas: ["Checkout", "Subscriptions", "Stories", "Media Vault", "Shop", "Channels", "Live rooms", "Chat", "Sign-in"],
     results: [
       { label: "Users", value: "30K+" },
       { label: "Transactions a month", value: "45K+" },
@@ -45,6 +54,48 @@ export const PROJECTS: Project[] = [
       { label: "Stories posted a month", value: "20K+" }
     ],
     stack: ["Next.js 14", "TypeScript", "Redux Toolkit", "TanStack Query", "TanStack Virtual", "Tailwind CSS", "HLS.js", "LiveKit", "Socket.IO"],
+    built: [
+      {
+        area: "Checkout",
+        points: [
+          "Four payment methods: tokenized cards, iDEAL, Bancontact and Centrobill.",
+          "Guest checkout, transaction cancellation, and failure states driven by the backend so the buyer always gets a next step."
+        ]
+      },
+      {
+        area: "Subscriptions",
+        points: [
+          "Plan changes across upgrades, downgrades, trials and lifetime tiers, with retention offers.",
+          "Wallet, tipping and revenue-split flows."
+        ]
+      },
+      {
+        area: "Stories",
+        points: [
+          "A gesture-driven 3D cube carousel between creators, seen-state tracking, and locked stories for subscribers.",
+          "HLS adaptive-bitrate playback tuned for slow connections."
+        ]
+      },
+      {
+        area: "Media Vault and uploads",
+        points: [
+          "A virtualized asset library with dynamic item heights, for mobile drawers and desktop grids.",
+          "Resumable large-file S3 uploads with Uppy and tus."
+        ]
+      },
+      {
+        area: "Real-time",
+        points: ["LiveKit video and audio rooms.", "Chat over Socket.IO and XMPP, and typed notifications with Firebase push."]
+      },
+      {
+        area: "Sign-in and security",
+        points: ["Two-factor authentication over OTP and silent token renewal before expiry.", "Client-side encryption of API payloads."]
+      },
+      {
+        area: "Product areas",
+        points: ["Channels, Collabs, the creator Shop, Services and seasonal campaigns with their own pricing.", "Offline support as a PWA with service worker caching."]
+      }
+    ],
     solved: [
       {
         problem: "The video player and third-party SDKs made the first load slow on mobile.",
@@ -71,12 +122,45 @@ export const PROJECTS: Project[] = [
       "Operations and finance need to see every transaction and payout on the platform, filter them many ways, and export them without waiting on an engineer.",
     contribution:
       "I set the project up and have been its only frontend engineer. I built the transactions and payout modules, role-based access, the table and filter system most list pages share, and CSV exports. I also moved it to Vite and set up its AWS CodeBuild pipeline.",
+    headline: [
+      { label: "Frontend engineer on it", value: "1" },
+      { label: "Less build time after moving to Vite", value: "~50%" }
+    ],
+    areas: ["Transactions", "Payouts", "Filters", "Exports", "RBAC"],
     results: [
       { label: "Frontend engineers on it", value: "1" },
       { label: "Build time after moving to Vite", value: "~50% less" },
       { label: "Filtered views", value: "Shareable by URL" }
     ],
     stack: ["React 19", "React Router 7", "TypeScript", "Vite", "Material UI", "Material React Table", "Redux Toolkit", "AWS CodeBuild"],
+    built: [
+      {
+        area: "Setup",
+        points: [
+          "Set the project up and replaced the previous Next.js/Webpack app with a Vite SPA, roughly halving build times.",
+          "Separate test, staging and live builds on AWS CodeBuild."
+        ]
+      },
+      {
+        area: "Transactions and payouts",
+        points: ["Overview dashboards with revenue and transaction-type charts, and a payout status breakdown.", "A VAT-inclusive / exclusive toggle for finance."]
+      },
+      {
+        area: "Tables and filters",
+        points: [
+          "One table and filter system behind most list pages: server-side pagination, debounced search and compound filters.",
+          "Filters are configuration and live in the URL, so a filtered view can be bookmarked and shared."
+        ]
+      },
+      {
+        area: "Exports",
+        points: ["CSV export generated in chunks, so large histories export without freezing the tab."]
+      },
+      {
+        area: "Access",
+        points: ["Role-based access control: server-driven grants become client-side route and action guards.", "OTP login, scheduled token renewal, and decryption of encrypted API responses."]
+      }
+    ],
     solved: [
       {
         problem: "Exporting a large transaction history froze the browser tab.",
@@ -103,12 +187,45 @@ export const PROJECTS: Project[] = [
       "Agencies manage many creators with many staff, and each creator contract splits revenue differently.",
     contribution:
       "I built creator invitations with three revenue-share models and per-feature permissions, employee management with role-based routing, and the earnings and analytics pages.",
+    headline: [
+      { label: "Revenue-share models", value: "3" },
+      { label: "Staff to creators", value: "Many-to-many" }
+    ],
+    areas: ["Invitations", "Permissions", "Employees", "Earnings", "Analytics"],
+    flow: ["Agency staff", "Creators", "Permissions", "Revenue share", "Earnings", "Analytics"],
     results: [
       { label: "Revenue-share models", value: "3" },
       { label: "Staff to creators", value: "Many-to-many" },
       { label: "API responses", value: "AES-encrypted" }
     ],
     stack: ["React 18", "Vite", "TypeScript", "Radix UI", "Tailwind CSS", "TanStack Virtual", "React Hook Form", "ApexCharts"],
+    built: [
+      {
+        area: "Invitations",
+        points: [
+          "Creator invitations across pending, accepted and cancelled states.",
+          "Three revenue-share models and per-feature permissions, sending only what the agency selected."
+        ]
+      },
+      {
+        area: "Employees",
+        points: [
+          "Employee management with role-based routing.",
+          "Many-to-many staff-to-creator assignment that diffs old and new assignments, in one shared create/edit modal."
+        ]
+      },
+      {
+        area: "Money",
+        points: [
+          "Earnings and analytics with ApexCharts and date-range filters, including staff with zero earnings.",
+          "A wallet with infinite-scroll transactions and masked card details."
+        ]
+      },
+      {
+        area: "Security",
+        points: ["AES decryption of API responses inside the Axios interceptor."]
+      }
+    ],
     solved: [
       {
         problem: "Revenue split maths differed between the creator view and the agency view.",
@@ -125,17 +242,61 @@ export const PROJECTS: Project[] = [
 export const EARLIER_WORK = [
   {
     title: "Heftyverse",
+    kind: "Metaverse platform",
     period: "2023 – 2024",
     summary:
-      "The Angular layer over four Unity WebGL worlds: two-way messaging with the 3D runtime, AI chat characters, rewards, and a store with Stripe checkout.",
-    stack: "Angular, RxJS, Unity WebGL, Stripe"
+      "The Angular layer over four Unity WebGL worlds: two-way messaging with the 3D runtime, chat and leaderboards, AI chat characters, rewards, and a store with Stripe checkout.",
+    stack: ["Angular", "RxJS", "Unity WebGL", "Socket.IO", "Stripe"],
+    built: [
+      {
+        area: "Web and Unity",
+        points: [
+          "The Angular layer over four Unity WebGL worlds, and the two-way message contract I defined with the Unity team.",
+          "Live in-world video through a WebRTC streaming SDK, with reconnection handling."
+        ]
+      },
+      {
+        area: "In the worlds",
+        points: [
+          "Real-time chat and leaderboards over Socket.IO.",
+          "AI chat characters with the Inworld AI SDK, and an AI photobooth.",
+          "Rewards, badges, spin the wheel, referrals, and a store with cart, guest checkout and Stripe payments."
+        ]
+      }
+    ],
+    solved: [
+      {
+        problem: "Chat messages lagged before showing up on avatars in the 3D world.",
+        fix: "Queued events with RxJS and updated the UI optimistically while messages went over WebSockets."
+      },
+      {
+        problem: "Guests who played challenges lost their rewards when they signed up.",
+        fix: "Held guest progress and replayed the reward calls once the account existed."
+      }
+    ]
   },
   {
     title: "Digital Bharat Collaborative",
+    kind: "Healthcare non-profit site, Piramal Swasthya",
     period: "2023",
     summary:
       "Lead developer on a healthcare non-profit's site for Piramal Swasthya, with an interactive map of programmes across 16 Indian states.",
-    stack: "Angular, GSAP ScrollTrigger"
+    stack: ["Angular", "GSAP ScrollTrigger"],
+    built: [
+      {
+        area: "Site",
+        points: [
+          "Lead developer: every page built from the designs up, including news, case studies and resources.",
+          "An interactive map of programmes across 16 states, and scroll animations and counters with GSAP ScrollTrigger."
+        ]
+      }
+    ],
+    solved: [
+      {
+        problem: "A state-by-state map of India is hard to use on a phone.",
+        fix: "Built a landscape-only mobile mode with its own controls, so the map stayed on the mobile site."
+      }
+    ]
   }
 ];
 

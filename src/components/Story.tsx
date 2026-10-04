@@ -109,7 +109,7 @@ export function StoryEarly() {
   const { ref, step, progress } = usePinnedStep(EARLY.length);
 
   return (
-    <section id="story" ref={ref} style={{ height: `${EARLY.length * 90}vh` }} className="relative">
+    <section id="story" ref={ref} style={{ height: `${EARLY.length * 75}vh` }} className="relative">
       <div className="sticky top-0 flex h-[100svh] flex-col px-5 pb-6 pt-20 sm:px-10">
         <div className="grid min-h-0 flex-1 items-center gap-6 md:grid-cols-12 md:gap-8">
           <div aria-hidden="true" className="relative h-[32svh] md:order-2 md:col-span-5 md:col-start-8 md:h-[52svh]">
@@ -158,7 +158,7 @@ export function Discovery() {
   return (
     <section
       ref={ref}
-      className={`relative h-[340vh] transition-colors duration-700 ${dark ? "bg-ink text-paper" : "bg-paper text-ink"}`}
+      className={`relative h-[280vh] transition-colors duration-700 ${dark ? "bg-ink text-paper" : "bg-paper text-ink"}`}
     >
       <div className="sticky top-0 flex h-[100svh] flex-col px-5 pb-6 pt-20 sm:px-10">
         <div className="relative flex min-h-0 flex-1 flex-col items-center justify-center text-center">
@@ -240,7 +240,7 @@ export function StoryLater() {
   const { ref, step, progress } = usePinnedStep(LATER.length);
 
   return (
-    <section ref={ref} style={{ height: `${LATER.length * 90}vh` }} className="relative">
+    <section ref={ref} style={{ height: `${LATER.length * 70}vh` }} className="relative">
       <div className="sticky top-0 flex h-[100svh] flex-col px-5 pb-6 pt-20 sm:px-10">
         <div className="grid min-h-0 flex-1 items-center gap-6 md:grid-cols-12 md:gap-8">
           <div

@@ -46,7 +46,8 @@ portfolio/
     │   ├── Story.tsx                   # The story: early chapters, discovery, later chapters
     │   ├── KnkyCase.tsx, Flow.tsx      # Expanding case study and its flows
     │   ├── MoreWork.tsx                # Horizontal run of the other projects
-    │   ├── WorkNotes.tsx               # What was hard on each project, collapsed
+    │   ├── ProjectDetails.tsx          # Full build lists and what was hard, collapsed
+    │   ├── Benchmark.tsx               # Real virtualization benchmark
     │   ├── previews/                   # The interactive sketches
     │   ├── Path.tsx                    # Education and work timeline
     │   ├── Skills.tsx

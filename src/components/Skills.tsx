@@ -1,7 +1,7 @@
 "use client";
 
 import { useCenteredIndex } from "@/lib/useCenteredIndex";
-import { CAPABILITIES } from "@/data/portfolioData";
+import { ALL_SKILLS, CAPABILITIES } from "@/data/portfolioData";
 
 export function Skills() {
   const { ref: list, active } = useCenteredIndex<HTMLDivElement>();
@@ -36,6 +36,23 @@ export function Skills() {
           </div>
         ))}
 
+        <details className="group border-t border-paper/20">
+          <summary className="flex cursor-pointer items-baseline justify-between py-5 text-sm text-paper/60 hover:text-paper">
+            The full list, as it is on my résumé
+            <span className="font-mono text-ember">
+              <span className="group-open:hidden">+</span>
+              <span className="hidden group-open:inline">−</span>
+            </span>
+          </summary>
+          <dl className="grid gap-x-8 gap-y-6 pb-8 sm:grid-cols-2 lg:grid-cols-4">
+            {ALL_SKILLS.map((row) => (
+              <div key={row.group}>
+                <dt className="label text-paper/50">{row.group}</dt>
+                <dd className="mt-2 leading-relaxed">{row.items.join(", ")}</dd>
+              </div>
+            ))}
+          </dl>
+        </details>
         <p className="text-sm text-paper/50">Only what I use at work and can explain in an interview.</p>
       </div>
     </section>

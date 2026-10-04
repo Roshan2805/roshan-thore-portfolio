@@ -17,7 +17,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="mt-36 bg-ink text-paper sm:mt-56">
+    <section id="contact" className="bg-ink text-paper">
       <div className="mx-auto max-w-[96rem] px-5 pb-8 pt-20 sm:px-10 sm:pt-32">
         <p className="label text-paper/60">What&apos;s next</p>
         <p className="mt-6 max-w-3xl text-xl leading-relaxed text-paper/70 sm:text-2xl">
@@ -61,7 +61,7 @@ export function Contact() {
           <span>
             © {new Date().getFullYear()} Roshan Thore · {PERSONAL_INFO.location}
           </span>
-          <ReplayJourney className="cursor-pointer uppercase tracking-[inherit] hover:text-ember">↗ Replay intro</ReplayJourney>
+          <ReplayJourney className="cursor-pointer uppercase tracking-[inherit] hover:text-ember">↗ Replay story</ReplayJourney>
           <a href="#top">Back to top ↑</a>
         </footer>
       </div>

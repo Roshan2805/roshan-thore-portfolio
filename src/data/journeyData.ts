@@ -40,15 +40,10 @@ export const EARLY: Chapter[] = [
   }
 ];
 
-// The discovery is told on one stage: the same few lines of code become more and more real.
-export const DISCOVERY = [
-  { label: "Lockdown, 2020", line: "During lockdown, a friend introduced me to coding." },
-  { label: "", line: "That's when I started understanding what was behind the websites I used every day." },
-  { label: "The course, 2022 · HTML", line: "HTML: the structure." },
-  { label: "CSS", line: "CSS: how it looks." },
-  { label: "JavaScript", line: "JavaScript: how it behaves." },
-  { label: "Angular · Node.js · MongoDB", line: "Then how a complete application comes together." },
-  { label: "", line: "That was when the curiosity started making sense." }
+export const FUNDAMENTALS = [
+  { name: "HTML", role: "structure" },
+  { name: "CSS", role: "appearance" },
+  { name: "JavaScript", role: "behavior" }
 ];
 
 export const LATER: Chapter[] = [
@@ -71,6 +66,6 @@ export const LATER: Chapter[] = [
     label: "Today",
     title: "Now I'm a frontend engineer building real products.",
     facts: ["React", "Next.js", "TypeScript", "JavaScript"],
-    text: "I learned React by building real product features, starting with Stories, and over time took ownership of payments and subscriptions."
+    text: "I learned React on the job by building Stories, and now I own payments and subscriptions on a product about 30,000 people use."
   }
 ];

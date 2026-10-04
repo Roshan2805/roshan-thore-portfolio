@@ -66,7 +66,7 @@ export function Nav() {
               onClick={playJourney}
               className="cursor-pointer uppercase tracking-[inherit] opacity-70 transition-opacity hover:opacity-100"
             >
-              ↗ Replay intro
+              ↗ Replay story
             </button>
             <a href={PERSONAL_INFO.resumeUrl} download>
               Résumé ↓
@@ -111,7 +111,7 @@ export function Nav() {
                 playJourney();
               }}
             >
-              ↗ Replay intro
+              ↗ Replay story
             </button>
             <a href={PERSONAL_INFO.resumeUrl} download className="text-ember">
               Résumé ↓

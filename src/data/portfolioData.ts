@@ -154,6 +154,14 @@ export const CAPABILITIES = [
   }
 ];
 
+// Everything on the resume, grouped the same way, for anyone who wants the whole list.
+export const ALL_SKILLS = [
+  { group: "Frontend", items: ["React", "Next.js (App Router)", "TypeScript", "JavaScript", "HTML and CSS", "SCSS", "Angular", "Redux Toolkit", "TanStack Query, Table and Virtual", "React Hook Form", "React Router"] },
+  { group: "UI", items: ["Tailwind CSS", "Radix UI", "shadcn/ui", "Material UI", "Framer Motion", "GSAP"] },
+  { group: "Media and real-time", items: ["HLS.js", "LiveKit (WebRTC)", "Socket.IO", "XMPP", "Uppy and tus uploads", "Firebase"] },
+  { group: "Backend and tooling", items: ["Node.js", "Express", "MongoDB", "REST APIs", "Git", "Vite", "Vitest", "React Testing Library", "AWS CodeBuild", "Amplitude"] }
+];
+
 // Education and work on one time axis. Years are decimal: 2023.5 is roughly July 2023.
 // The story above tells why; this is just what happened, and when.
 export const TIMELINE = {

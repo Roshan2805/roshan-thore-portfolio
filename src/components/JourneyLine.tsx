@@ -2,11 +2,10 @@ import { TIMELINE } from "@/data/portfolioData";
 
 const { start, end } = TIMELINE;
 const marks = [
-  { at: 2019.5, label: "B.Com" },
-  { at: 2020.3, label: "Curious" },
-  { at: 2022.6, label: "Learning" },
-  { at: 2023.0, label: "First job" },
-  { at: 2024.6, label: "Owning it" },
+  { at: 2019.5, label: "Curious" },
+  { at: 2022.5, label: "Learning" },
+  { at: 2023.0, label: "Building" },
+  { at: 2024.6, label: "Growing" },
   { at: 2026.8, label: "Now" }
 ];
 const x = (year: number) => `${((year - start) / (end - start)) * 100}%`;

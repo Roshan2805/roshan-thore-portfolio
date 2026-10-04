@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, type MotionValue } from "framer-motion";
 import { useMotionState } from "@/lib/useMotionState";
-import { CHAPTERS, DISCOVERY, EARLY, LATER, type Chapter } from "@/data/journeyData";
+import { CHAPTERS, EARLY, FUNDAMENTALS, LATER, type Chapter } from "@/data/journeyData";
 import { KidsComputer } from "./KidsComputer";
 
 function usePinnedStep(count: number) {
@@ -146,81 +146,87 @@ function LikeButton({ live }: { live: boolean }) {
   );
 }
 
-// The one loud chapter. A few lines of code on one stage, getting more real with every scroll.
+// The one loud chapter, in three parts. The middle part is one continuous scroll in which
+// the same few lines go from bare HTML to styled to interactive.
 export function Discovery() {
-  const { ref, step, progress } = usePinnedStep(DISCOVERY.length);
-  const dark = step >= 2;
-  const showObject = step >= 2 && step <= 5;
-  const current = DISCOVERY[step];
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress: progress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  const part = useMotionState(progress, (value) => (value < 0.22 ? 0 : value < 0.74 ? 1 : 2));
+  const layer = useMotionState(progress, (value) => Math.min(2, Math.max(0, Math.floor(((value - 0.22) / 0.52) * 3))));
+  const dark = part > 0;
 
   return (
     <section
       ref={ref}
-      style={{ height: `${DISCOVERY.length * 60}vh` }}
-      className={`relative transition-colors duration-700 ${dark ? "bg-ink text-paper" : "bg-paper text-ink"}`}
+      className={`relative h-[340vh] transition-colors duration-700 ${dark ? "bg-ink text-paper" : "bg-paper text-ink"}`}
     >
       <div className="sticky top-0 flex h-[100svh] flex-col px-5 pb-6 pt-20 sm:px-10">
         <div className="relative flex min-h-0 flex-1 flex-col items-center justify-center text-center">
-          <div aria-hidden="true" className={`relative h-[44svh] w-full max-w-2xl transition-opacity duration-500 ${showObject ? "" : "opacity-0"}`}>
-            <Layer show={step === 2}>
-              <pre className="text-left font-mono text-[clamp(0.95rem,2vw,1.5rem)] leading-relaxed text-paper/90">
-                <span className="text-ember">&lt;h1&gt;</span>Hello<span className="text-ember">&lt;/h1&gt;</span>
-                {"\n"}
-                <span className="text-ember">&lt;p&gt;</span>My first page.<span className="text-ember">&lt;/p&gt;</span>
-                {"\n"}
-                <span className="text-ember">&lt;button&gt;</span>Like<span className="text-ember">&lt;/button&gt;</span>
-              </pre>
-            </Layer>
-
-            <Layer show={step === 3 || step === 4}>
-              <div className="w-full max-w-sm border border-paper/30 p-6 text-left sm:p-8">
-                <p className="font-display text-5xl tracking-tight">Hello</p>
-                <p className="mt-2 text-paper/60">My first page.</p>
-                <div className="mt-6">
-                  <LikeButton live={step === 4} />
-                </div>
-              </div>
-              <p className="mt-6 font-mono text-xs text-paper/50 sm:text-sm">
-                {step === 3 ? "h1 { font-family: serif } button { border-radius: 99px }" : "button.onclick = () => like()"}
-              </p>
-            </Layer>
-
-            <Layer show={step === 5}>
-              <div className="grid w-full max-w-xl grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-2 font-mono text-[12px] sm:gap-4 sm:text-sm">
-                {[
-                  ["Angular", "the screen"],
-                  ["Node.js", "the server"],
-                  ["MongoDB", "the data"]
-                ].map(([name, role], i) => (
-                  <div key={name} className="contents">
-                    {i > 0 && <span className="text-ember">↔</span>}
-                    <div className="border border-paper/30 px-2 py-6 text-center sm:py-10">
-                      <p className="font-display text-xl tracking-tight sm:text-3xl">{name}</p>
-                      <p className="mt-2 text-paper/50">{role}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Layer>
-          </div>
-
-          {/* The line under the stage. Before and after the code it fills the screen on its own. */}
-          <div
-            className={`transition-all duration-500 ${
-              showObject ? "mt-8 max-w-xl" : "absolute inset-x-0 top-1/2 mx-auto max-w-4xl -translate-y-1/2"
-            }`}
-          >
-            {current.label && <p className="label mb-3 text-signal">{current.label}</p>}
-            <p
-              key={current.line}
-              className={`story-in font-display tracking-[-0.025em] text-balance ${
-                showObject ? "text-xl sm:text-2xl" : "text-[clamp(2rem,5vw,4.4rem)] leading-[1.06]"
-              }`}
-            >
-              {current.line}
+          <Layer show={part === 0}>
+            <p className="label text-signal">03 · Lockdown, 2020</p>
+            <p className="mt-5 max-w-4xl font-display text-[clamp(2rem,5vw,4.4rem)] leading-[1.06] tracking-[-0.025em] text-balance">
+              During lockdown, a friend introduced me to coding.
             </p>
-            {step === 2 && <p className="mt-3 text-sm opacity-60">A six-month software development course after B.Com, starting from the fundamentals.</p>}
-          </div>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed opacity-70">
+              That&apos;s when I started understanding what was actually happening behind the screen.
+            </p>
+          </Layer>
+
+          <Layer show={part === 1}>
+            <div aria-hidden="true" className="relative h-[38svh] w-full max-w-2xl">
+              <Layer show={layer === 0}>
+                <pre className="text-left font-mono text-[clamp(0.95rem,2vw,1.5rem)] leading-relaxed text-paper/90">
+                  <span className="text-ember">&lt;h1&gt;</span>Hello<span className="text-ember">&lt;/h1&gt;</span>
+                  {"\n"}
+                  <span className="text-ember">&lt;p&gt;</span>My first page.<span className="text-ember">&lt;/p&gt;</span>
+                  {"\n"}
+                  <span className="text-ember">&lt;button&gt;</span>Like<span className="text-ember">&lt;/button&gt;</span>
+                </pre>
+              </Layer>
+              <Layer show={layer > 0}>
+                <div className="w-full max-w-sm border border-paper/30 p-6 text-left sm:p-8">
+                  <p className="font-display text-5xl tracking-tight">Hello</p>
+                  <p className="mt-2 text-paper/60">My first page.</p>
+                  <div className="mt-6">
+                    <LikeButton live={layer === 2} />
+                  </div>
+                </div>
+              </Layer>
+            </div>
+            <ol className="mt-8 flex gap-6 font-mono text-sm sm:gap-10 sm:text-base">
+              {FUNDAMENTALS.map((item, i) => (
+                <li key={item.name} className={`transition-colors duration-500 ${i <= layer ? "text-paper" : "text-paper/25"}`}>
+                  <span className={i === layer ? "text-ember" : ""}>{item.name}</span>
+                  <span className="block text-xs opacity-60 sm:text-sm">{item.role}</span>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-6 max-w-lg text-base opacity-70">I started with the fundamentals.</p>
+          </Layer>
+
+          <Layer show={part === 2}>
+            <div aria-hidden="true" className="grid w-full max-w-xl grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-2 font-mono text-[12px] sm:gap-4 sm:text-sm">
+              {[
+                ["Angular", "the screen"],
+                ["Node.js", "the server"],
+                ["MongoDB", "the data"]
+              ].map(([name, role], i) => (
+                <div key={name} className="contents">
+                  {i > 0 && <span className="text-ember">↔</span>}
+                  <div className="border border-paper/30 px-2 py-6 text-center sm:py-10">
+                    <p className="font-display text-xl tracking-tight sm:text-3xl">{name}</p>
+                    <p className="mt-2 text-paper/50">{role}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="mt-10 max-w-xl font-display text-xl leading-snug tracking-[-0.01em] sm:text-2xl">
+              Then how a complete application comes together.
+            </p>
+            <p className="mt-3 max-w-lg text-base opacity-70">
+              All of it in a six-month software development course after B.Com, my first structured introduction to building software.
+            </p>
+          </Layer>
         </div>
         <Chapters active={2} progress={progress} dark={dark} />
       </div>

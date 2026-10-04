@@ -6,6 +6,7 @@ import { Hero } from "@/components/Hero";
 import { Discovery, StoryEarly, StoryLater } from "@/components/Story";
 import { KnkyCase } from "@/components/KnkyCase";
 import { MoreWork } from "@/components/MoreWork";
+import { WorkNotes } from "@/components/WorkNotes";
 import { Path } from "@/components/Path";
 import { Skills } from "@/components/Skills";
 import { Thinking } from "@/components/Thinking";
@@ -26,10 +27,11 @@ export default function Home() {
         <StoryLater />
         <KnkyCase />
         <MoreWork />
+        <WorkNotes />
         <Path />
         <Skills />
-        <Outside />
         <Thinking />
+        <Outside />
       </main>
       <Contact />
     </>

@@ -177,7 +177,7 @@ export const TIMELINE = {
       from: 2019.3,
       word: "Commerce",
       period: "2019 – 2022",
-      text: "B.Com, with banking as the plan. No computer science anywhere in sight."
+      text: "A kid who liked computers, now doing a B.Com, with banking as the plan. No code anywhere in sight yet."
     },
     {
       from: 2020.2,

@@ -59,7 +59,7 @@ function Layer({ show, children, className = "" }: { show: boolean; children: Re
   );
 }
 
-// One frame that changes with the story: a guess at a website, a ledger, code, an interface, a product.
+// One frame that changes with the story: a computer, a ledger, code, an interface, a product.
 function Visual({ step }: { step: number }) {
   const dark = step >= 2;
 
@@ -70,20 +70,49 @@ function Visual({ step }: { step: number }) {
         dark ? "border-ink bg-ink text-paper" : "border-rule text-ink"
       }`}
     >
-      <Layer show={step === 0}>
-        <p className="label mb-4 text-mute">Software engineer = websites?</p>
-        <div className="border border-dashed border-mute p-4">
-          <div className="flex gap-1.5">
-            <span className="size-2 rounded-full border border-mute" />
-            <span className="size-2 rounded-full border border-mute" />
-            <span className="size-2 rounded-full border border-mute" />
+      <Layer show={step === 0} className="!items-center">
+        {/* A computer as a kid sees it: games, then the internet, then a question. */}
+        <div className="w-full max-w-sm">
+          <div className="relative aspect-[4/3] border-2 border-ink p-2">
+            <div className="relative size-full overflow-hidden bg-ink text-paper">
+              <div className="screen absolute inset-0 flex flex-col justify-between p-3">
+                <p className="flex justify-between text-[10px] text-paper/60">
+                  <span>1UP</span>
+                  <span>HI 004200</span>
+                </p>
+                <div className="relative h-1/2">
+                  <span className="hop absolute bottom-3 left-[20%] size-4 bg-ember" />
+                  <span className="absolute bottom-10 left-[52%] size-2 rounded-full bg-paper" />
+                  <span className="absolute bottom-3 left-[70%] h-6 w-5 bg-paper/40" />
+                  <span className="absolute inset-x-0 bottom-0 h-3 bg-paper/25" />
+                </div>
+              </div>
+              <div className="screen absolute inset-0 p-3" style={{ animationDelay: "2.4s" }}>
+                <p className="border border-paper/30 px-2 py-1.5">how are games made?</p>
+                <div className="mt-3 space-y-2">
+                  <span className="block h-1.5 w-3/4 bg-ember/70" />
+                  <span className="block h-1.5 w-full bg-paper/25" />
+                  <span className="block h-1.5 w-2/3 bg-paper/25" />
+                  <span className="block h-1.5 w-5/6 bg-paper/25" />
+                </div>
+              </div>
+              <div className="screen absolute inset-0 flex items-center justify-center" style={{ animationDelay: "4.8s" }}>
+                <span className="font-display text-7xl text-ember">?</span>
+                <span className="blink ml-1 h-12 w-1 bg-paper/70" />
+              </div>
+            </div>
           </div>
-          <div className="mt-4 h-16 border border-dashed border-mute" />
-          <div className="mt-3 grid grid-cols-3 gap-3">
-            <div className="h-12 border border-dashed border-mute" />
-            <div className="h-12 border border-dashed border-mute" />
-            <div className="h-12 border border-dashed border-mute" />
-          </div>
+          <div className="mx-auto h-5 w-10 border-x-2 border-ink" />
+          <div className="mx-auto h-0.5 w-28 bg-ink" />
+          <p className="label mt-5 flex justify-center gap-3 text-mute">
+            <span className="screen-label">Games</span>·
+            <span className="screen-label" style={{ animationDelay: "2.4s" }}>
+              Internet
+            </span>·
+            <span className="screen-label" style={{ animationDelay: "4.8s" }}>
+              Curiosity
+            </span>
+          </p>
         </div>
       </Layer>
 
@@ -191,6 +220,7 @@ export function Story() {
                 <p className="mt-4 font-display text-[clamp(1.5rem,3.1vw,2.7rem)] leading-[1.14] tracking-[-0.02em]">
                   {item.text}
                 </p>
+                {item.note && <p className="mt-4 max-w-md text-base leading-relaxed text-mute sm:text-lg">{item.note}</p>}
               </div>
             ))}
           </div>

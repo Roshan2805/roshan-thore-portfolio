@@ -169,7 +169,7 @@ export const TIMELINE = {
     { label: "SDE", detail: "Ink In Caps", from: 2024.6, to: 2026.8 }
   ],
   moments: [
-    { label: "Python, from YouTube", at: 2020.3 },
+    { label: "A friend shows me code", at: 2020.3 },
     { label: "KNKY launches", at: 2023.78 }
   ],
   stages: [
@@ -183,7 +183,7 @@ export const TIMELINE = {
       from: 2020.2,
       word: "Curious",
       period: "2020",
-      text: "Lockdown. A friend got me curious about code, and I tried Python from YouTube."
+      text: "Lockdown. A friend introduced me to coding, and I started to wonder how things actually worked."
     },
     {
       from: 2022.45,
@@ -219,7 +219,7 @@ export const TIMELINE = {
       from: 2026.4,
       word: "Now",
       period: "2026",
-      text: "MCA done, part-time over five semesters, CGPA 7.85. Reviewing the team's pull requests, and still building."
+      text: "MCA done, part-time over five semesters, CGPA 7.85. Reviewing the team's pull requests and building the next thing."
     }
   ]
 };
@@ -243,7 +243,7 @@ export const PRINCIPLES = [
   },
   {
     title: "Learn by building.",
-    proof: "Python from YouTube, the fundamentals in a six-month course, and React by building Stories on a real product in my first weeks with it."
+    proof: "The fundamentals came from a six-month course. React came from building Stories on a real product in my first weeks with it."
   }
 ];
 

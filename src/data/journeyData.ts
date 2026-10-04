@@ -13,74 +13,65 @@ export const BEATS: Beat[] = [
   { line: "This is how that happened.", shape: "name", tone: "paper", dots: "#17160f" }
 ];
 
-export interface StoryStep {
+export const CHAPTERS = ["Curious", "A different path", "Discovery", "Building", "Going deeper", "Today"];
+
+export interface Chapter {
+  chapter: number;
   label: string;
   title: string;
-  note?: string;
+  facts?: string[];
+  text: string;
 }
 
-export const CHAPTERS = ["Early on", "Education", "Discovery", "Going deeper", "Today"];
-
-export const EARLY: (StoryStep & { chapter: number })[] = [
+export const EARLY: Chapter[] = [
   {
     chapter: 0,
     label: "As a kid",
-    title: "I was curious about computers.",
-    note: "Games, the internet, just being around a computer. I'd heard of software engineers and liked the idea of working with computers. I didn't know what the job actually involved."
+    title: "I liked computers.",
+    facts: ["Games", "Internet", "Exploring things"],
+    text: "I knew I liked being around them. I didn't understand software engineering yet, or what the job actually involved."
   },
   {
     chapter: 1,
-    label: "12th",
-    title: "My education took a different path.",
-    note: "I chose Science in 12th because of that interest in computers. I scored 52%, and that changed where my education went next."
-  },
-  {
-    chapter: 1,
-    label: "2019 – 2022",
-    title: "B.Com.",
-    note: "Three years of commerce. I wasn't a programmer, and I didn't really know what software development was. Computers stayed in the background."
+    label: "School and college",
+    title: "My education went another way.",
+    facts: ["12th · Science · 52%", "2019 – 2022 · B.Com"],
+    text: "I chose Science because of computers. My result changed the direction of my education, and I went on to study B.Com. Computers stayed in the background."
   }
 ];
 
-export const DISCOVERY: StoryStep[] = [
-  {
-    label: "Lockdown, 2020",
-    title: "Then a friend showed me some code.",
-    note: "I tried Python from YouTube, mostly to see how it worked."
-  },
-  {
-    label: "After B.Com, 2022",
-    title: "So I learned it properly.",
-    note: "A six-month software development course, starting from the fundamentals."
-  },
-  {
-    label: "The course",
-    title: "Then Angular, Node.js and MongoDB.",
-    note: "A screen, a server and a database, talking to each other."
-  },
-  {
-    label: "The course",
-    title: "For the first time, I understood what was behind the websites I had always used."
-  }
+// The discovery is told on one stage: the same few lines of code become more and more real.
+export const DISCOVERY = [
+  { label: "", line: "I liked computers long before I understood how they worked." },
+  { label: "Lockdown, 2020", line: "Then a friend introduced me to coding." },
+  { label: "HTML", line: "First, structure." },
+  { label: "CSS", line: "Then, how it looks." },
+  { label: "JavaScript", line: "Then, what it does." },
+  { label: "Angular · Node.js · MongoDB", line: "Then a whole application: a screen, a server and a database." },
+  { label: "", line: "Then something real people use." },
+  { label: "", line: "That was when the curiosity started making sense." }
 ];
 
-export const LATER: (StoryStep & { chapter: number })[] = [
+export const LATER: Chapter[] = [
   {
     chapter: 3,
     label: "2023",
-    title: "I started working in software.",
-    note: "An internship at Ink In Caps that became a job. My first task was an admin panel in a codebase I didn't understand, so for the first few days I mostly read it."
-  },
-  {
-    chapter: 3,
-    label: "2023 – 2026",
-    title: "Alongside the job, I went back to studying.",
-    note: "A part-time MCA at Sandip University, because I wanted to understand computers and software beyond what work was teaching me."
+    title: "Learning turned into building.",
+    facts: ["Intern → full-time", "Ink In Caps, Mumbai"],
+    text: "A six-month course had taken me through the fundamentals properly. Then I joined Ink In Caps as an intern. My first task was an admin panel in a codebase I didn't understand yet, so I spent the first few days reading it. Seven months later it was a full-time job."
   },
   {
     chapter: 4,
-    label: "Now",
-    title: "I build software for a living.",
-    note: "Frontend engineer, in React, Next.js and TypeScript. I learned React on the job by building Stories, for a product about 30,000 people use."
+    label: "Alongside the job",
+    title: "I wanted to understand it more deeply.",
+    facts: ["MCA · Sandip University", "Part-time · 2023 · CGPA 7.85"],
+    text: "By then I was already working in software. I wanted to understand computers and software development beyond what day-to-day work teaches, so I took an MCA alongside my job."
+  },
+  {
+    chapter: 5,
+    label: "Today",
+    title: "Now I'm a frontend engineer building real products.",
+    facts: ["React", "Next.js", "TypeScript", "JavaScript"],
+    text: "I learned React on the job by building Stories, and now I own payments and subscriptions on a product about 30,000 people use."
   }
 ];

@@ -7,10 +7,10 @@ Personal site of Roshan Thore, frontend engineer at Ink In Caps.
 One continuous scroll, in the order the story happened.
 
 - **A short intro** on a first visit (about eight seconds, skippable). Its last frame draws my name in particles exactly where the headline sits, and the page takes over.
-- **The story**, in five pinned chapters: a kid curious about computers, an education that went another way (Science, 52%, B.Com), finding code through a friend in lockdown and learning it properly (the one loud moment), then work, a part-time MCA, and today.
+- **The story**, in six pinned chapters. Most are quiet: curious about computers, an education that went another way, building, going deeper with a part-time MCA, today. One is loud: discovering code, where the same few lines go from HTML to CSS to JavaScript to an application to a product.
 - **The work**: KNKY opens from a small window to the full screen, with the Stories and checkout flows animated and usable. The admin console and agency portal follow in a horizontal run.
 - **Education and work on one timeline**, with a playhead that moves through the years as you scroll.
-- **Skills, how I work** (each principle tied to something I actually fixed), a band of what I do outside work that speeds up with your scroll, and **an ending** that replays the whole path in five lines.
+- **Skills, how I work** (each principle tied to something I actually fixed), a band of what I do outside work that speeds up with your scroll, and **an ending** where the computer from the start of the story shows something I built.
 
 ## Tech stack
 

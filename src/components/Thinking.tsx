@@ -1,24 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCenteredIndex } from "@/lib/useCenteredIndex";
 import { PRINCIPLES } from "@/data/portfolioData";
 
 export function Thinking() {
-  const [active, setActive] = useState(0);
-  const list = useRef<HTMLOListElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(Number((entry.target as HTMLElement).dataset.index));
-        });
-      },
-      { rootMargin: "-46% 0px -46% 0px" }
-    );
-    list.current?.querySelectorAll("[data-index]").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  const { ref: list, active } = useCenteredIndex<HTMLOListElement>();
 
   return (
     <section id="about" className="mx-auto max-w-[96rem] px-5 pt-28 sm:px-10 sm:pt-44">

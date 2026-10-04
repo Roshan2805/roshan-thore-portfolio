@@ -10,7 +10,6 @@ import { Path } from "@/components/Path";
 import { Skills } from "@/components/Skills";
 import { Thinking } from "@/components/Thinking";
 import { Outside } from "@/components/Outside";
-import { Ending } from "@/components/Ending";
 import { Contact } from "@/components/Contact";
 
 export default function Home() {
@@ -29,9 +28,8 @@ export default function Home() {
         <MoreWork />
         <Path />
         <Skills />
-        <Thinking />
         <Outside />
-        <Ending />
+        <Thinking />
       </main>
       <Contact />
     </>

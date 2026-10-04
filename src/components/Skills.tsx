@@ -1,24 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCenteredIndex } from "@/lib/useCenteredIndex";
 import { CAPABILITIES } from "@/data/portfolioData";
 
 export function Skills() {
-  const [active, setActive] = useState(0);
-  const list = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(Number((entry.target as HTMLElement).dataset.index));
-        });
-      },
-      { rootMargin: "-45% 0px -45% 0px" }
-    );
-    list.current?.querySelectorAll("[data-index]").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  const { ref: list, active } = useCenteredIndex<HTMLDivElement>();
 
   return (
     <section id="skills" className="mt-28 bg-ink text-paper sm:mt-44">

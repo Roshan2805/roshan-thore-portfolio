@@ -17,7 +17,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="mt-28 bg-ink text-paper sm:mt-44">
+    <section id="contact" className="mt-36 bg-ink text-paper sm:mt-56">
       <div className="mx-auto max-w-[96rem] px-5 pb-8 pt-20 sm:px-10 sm:pt-32">
         <p className="label text-paper/60">What&apos;s next</p>
         <p className="mt-6 max-w-3xl text-xl leading-relaxed text-paper/70 sm:text-2xl">

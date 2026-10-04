@@ -10,7 +10,7 @@ One continuous scroll, in the order the story happened.
 - **The story**, in six pinned chapters. Most are quiet: curious about computers, an education that went another way, building, going deeper with a part-time MCA, today. One is loud: discovering code, where the same few lines go from HTML to CSS to JavaScript to an application to a product.
 - **The work**: KNKY opens from a small window to the full screen, with the Stories and checkout flows animated and usable. The admin console and agency portal follow in a horizontal run.
 - **Education and work on one timeline**, with a playhead that moves through the years as you scroll.
-- **Skills, how I work** (each principle tied to something I actually fixed), a band of what I do outside work that speeds up with your scroll, and **an ending** where the computer from the start of the story shows something I built.
+- **Skills, how I work** (each principle tied to something I actually fixed), and a band of what I do outside work that speeds up with your scroll.
 
 ## Tech stack
 
@@ -51,7 +51,6 @@ portfolio/
     │   ├── Skills.tsx
     │   ├── Thinking.tsx                # How I work
     │   ├── Outside.tsx                 # Scroll-speed band
-    │   ├── Ending.tsx
     │   └── Contact.tsx
     ├── data/
     │   ├── journeyData.ts       # Intro beats and story steps
@@ -59,7 +58,8 @@ portfolio/
     └── lib/
         ├── journey.ts           # Whether the intro is playing, and the seen flag
         ├── useDesktop.ts        # Pinned layouts are desktop only
-        └── useMotionState.ts    # React state read from a scroll position
+        ├── useMotionState.ts    # React state read from a scroll position
+        └── useCenteredIndex.ts  # Which item is in the middle of the screen
 ```
 
 

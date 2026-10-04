@@ -168,9 +168,9 @@ export const TIMELINE = {
   start: 2019.3,
   end: 2026.8,
   education: [
-    { label: "B.Com", detail: "YCMOU", from: 2019.5, to: 2022.4 },
+    { label: "B.Com", detail: "YCMOU", from: 2019.6, to: 2022.4 },
     { label: "Course", detail: "6 months", from: 2022.45, to: 2022.95 },
-    { label: "MCA, part-time", detail: "Sandip University", from: 2023.5, to: 2026.45 }
+    { label: "MCA, part-time", detail: "Sandip University", from: 2023.58, to: 2026.45 }
   ],
   work: [
     { label: "Intern", detail: "", from: 2023.0, to: 2023.55 },
@@ -207,9 +207,9 @@ export const TIMELINE = {
       text: "Web Developer Intern, Ink In Caps, Mumbai. Admin panel and REST API work in a production Angular codebase. Converted to full-time."
     },
     {
-      from: 2023.5,
+      from: 2023.58,
       word: "MCA",
-      period: "2023",
+      period: "Aug 2023",
       text: "Part-time MCA at Sandip University begins, alongside the job."
     },
     {
@@ -227,7 +227,7 @@ export const TIMELINE = {
     {
       from: 2026.4,
       word: "MCA done",
-      period: "2026",
+      period: "Jun 2026",
       text: "Five semesters, part-time, CGPA 7.85."
     }
   ]

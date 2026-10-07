@@ -3,7 +3,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { Cursor } from "@/components/Cursor";
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
-import { Discovery, StoryEarly, StoryLater } from "@/components/Story";
+import { Story } from "@/components/Story";
 import { KnkyCase } from "@/components/KnkyCase";
 import { MoreWork } from "@/components/MoreWork";
 import { ProjectDetails } from "@/components/ProjectDetails";
@@ -22,9 +22,7 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <StoryEarly />
-        <Discovery />
-        <StoryLater />
+        <Story />
         <KnkyCase />
         <MoreWork />
         <ProjectDetails />

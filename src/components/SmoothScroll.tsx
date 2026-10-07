@@ -30,8 +30,32 @@ export function SmoothScroll() {
     };
     document.addEventListener("click", onClick);
 
+    // Keyboard scrolling goes through the same scroller. Left to the browser, a key pressed
+    // while a wheel scroll is still settling gets overwritten and appears to do nothing.
+    const onKey = (e: KeyboardEvent) => {
+      const el = e.target as HTMLElement;
+      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey || instance.isStopped) return;
+      if (el.closest("input, textarea, select, button, a, summary, [contenteditable], [data-lenis-prevent]")) return;
+      const page = window.innerHeight * 0.85;
+      const moves: Record<string, number> = {
+        ArrowDown: 80,
+        ArrowUp: -80,
+        PageDown: page,
+        PageUp: -page,
+        " ": e.shiftKey ? -page : page,
+        Home: -Infinity,
+        End: Infinity
+      };
+      const by = moves[e.key];
+      if (by === undefined) return;
+      e.preventDefault();
+      instance.scrollTo(Math.min(Math.max(instance.targetScroll + by, 0), instance.limit));
+    };
+    window.addEventListener("keydown", onKey);
+
     return () => {
       document.removeEventListener("click", onClick);
+      window.removeEventListener("keydown", onKey);
       instance.destroy();
       lenis.current = null;
     };

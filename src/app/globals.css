@@ -156,60 +156,28 @@ html.from-intro .hero-mark {
   animation-delay: 1.3s !important;
 }
 
-/* The kid's computer in the story: three screens taking turns. */
-@keyframes screen-cycle {
-  0%,
-  30% {
-    opacity: 1;
-  }
-  33.3%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes label-cycle {
-  0%,
-  30% {
-    color: var(--color-ink);
-  }
-  33.3%,
-  100% {
-    color: inherit;
-  }
-}
-
-@keyframes hop {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
+/* The curiosity fragments in the first chapter move a little, each at its own pace. */
+@keyframes drift {
   50% {
-    transform: translateY(-1.6rem);
+    transform: translateY(-0.5rem);
   }
 }
 
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
+.drift {
+  animation: drift 9s ease-in-out infinite;
 }
 
-.screen {
-  opacity: 0;
-  animation: screen-cycle 7.2s infinite backwards;
+/* The chapter number swaps in from below when the chapter changes. */
+.numeral {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
-.screen-label {
-  animation: label-cycle 7.2s infinite backwards;
-}
-
-.hop {
-  animation: hop 0.9s ease-in-out infinite;
-}
-
-.blink {
-  animation: blink 1s steps(1) infinite;
+/* Graph paper behind the first-job diagram. */
+.blueprint {
+  background-image:
+    linear-gradient(to right, #f1eee60f 1px, transparent 1px),
+    linear-gradient(to bottom, #f1eee60f 1px, transparent 1px);
+  background-size: 1.75rem 1.75rem;
 }
 
 .type-in {

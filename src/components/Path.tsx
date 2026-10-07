@@ -5,6 +5,7 @@ import { useScroll } from "framer-motion";
 import { useMotionState } from "@/lib/useMotionState";
 import { TIMELINE } from "@/data/portfolioData";
 import { useDesktop } from "@/lib/useDesktop";
+import { Folio } from "./Folio";
 
 const { start, end, education, work, moments, stages } = TIMELINE;
 const years = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
@@ -49,7 +50,7 @@ export function Path() {
   if (!desktop) {
     return (
       <section id="experience" className="px-5 pt-28">
-        <p className="label text-mute">Education and work, on one line</p>
+        <Folio no="03" title="Experience & education" />
         <ol className="mt-8 border-l border-ink">
           {stages.map((stage) => (
             <li key={stage.word} className="relative pb-10 pl-6">
@@ -67,10 +68,7 @@ export function Path() {
   return (
     <section id="experience" ref={ref} className="relative h-[420vh]">
       <div className="sticky top-0 flex h-screen flex-col justify-between px-10 pb-12 pt-24">
-        <div className="flex items-baseline justify-between">
-          <p className="label text-mute">Education and work, on one line</p>
-          <p className="font-mono text-sm tabular-nums text-mute">{Math.floor(at)}</p>
-        </div>
+        <Folio no="03" title="Experience & education" note={`On one line · ${Math.floor(at)}`} small />
 
         <div className="grid grid-cols-12 items-end gap-8">
           <h2 key={current.word} className="story-in col-span-6 font-display text-[clamp(4rem,9vw,9rem)] leading-[0.9] tracking-[-0.05em]">

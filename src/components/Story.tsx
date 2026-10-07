@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, type MotionValue } from "framer-motion";
 import { useMotionState } from "@/lib/useMotionState";
 import { CHAPTERS, EARLY, FUNDAMENTALS, LATER, type Chapter } from "@/data/journeyData";
-import { KidsComputer } from "./KidsComputer";
 
 // Every step of the story lives on one pinned stage, and each step owns a fixed share of the
 // scroll. Which step is on screen is only ever a function of how far the page has scrolled:
@@ -36,19 +35,27 @@ function locate(progress: number) {
   return { step: 0, within: 0 };
 }
 
-function Chapters({ active, progress, dark = false }: { active: number; progress: MotionValue<number>; dark?: boolean }) {
+// The stage itself changes with the story: paper while things are quiet, dark when code
+// arrives, and red when it reaches today.
+type Tone = "paper" | "ink" | "red";
+const stageTone: Record<Tone, string> = {
+  paper: "bg-paper text-ink",
+  ink: "bg-ink text-paper",
+  red: "bg-signal text-paper"
+};
+
+function Chapters({ active, progress, tone }: { active: number; progress: MotionValue<number>; tone: Tone }) {
+  const light = tone === "paper";
   return (
     <div className="relative mt-6">
-      <span className={`block h-px ${dark ? "bg-paper/20" : "bg-rule"}`}>
-        <motion.span style={{ scaleX: progress }} className="block h-full origin-left bg-signal" />
+      <span className={`block h-px ${light ? "bg-rule" : "bg-paper/25"}`}>
+        <motion.span style={{ scaleX: progress }} className={`block h-full origin-left ${tone === "red" ? "bg-paper" : "bg-signal"}`} />
       </span>
       <ol className="label mt-3 flex justify-between">
         {CHAPTERS.map((name, i) => (
           <li
             key={name}
-            className={`transition-colors duration-500 ${i === active ? (dark ? "text-paper" : "text-ink") : dark ? "text-paper/30" : "text-mute/60"} ${
-              i !== active ? "max-lg:hidden" : ""
-            }`}
+            className={`transition-colors duration-500 ${i === active ? "" : light ? "text-mute/60" : "text-paper/40"} ${i !== active ? "max-lg:hidden" : ""}`}
           >
             <span className="mr-2">{String(i + 1).padStart(2, "0")}</span>
             {name}
@@ -71,10 +78,12 @@ function Layer({ show, children, className = "" }: { show: boolean; children: Re
   );
 }
 
-// The quiet chapters: a small headline, the facts, one plain paragraph.
-function ChapterText({ chapters, step }: { chapters: Chapter[]; step: number }) {
+// The quiet chapters: one large headline, the facts in small type, one plain paragraph.
+function ChapterText({ chapters, step, tone }: { chapters: Chapter[]; step: number; tone: Tone }) {
+  const accent = tone === "paper" ? "text-signal" : "text-paper/70";
+  const soft = tone === "paper" ? "text-mute" : "text-paper/70";
   return (
-    <div className="relative min-h-[19rem] md:min-h-[24rem]">
+    <div className="relative min-h-[19rem] md:min-h-[30rem]">
       {chapters.map((item, i) => (
         <div
           key={item.title}
@@ -83,48 +92,148 @@ function ChapterText({ chapters, step }: { chapters: Chapter[]; step: number }) 
             step === i ? "opacity-100" : `pointer-events-none opacity-0 ${i < step ? "-translate-y-4 md:-translate-y-[60%]" : "translate-y-4 md:-translate-y-[40%]"}`
           }`}
         >
-          <p className="label text-signal">
-            {String(item.chapter + 1).padStart(2, "0")} · {item.label}
-          </p>
-          <h3 className="mt-3 font-display text-[clamp(1.45rem,2.8vw,2.6rem)] leading-[1.1] tracking-[-0.02em] text-balance sm:mt-4">{item.title}</h3>
+          <p className={`label ${accent}`}>{item.label}</p>
+          <h3 className="mt-3 font-display text-[clamp(1.6rem,4.4vw,4.6rem)] leading-[1.02] tracking-[-0.035em] text-balance sm:mt-5">
+            {item.title}
+          </h3>
           {item.facts && (
-            <p className="mt-3 flex flex-wrap gap-x-3 gap-y-0.5 font-mono text-xs text-mute sm:mt-5 sm:gap-y-1 sm:text-sm">
+            <p className={`mt-3 flex flex-wrap gap-x-3 gap-y-0.5 font-mono text-xs sm:mt-6 sm:gap-y-1 sm:text-sm ${soft}`}>
               {item.facts.map((fact, k) => (
                 <span key={fact}>
-                  {k > 0 && <span className="mr-3 text-signal">/</span>}
+                  {k > 0 && <span className={`mr-3 ${accent}`}>/</span>}
                   {fact}
                 </span>
               ))}
             </p>
           )}
-          <p className="mt-3 max-w-md text-[15px] leading-snug sm:mt-5 sm:text-lg sm:leading-relaxed">{item.text}</p>
+          <p className="mt-3 max-w-md text-[15px] leading-snug sm:mt-6 sm:text-lg sm:leading-relaxed">{item.text}</p>
         </div>
       ))}
     </div>
   );
 }
 
-// Interest in computers and formal education running side by side for a while.
-function TwoPaths() {
+// 01. Not a picture of a computer: the questions a kid has in front of one.
+const questions = [
+  { text: "?", at: "left-[4%] top-[2%]", style: "font-display text-[clamp(6rem,15vw,15rem)] leading-none text-signal", drift: 9 },
+  { text: "how does this work?", at: "left-[34%] top-[12%]", style: "font-display text-[clamp(1.1rem,2.2vw,2.2rem)] italic", drift: 7 },
+  { text: "games", at: "right-[4%] top-[34%]", style: "font-display text-[clamp(2rem,5vw,5rem)] tracking-tight", drift: 11 },
+  { text: "what's inside it?", at: "left-[10%] top-[52%]", style: "font-mono text-sm sm:text-base", drift: 8 },
+  { text: "the internet", at: "left-[38%] top-[62%]", style: "font-display text-[clamp(1.4rem,3.2vw,3.2rem)] italic text-signal", drift: 10 },
+  { text: "who makes these?", at: "right-[6%] top-[8%]", style: "font-mono text-xs text-mute sm:text-sm", drift: 12 },
+  { text: "why?", at: "right-[12%] bottom-[6%]", style: "font-display text-[clamp(1.6rem,3.6vw,3.6rem)]", drift: 6 },
+  { text: "exploring", at: "left-[2%] bottom-[4%]", style: "label text-mute", drift: 13 }
+];
+
+function Curiosity() {
   return (
-    <svg viewBox="0 0 400 240" className="w-full overflow-visible font-mono" fill="none" stroke="currentColor">
-      <circle cx="16" cy="120" r="4" fill="currentColor" />
-      <text x="16" y="104" fill="currentColor" stroke="none" fontSize="11">
-        Computers
-      </text>
-      <path d="M16 120 H120" strokeWidth="1.5" />
-      <path d="M120 120 C190 120 220 60 300 60 H384" strokeWidth="1.5" strokeDasharray="5 5" />
-      <text x="170" y="50" fill="currentColor" stroke="none" fontSize="10" opacity="0.7">
-        in the background
-      </text>
-      <path d="M120 120 C190 120 220 180 300 180 H384" strokeWidth="1.5" />
-      <text x="16" y="142" fill="currentColor" stroke="none" fontSize="10">
-        12th · Science
-      </text>
-      <text x="236" y="204" fill="currentColor" stroke="none" fontSize="10">
-        B.Com
-      </text>
-    </svg>
+    <div className="relative size-full">
+      {questions.map((item) => (
+        <span key={item.text} className={`drift absolute whitespace-nowrap ${item.at} ${item.style}`} style={{ animationDuration: `${item.drift}s` }}>
+          {item.text}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+// 02. Set like a ledger page: what I studied, and what stayed in the background.
+function EducationTable() {
+  const rows = [
+    ["12th", "Science", "52%"],
+    ["2019 – 22", "B.Com", "64%"]
+  ];
+  return (
+    <div className="w-full">
+      <div className="label flex justify-between border-b-2 border-ink pb-2 text-mute">
+        <span>When</span>
+        <span>What</span>
+        <span>Result</span>
+      </div>
+      {rows.map(([when, what, result]) => (
+        <div key={what} className="grid grid-cols-[1fr_1.4fr_auto] items-baseline gap-4 border-b border-ink py-4 sm:py-6">
+          <span className="font-mono text-sm tabular-nums sm:text-base">{when}</span>
+          <span className="font-display text-[clamp(1.8rem,4.4vw,4.4rem)] leading-none tracking-[-0.03em]">{what}</span>
+          <span className="font-mono text-sm tabular-nums sm:text-base">{result}</span>
+        </div>
+      ))}
+      <div className="grid grid-cols-[1fr_1.4fr_auto] items-baseline gap-4 border-b border-dashed border-mute py-4 text-mute sm:py-6">
+        <span className="font-mono text-sm sm:text-base">meanwhile</span>
+        <span className="font-display text-[clamp(1.8rem,4.4vw,4.4rem)] italic leading-none tracking-[-0.03em]">Computers</span>
+        <span className="font-mono text-sm sm:text-base">in the background</span>
+      </div>
+    </div>
+  );
+}
+
+// 04. A system diagram, since this is where it becomes engineering.
+function Roles() {
+  const roles = [
+    ["Web Developer Intern", "Intern", "Jan 2023"],
+    ["Junior Software Development Engineer", "Junior SDE", "Aug 2023"],
+    ["Software Development Engineer", "SDE", "Aug 2024"]
+  ];
+  return (
+    <div className="blueprint flex size-full flex-col justify-center px-6 sm:px-10">
+      <p className="label text-paper/50 max-sm:hidden">Ink In Caps, Mumbai</p>
+      <ol className="border-l border-ember sm:mt-8">
+        {roles.map(([title, short, from], i) => (
+          <li key={title} className="relative pb-3 pl-6 last:pb-0 sm:pb-9 sm:pl-8">
+            <span className="absolute -left-[5px] top-1.5 size-[9px] bg-ember" />
+            <p className="font-mono text-xs text-ember sm:text-sm">
+              {String(i + 1).padStart(2, "0")} · {from}
+            </p>
+            <p className="mt-0.5 font-display text-lg leading-tight tracking-tight sm:mt-1 sm:text-3xl">
+              <span className="sm:hidden">{short}</span>
+              <span className="max-sm:hidden">{title}</span>
+            </p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+// 05. Dense, like a transcript.
+function Transcript() {
+  return (
+    <div className="flex size-full flex-col justify-center px-6 sm:px-10">
+      <div className="label flex justify-between border-b border-paper/30 pb-2 text-paper/50">
+        <span>Master of Computer Applications</span>
+        <span className="max-sm:hidden">Sandip University</span>
+      </div>
+      <div className="flex items-end justify-between gap-6 border-b border-paper/30 py-4 sm:py-6">
+        <p className="font-display text-[clamp(4rem,11vw,11rem)] leading-[0.8] tracking-[-0.05em]">7.85</p>
+        <p className="label pb-1 text-right text-paper/50">
+          CGPA
+          <br />
+          Aug 2023 – Jun 2026
+        </p>
+      </div>
+      <div className="grid grid-cols-5 font-mono text-[11px] sm:text-sm">
+        {[1, 2, 3, 4, 5].map((semester) => (
+          <span key={semester} className="border-b border-r border-paper/30 py-2 text-center last:border-r-0 sm:py-3">
+            Sem {semester}
+          </span>
+        ))}
+      </div>
+      <p className="label mt-3 text-ember">Part-time, alongside the job</p>
+    </div>
+  );
+}
+
+// 06. Where the story lands: what the job covers now, set large.
+function Today() {
+  const areas = ["Payments", "Subscriptions", "Media", "Real-time", "Admin tools"];
+  return (
+    <ol className="w-full">
+      {areas.map((area, i) => (
+        <li key={area} className="flex items-baseline justify-between border-b border-paper/40 py-2 first:border-t sm:py-3">
+          <span className="font-display text-[clamp(1.6rem,4.2vw,4.2rem)] leading-none tracking-[-0.035em]">{area}</span>
+          <span className="font-mono text-xs text-paper/70 sm:text-sm">{String(i + 1).padStart(2, "0")}</span>
+        </li>
+      ))}
+    </ol>
   );
 }
 
@@ -156,85 +265,64 @@ export function Story() {
   });
 
   const discovering = step >= 2 && step <= 4;
-  const dark = step === 3 || step === 4;
+  const tone: Tone = step === 3 || step === 4 ? "ink" : step === 7 ? "red" : "paper";
   // Index into the quiet chapters. During discovery it already points at the next one.
   const chapter = step <= 1 ? step : Math.max(step - 3, 2);
+  const number = steps[step].chapter;
   const pane = (shown: boolean) => `absolute inset-0 transition-opacity duration-500 ${shown ? "" : "pointer-events-none opacity-0"}`;
 
   return (
     <section id="story" ref={ref} style={{ height: `${Math.round(totalWeight * 60)}vh` }} className="relative">
       <div
-        className={`sticky top-0 flex h-[100svh] flex-col px-5 pb-6 pt-20 transition-colors duration-500 sm:px-10 ${
-          dark ? "bg-ink text-paper" : "bg-paper text-ink"
-        }`}
+        data-tone={tone}
+        className={`sticky top-0 flex h-[100svh] flex-col overflow-hidden px-5 pb-6 pt-20 transition-colors duration-500 sm:px-10 ${stageTone[tone]}`}
       >
+        {/* The chapter number, set as large as the stage allows. */}
+        <span
+          key={number}
+          aria-hidden="true"
+          className={`numeral pointer-events-none absolute -bottom-[0.14em] right-0 select-none font-display text-[46vw] leading-[0.7] tracking-[-0.06em] md:text-[34vw] ${
+            tone === "paper" ? "text-ink/[0.045]" : "text-paper/[0.07]"
+          }`}
+        >
+          {String(number + 1).padStart(2, "0")}
+        </span>
+
         <div className="relative min-h-0 flex-1">
           <div aria-hidden={discovering} className={`${pane(!discovering)} grid content-start items-center gap-5 md:grid-cols-12 md:content-center md:gap-8`}>
             <div
               aria-hidden="true"
-              className={`relative h-[24svh] overflow-hidden font-mono text-[11px] transition-colors duration-500 sm:h-[32svh] sm:text-[13px] md:order-2 md:col-span-5 md:col-start-8 md:h-[52svh] ${
-                chapter >= 2 ? "bg-ink text-paper" : ""
+              className={`relative h-[24svh] overflow-hidden transition-colors duration-500 [@media(min-height:740px)]:h-[30svh] sm:h-[32svh] md:order-2 md:col-span-6 md:col-start-7 md:h-[58svh] ${
+                chapter === 2 || chapter === 3 ? "bg-ink text-paper" : ""
               }`}
             >
               <Layer show={chapter === 0}>
-                <KidsComputer />
+                <Curiosity />
               </Layer>
               <Layer show={chapter === 1}>
-                <TwoPaths />
+                <EducationTable />
               </Layer>
-
-              <Layer show={chapter === 2} className="!items-start px-6 sm:px-10">
-                <p className="label text-paper/50">Ink In Caps, Mumbai</p>
-                <ol className="mt-6 w-full">
-                  {[
-                    ["Web Developer Intern", "Jan 2023"],
-                    ["Junior Software Development Engineer", "Aug 2023"],
-                    ["Software Development Engineer", "Aug 2024"]
-                  ].map(([title, from], i) => (
-                    <li key={title} className="flex items-baseline gap-3 border-t border-paper/20 py-3 sm:py-4">
-                      <span className="text-ember">{String(i + 1).padStart(2, "0")}</span>
-                      <span className="font-sans text-sm sm:text-base">{title}</span>
-                      <span className="leader" />
-                      <span className="text-paper/60">{from}</span>
-                    </li>
-                  ))}
-                </ol>
+              <Layer show={chapter === 2}>
+                <Roles />
               </Layer>
-
-              <Layer show={chapter === 3} className="!items-start px-6 sm:px-10">
-                <p className="label text-paper/50">Part-time, alongside the job</p>
-                <p className="mt-3 font-display text-2xl leading-tight tracking-tight sm:mt-4 sm:text-4xl">Master of Computer Applications</p>
-                <p className="mt-2 text-paper/60">Sandip University · Aug 2023 – Jun 2026</p>
-                <div className="mt-8 grid w-full grid-cols-5 gap-2 max-sm:hidden">
-                  {[1, 2, 3, 4, 5].map((semester) => (
-                    <div key={semester} className="border-t-2 border-ember pt-2 text-paper/60">
-                      Sem {semester}
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-5 flex w-full items-baseline gap-2 text-base sm:mt-8">
-                  CGPA
-                  <span className="leader" />
-                  7.85
-                </p>
+              <Layer show={chapter === 3}>
+                <Transcript />
               </Layer>
-
-              <Layer show={chapter === 4} className="!items-start !justify-end px-6 pb-8 sm:px-10">
-                <p className="font-display text-6xl tracking-tight sm:text-8xl">30K+</p>
-                <p className="label mt-2 text-paper/60">people use what I build</p>
+              <Layer show={chapter === 4}>
+                <Today />
               </Layer>
             </div>
 
-            <div className="md:order-1 md:col-span-5 md:col-start-2">
-              <ChapterText chapters={quiet} step={chapter} />
+            <div className="md:order-1 md:col-span-5">
+              <ChapterText chapters={quiet} step={chapter} tone={tone} />
             </div>
           </div>
 
           {/* The one loud chapter: finding out what code is. */}
           <div aria-hidden={!discovering} className={`${pane(discovering)} text-center`}>
             <Layer show={step === 2}>
-              <p className="label text-signal">03 · Lockdown, 2020</p>
-              <p className="mt-5 max-w-4xl font-display text-[clamp(2rem,5vw,4.4rem)] leading-[1.06] tracking-[-0.025em] text-balance">
+              <p className="label text-signal">Lockdown, 2020</p>
+              <p className="mt-5 max-w-5xl font-display text-[clamp(2rem,5.6vw,5.4rem)] leading-[1.02] tracking-[-0.035em] text-balance">
                 During lockdown, a friend told me about courses that could get me into IT.
               </p>
               <p className="mt-6 max-w-xl text-lg leading-relaxed opacity-70">
@@ -264,43 +352,47 @@ export function Story() {
                   </div>
                 </Layer>
               </div>
-              <ol className="mt-8 flex gap-6 font-mono text-sm sm:gap-10 sm:text-base">
+              <ol className="mt-8 flex items-end gap-6 sm:gap-12">
                 {FUNDAMENTALS.map((item, i) => (
-                  <li key={item.name} className={`transition-colors duration-500 ${i <= layer ? "text-paper" : "text-paper/25"}`}>
-                    <span className={i === layer ? "text-ember" : ""}>{item.name}</span>
-                    <span className="block text-xs opacity-60 sm:text-sm">{item.role}</span>
+                  <li key={item.name} className={`text-left transition-colors duration-500 ${i <= layer ? "text-paper" : "text-paper/20"}`}>
+                    <span className={`block font-display text-[clamp(1.5rem,3.4vw,3.4rem)] leading-none tracking-[-0.03em] ${i === layer ? "text-ember" : ""}`}>
+                      {item.name}
+                    </span>
+                    <span className="label mt-2 block opacity-60">{item.role}</span>
                   </li>
                 ))}
               </ol>
-              <p className="label mt-6 text-signal">The course, 2022</p>
-              <p className="mt-2 max-w-lg text-base opacity-70">That&apos;s where I started learning to code, from the fundamentals.</p>
+              <p className="mt-6 max-w-lg text-base opacity-70">
+                <span className="label mr-3 text-ember">The course, 2022</span>
+                That&apos;s where I started learning to code, from the fundamentals.
+              </p>
             </Layer>
 
             <Layer show={step === 4}>
-              <div aria-hidden="true" className="grid w-full max-w-xl grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-2 font-mono text-[12px] sm:gap-4 sm:text-sm">
+              <div aria-hidden="true" className="grid w-full max-w-3xl grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-2 sm:gap-5">
                 {[
                   ["Angular", "the screen"],
                   ["Node.js", "the server"],
                   ["MongoDB", "the data"]
                 ].map(([name, role], i) => (
                   <div key={name} className="contents">
-                    {i > 0 && <span className="text-ember">↔</span>}
-                    <div className="border border-paper/30 px-2 py-6 text-center sm:py-10">
-                      <p className="font-display text-xl tracking-tight sm:text-3xl">{name}</p>
-                      <p className="mt-2 text-paper/50">{role}</p>
+                    {i > 0 && <span className="font-mono text-ember">↔</span>}
+                    <div className="border border-paper/30 px-2 py-7 text-center sm:py-12">
+                      <p className="font-display text-[clamp(1.2rem,3.2vw,3rem)] leading-none tracking-[-0.03em]">{name}</p>
+                      <p className="label mt-3 text-paper/50">{role}</p>
                     </div>
                   </div>
                 ))}
               </div>
-              <p className="mt-10 max-w-xl font-display text-xl leading-snug tracking-[-0.01em] sm:text-2xl">
+              <p className="mt-10 max-w-3xl font-display text-[clamp(1.6rem,3.6vw,3.4rem)] leading-[1.04] tracking-[-0.03em]">
                 Then how a complete application comes together.
               </p>
-              <p className="mt-3 max-w-lg text-base opacity-70">My first real look at how software is actually built.</p>
+              <p className="mt-4 max-w-lg text-base opacity-70">My first real look at how software is actually built.</p>
             </Layer>
           </div>
         </div>
 
-        <Chapters active={steps[step].chapter} progress={scrollYProgress} dark={dark} />
+        <Chapters active={number} progress={scrollYProgress} tone={tone} />
       </div>
     </section>
   );

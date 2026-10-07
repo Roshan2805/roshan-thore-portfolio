@@ -20,7 +20,7 @@ export function RotatingLine() {
   }, [index, held]);
 
   return (
-    <p className="text-lg leading-snug sm:text-xl" onPointerEnter={() => setHeld(true)} onPointerLeave={() => setHeld(false)}>
+    <p className="text-lg leading-snug sm:text-2xl" onPointerEnter={() => setHeld(true)} onPointerLeave={() => setHeld(false)}>
       I build
       <button
         type="button"

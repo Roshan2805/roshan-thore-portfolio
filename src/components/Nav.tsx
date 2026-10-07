@@ -13,16 +13,29 @@ const links = [
   { id: "contact", label: "Contact" }
 ];
 
+// What the nav is sitting on right now. Sections mark themselves with data-tone;
+// anything unmarked is paper.
+function toneAt(x: number, y: number) {
+  for (const el of document.elementsFromPoint(x, y)) {
+    const marked = el.closest<HTMLElement>("[data-tone]");
+    if (marked) return marked.dataset.tone === "paper" ? "paper" : "dark";
+  }
+  return "paper";
+}
+
 export function Nav() {
   const [past, setPast] = useState(false);
   const [current, setCurrent] = useState("");
+  const [tone, setTone] = useState("paper");
+  const [railTone, setRailTone] = useState("paper");
   const [open, setOpen] = useState(false);
   const progress = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const onScroll = () => {
+    let frame = 0;
+    const update = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      if (progress.current) progress.current.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+      if (progress.current) progress.current.style.transform = `scaleY(${max > 0 ? window.scrollY / max : 0})`;
       setPast(window.scrollY > window.innerHeight * 0.5);
       const line = window.innerHeight * 0.4;
       let inView = "";
@@ -31,17 +44,34 @@ export function Nav() {
         if (top !== undefined && top <= line) inView = id;
       });
       setCurrent(inView);
+      setTone(toneAt(8, 28));
+      setRailTone(toneAt(8, window.innerHeight - 40));
     };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const schedule = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(update);
+    };
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    // The story stage changes tone without the page moving, so watch for that too.
+    const observer = new MutationObserver(schedule);
+    document.querySelectorAll("[data-tone]").forEach((el) => observer.observe(el, { attributes: true, attributeFilter: ["data-tone"] }));
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      observer.disconnect();
+    };
   }, []);
+
+  const index = links.findIndex(({ id }) => id === current);
 
   return (
     <>
-      {/* White text with a difference blend, so it reads on the paper and the dark sections alike. */}
-      <header className="pointer-events-none fixed inset-x-0 top-0 z-50 text-white mix-blend-difference">
-        <span ref={progress} className="block h-0.5 origin-left scale-x-0 bg-white" />
+      <header
+        className={`pointer-events-none fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${tone === "paper" ? "text-ink" : "text-paper"}`}
+      >
         <div className="label flex h-14 items-center justify-between px-5 sm:px-10">
           <a
             href="#top"
@@ -64,7 +94,7 @@ export function Nav() {
             <button
               type="button"
               onClick={playJourney}
-              className="cursor-pointer uppercase tracking-[inherit] opacity-70 transition-opacity hover:opacity-100"
+              className="cursor-pointer uppercase tracking-[inherit] opacity-60 transition-opacity hover:opacity-100"
             >
               ↗ Replay story
             </button>
@@ -83,6 +113,25 @@ export function Nav() {
           </button>
         </div>
       </header>
+
+      {/* The ledger's margin line, carried down the whole page: how far you are, and where. */}
+      <div
+        aria-hidden="true"
+        className={`pointer-events-none fixed bottom-0 left-[1.4rem] top-0 z-40 w-px transition-colors duration-300 max-lg:hidden ${
+          railTone === "paper" ? "text-ink" : "text-paper"
+        }`}
+      >
+        <span className="absolute inset-0 bg-current opacity-15" />
+        <span ref={progress} className="absolute inset-0 origin-top scale-y-0 bg-signal" />
+        <span
+          className={`label absolute bottom-6 left-0 whitespace-nowrap transition-opacity duration-300 ${
+            index < 0 ? "opacity-0" : "opacity-70"
+          }`}
+          style={{ transform: "translateX(-0.45rem) rotate(-90deg)", transformOrigin: "bottom left" }}
+        >
+          {index >= 0 && `${String(index + 1).padStart(2, "0")} — ${links[index].label}`}
+        </span>
+      </div>
 
       {open && (
         <div data-lenis-prevent className="fixed inset-0 z-[60] flex flex-col bg-ink px-5 pb-8 pt-4 text-paper lg:hidden">

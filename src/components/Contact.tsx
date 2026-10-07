@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
+import { Folio } from "./Folio";
 import { Magnetic } from "./Magnetic";
 import { ReplayJourney } from "./ReplayJourney";
 
@@ -17,10 +18,10 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="bg-ink text-paper">
+    <section id="contact" data-tone="ink" className="bg-ink text-paper">
       <div className="mx-auto max-w-[96rem] px-5 pb-8 pt-20 sm:px-10 sm:pt-32">
-        <p className="label text-paper/60">What&apos;s next</p>
-        <p className="mt-6 max-w-3xl text-xl leading-relaxed text-paper/70 sm:text-2xl">
+        <Folio no="06" title="Contact" note="What&apos;s next" dark />
+        <p className="mt-10 max-w-3xl text-xl leading-relaxed text-paper/70 sm:text-2xl">
           Bigger systems. Harder frontend problems. More ownership. If you&apos;re working on something like that, I&apos;d
           like to hear about it.
         </p>

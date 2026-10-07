@@ -22,7 +22,7 @@ export function Outside() {
   const row = [...OUTSIDE, ...OUTSIDE];
 
   return (
-    <section aria-label="Outside the browser" className="mt-28 overflow-hidden bg-signal py-10 text-paper sm:mt-44 sm:py-14">
+    <section aria-label="Outside the browser" data-tone="red" className="mt-28 overflow-hidden bg-signal py-10 text-paper sm:mt-44 sm:py-14">
       <p className="label px-5 sm:px-10">Outside the browser</p>
       <motion.p style={{ x }} className="mt-4 flex w-max whitespace-nowrap font-display text-[clamp(3rem,9vw,8rem)] italic leading-none tracking-[-0.04em]">
         {[row, row].map((items, k) => (

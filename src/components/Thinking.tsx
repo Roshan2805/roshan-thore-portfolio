@@ -2,14 +2,15 @@
 
 import { useCenteredIndex } from "@/lib/useCenteredIndex";
 import { PRINCIPLES } from "@/data/portfolioData";
+import { Folio } from "./Folio";
 
 export function Thinking() {
   const { ref: list, active } = useCenteredIndex<HTMLOListElement>();
 
   return (
     <section id="about" className="mx-auto max-w-[96rem] px-5 pt-28 sm:px-10 sm:pt-44">
-      <p className="label text-mute">How I work</p>
-      <p className="on-view mt-6 max-w-5xl font-display text-[clamp(2rem,4.8vw,4.4rem)] leading-[1.04] tracking-[-0.03em]">
+      <Folio no="05" title="How I work" note="Five things I keep coming back to" />
+      <p className="on-view mt-10 max-w-5xl font-display text-[clamp(2rem,4.8vw,4.4rem)] leading-[1.04] tracking-[-0.03em]">
         I like the parts of a product where something real is at stake. A payment going through. A video starting on a
         bad connection.
       </p>

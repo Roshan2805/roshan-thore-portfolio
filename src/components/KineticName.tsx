@@ -36,7 +36,7 @@ export function KineticName() {
       aria-label="Roshan Thore"
       onPointerMove={onMove}
       onPointerLeave={() => letters().forEach((letter) => (letter.style.fontWeight = ""))}
-      className="text-center font-display text-[13.6vw] font-medium leading-none tracking-[-0.045em] whitespace-nowrap"
+      className="text-center font-display text-[14.6vw] font-medium md:text-[15.8vw] leading-none tracking-[-0.045em] whitespace-nowrap"
     >
       <span ref={ref} data-hero-name aria-hidden="true" className="hero-name inline-block">
         <motion.span style={{ x: left }} className="inline-block">

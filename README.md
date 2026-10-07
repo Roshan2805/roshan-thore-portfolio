@@ -41,9 +41,10 @@ portfolio/
     │   ├── Intro.tsx, IntroScene.tsx   # Intro overlay and its three.js particles
     │   ├── SmoothScroll.tsx            # Lenis, plus eased section links
     │   ├── Cursor.tsx                  # Pointer dot that opens over previews
-    │   ├── Nav.tsx
+    │   ├── Nav.tsx                     # Nav and the margin rail, both aware of the background
+    │   ├── Folio.tsx                   # Numbered section opener
     │   ├── Hero.tsx, KineticName.tsx, RotatingLine.tsx
-    │   ├── Story.tsx                   # The story: early chapters, discovery, later chapters
+    │   ├── Story.tsx                   # The story: one pinned stage, eight steps, six chapters
     │   ├── KnkyCase.tsx, Flow.tsx      # Expanding case study and its flows
     │   ├── MoreWork.tsx                # Horizontal run of the other projects
     │   ├── ProjectDetails.tsx          # Full build lists and what was hard, collapsed

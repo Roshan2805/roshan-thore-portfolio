@@ -74,9 +74,12 @@ export function KnkyCase() {
   return (
     <div id="work" ref={ref} className="md:h-[560vh]">
       <div className="md:sticky md:top-0 md:h-screen md:overflow-hidden">
-        <p className="label absolute left-10 top-20 text-mute max-md:hidden">What I&apos;ve built · case 01</p>
+        <p className="absolute left-10 top-16 flex items-baseline gap-4 max-md:hidden">
+          <span className="font-display text-6xl leading-[0.8] tracking-[-0.05em] text-signal">02</span>
+          <span className="label">Work · what I&apos;ve built</span>
+        </p>
 
-        <motion.article style={desktop ? { clipPath } : undefined} className="relative bg-ink text-paper md:h-full">
+        <motion.article data-tone="ink" style={desktop ? { clipPath } : undefined} className="relative bg-ink text-paper md:h-full">
           <div className={layer(0)}>
             <p className="label flex flex-wrap justify-between gap-x-6 gap-y-1 text-paper/50">
               <span>Case 01 · {knky.kind}</span>
@@ -84,7 +87,7 @@ export function KnkyCase() {
                 {knky.period} · {knky.status}
               </span>
             </p>
-            <h2 className="mt-6 font-display text-[clamp(5rem,20vw,18rem)] leading-[0.8] tracking-[-0.06em] md:text-center">
+            <h2 className="mt-6 font-display text-[clamp(5rem,17vw,15rem)] leading-[0.8] tracking-[-0.06em] md:text-center">
               {knky.title}
             </h2>
             <div className="mt-8 grid gap-6 md:grid-cols-12">
@@ -97,7 +100,7 @@ export function KnkyCase() {
             <dl className="mt-10 grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4">
               {knky.results.map((result) => (
                 <div key={result.label} className="border-t border-paper/30 pt-3">
-                  <dd className="font-display text-4xl tracking-tight tabular-nums sm:text-5xl">{result.value}</dd>
+                  <dd className="font-display text-5xl leading-none tracking-[-0.04em] tabular-nums sm:text-7xl">{result.value}</dd>
                   <dt className="mt-1 text-sm text-paper/60">{result.label}</dt>
                 </div>
               ))}
